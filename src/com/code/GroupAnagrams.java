@@ -4,7 +4,6 @@ import java.util.*;
 public class GroupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList();
-<<<<<<< HEAD
         List<String> list = null;
         HashMap<Integer, Integer> map = new HashMap();
         int arr = 0;
@@ -28,9 +27,6 @@ public class GroupAnagrams {
                 result.add(list);
             }
         }
-=======
-
->>>>>>> 40cfda8966186f66b38a393f26bd40dd84f4afc9
         return result;
     }
 }
