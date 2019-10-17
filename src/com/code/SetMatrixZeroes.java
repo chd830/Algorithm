@@ -2,6 +2,7 @@ package com.code;
 
 public class SetMatrixZeroes {
     public void setZeroes(int[][] matrix) {
+        //0인지점을 visit에 모두 저장하고 포문으로 반복하면서 visit[i][j]가 0인위치에서만 가로줄 세로줄을 0으로 만든다.
         boolean[][] visit = new boolean[matrix.length][matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
