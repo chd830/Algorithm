@@ -2,6 +2,7 @@ package com.code;
 
 public class SortColors {
     public static void sortColors(int[] nums) {
+        //각각 0,1,2의 숫자를 세서 숫자만큼 nums를 채운다.
         int[] count = new int[3];
         for(int num : nums) {
             if(num == 0)

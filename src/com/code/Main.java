@@ -1,9 +1,16 @@
 package com.code;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        SortColors s = new SortColors();
-        int[] nums = {2,0,2,1,1,0};
-        s.sortColors(nums);
+        Combinations c = new Combinations();
+        List<List<Integer>> result = c.combine(4,3);
+        for(List<Integer> l : result) {
+            for(int i = 0; i < l.size(); i++) {
+                System.out.print(l.get(i)+"\t");
+            }
+            System.out.println();
+        }
+
     }
 }
