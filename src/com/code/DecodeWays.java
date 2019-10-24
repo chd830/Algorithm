@@ -3,27 +3,26 @@ import java.util.*;
 
 public class DecodeWays {
     public int numDecodings(String s) {
-        /*
-        s를 26이하의 수가 n번 나오게 나누기.
-
-         */
-//        int[] alph = new int[27];
-//        List<String> sub = new ArrayList();
-//
-//        for(int i = 0; i < s.length() - 1; i++) {
-//            for(int j = i; j < s.length(); j++) {
-//                String substring = s.substring(i, j+1);
-//                System.out.print(substring+"\t");
-//                if(!sub.contains(substring) && Integer.parseInt(substring) <= 26) {
-//                    sub.add(substring);
-//                }
-//            }
-//            System.out.println();
-//        }
-//        System.out.println("--------");
-//        for(String str : sub) {
-//            System.out.println(str+"\t");
-//        }
-        return 0;
+        //DP문제 피보나치랑 같은 방식으로 접근
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        int n = s.length();
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        dp[1] = s.charAt(0) != '0' ? 1 : 0;
+        for(int i = 2; i <= n; i++) {
+            int first = Integer.valueOf(s.substring(i-1, i));
+            int second = Integer.valueOf(s.substring(i-2, i));
+            System.out.println("first: "+first+", second: "+second);
+            if(first >= 1 && first <= 9) {
+                dp[i] += dp[i-1];
+            }
+            if(second >= 10 && second <= 26) {
+                dp[i] += dp[i-2];
+            }
+            System.out.println("dp["+i+"]: "+dp[i]);
+        }
+        return dp[n];
     }
 }
