@@ -1,12 +1,12 @@
 package com.code;
 
 public class SymmetricTree {
-    public boolean isSymmetric(SameTree.TreeNode root) {
+    public boolean isSymmetric(TreeNode root) {
         if(root == null)
             return true;
         return checkSymmetric(root.left, root.right);
     }
-    public boolean checkSymmetric(SameTree.TreeNode left, SameTree.TreeNode right) {
+    public boolean checkSymmetric(TreeNode left, TreeNode right) {
         if(left == null && right == null)
             return true;
         if(left == null || right == null)
