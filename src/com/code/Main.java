@@ -3,7 +3,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MaximumProductSubarray m = new MaximumProductSubarray();
-        System.out.println(m.maxProduct(new int[] {2,3,-2,4}));
+        LongestIncreasingSubsequence l = new LongestIncreasingSubsequence();
+        System.out.println(l.lengthOfLIS(new int[] {4,10,4,3,8,9}));
+        System.out.println("---------");
+        System.out.println(l.lengthOfLIS(new int[] {10,9,2,5,3,4}));
+        System.out.println("---------");
+        System.out.println(l.lengthOfLIS(new int[] {-2, -1}));
     }
 }
