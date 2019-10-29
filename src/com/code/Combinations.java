@@ -21,7 +21,8 @@ public class Combinations {
             combs.add(new ArrayList<Integer>(comb));
             return;
         }
-        for (int i = start; i <= n-k + 1; i++) {
+        for (int i = start; i <= n - k + 1; i++) {
+            System.out.println("n-k + 1: "+(n - k + 1));
             //i를 comb에 하나씩 더하고 마지막에 있는 수를 제거하면서
             //comb에 수를 k개가 되도록 채우고 combs에 더한다.
             System.out.println("add "+i+" in comb");

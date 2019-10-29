@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        IntegerBreak i = new IntegerBreak();
-        System.out.println("result: "+i.integerBreak(10));
+        Combinations c = new Combinations();
+        c.combine(4,3);
     }
 }
