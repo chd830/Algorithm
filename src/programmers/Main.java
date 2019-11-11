@@ -2,10 +2,9 @@ package programmers;
 
 public class Main {
     public static void main(String[] args) {
-        Tower t = new Tower();
-        int[] arr = t.solution(new int[] {3,9,9,3,5,7,2});
-        for(int a : arr)
-            System.out.print(a+"\t");
+        GymSuit g = new GymSuit();
+        System.out.println(g.solution(6 , new int[] {2,3,4}, new int[] {1,2,3,6}));
+        System.out.println(g.solution(7 , new int[] {2,3,4}, new int[] {1,2,3,6}));
     }
 
     public static boolean solution(String s) {
