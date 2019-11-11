@@ -2,7 +2,10 @@ package programmers;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(solution("1234"));
+        Tower t = new Tower();
+        int[] arr = t.solution(new int[] {3,9,9,3,5,7,2});
+        for(int a : arr)
+            System.out.print(a+"\t");
     }
 
     public static boolean solution(String s) {
