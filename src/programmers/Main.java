@@ -2,9 +2,8 @@ package programmers;
 
 public class Main {
     public static void main(String[] args) {
-        GymSuit g = new GymSuit();
-        System.out.println(g.solution(6 , new int[] {2,3,4}, new int[] {1,2,3,6}));
-        System.out.println(g.solution(7 , new int[] {2,3,4}, new int[] {1,2,3,6}));
+        BiggestNum b = new BiggestNum();
+        System.out.println(b.solution(new int[] {3,30,34,5,9}));
     }
 
     public static boolean solution(String s) {
