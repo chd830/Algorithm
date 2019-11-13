@@ -2,8 +2,8 @@ package programmers;
 
 public class Main {
     public static void main(String[] args) {
-        BiggestNum b = new BiggestNum();
-        System.out.println(b.solution(new int[] {3,30,34,5,9}));
+        FindDecimal f = new FindDecimal();
+        System.out.println(f.solution("17"));
     }
 
     public static boolean solution(String s) {
