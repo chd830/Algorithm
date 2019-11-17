@@ -2,8 +2,9 @@ package programmers;
 
 public class Main {
     public static void main(String[] args) {
-        FindDecimal f = new FindDecimal();
-        System.out.println(f.solution("17"));
+        GetCenterString g = new GetCenterString();
+        System.out.println(g.solution("abcde"));
+        System.out.println(g.solution("qwer"));
     }
 
     public static boolean solution(String s) {
