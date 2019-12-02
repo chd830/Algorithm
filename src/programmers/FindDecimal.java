@@ -1,9 +1,6 @@
 package programmers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 public class FindDecimal {
     /*
@@ -15,35 +12,37 @@ public class FindDecimal {
     public int solution(String numbers) {
         HashSet<Integer> set = new HashSet<>();
         permutation("", numbers, set);
-        while(set.iterator().hasNext()) {
+        while (set.iterator().hasNext()) {
             int a = set.iterator().next();
             set.remove(a);
-            if(a == 2)
+            if (a == 2)
                 answer++;
-            if(a % 2 != 0 && isDecimal(a)) {
+            if (a % 2 != 0 && isDecimal(a)) {
                 answer++;
             }
         }
         return answer;
     }
+
     public void permutation(String prefix, String str, HashSet<Integer> set) {
         int n = str.length();
-        //if (n == 0) System.out.println(prefix);
-        if(!prefix.equals("")) set.add(Integer.valueOf(prefix));
+        if (!prefix.equals(""))
+            set.add(Integer.valueOf(prefix));
+        System.out.println("prefix: " + prefix + ", str: " + str);
         for (int i = 0; i < n; i++)
-            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), set);
+            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n), set);
 
     }
 
     public boolean isDecimal(int num) {
-        if(num == 0 || num == 1)
+        if (num == 0 || num == 1)
             return false;
         int count = 0;
-        for(int a = 1; a < num; a++) {
-            if(num % a == 0)
+        for (int a = 1; a < num; a++) {
+            if (num % a == 0)
                 count++;
         }
-        if(count > 1)
+        if (count > 1)
             return false;
         return true;
     }
