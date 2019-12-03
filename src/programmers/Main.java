@@ -7,27 +7,37 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer token = null;
+
         int num = Integer.parseInt(br.readLine());
-        List<int[]> list = new ArrayList<>();
+        String[] arr = new String[num];
         for(int i = 0; i < num; i++) {
-            token = new StringTokenizer(br.readLine());
-            int[] arr = new int[2];
-            arr[0] = Integer.parseInt(token.nextToken());
-            arr[1] = Integer.parseInt(token.nextToken());
-            list.add(arr);
+            arr[i] = br.readLine();
         }
-        Collections.sort(list, new Comparator<int[]>() {
+
+        Arrays.sort(arr, new Comparator<String>() {
             @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[1] == o2[1])
-                    return Integer.compare(o1[0], o2[0]);
-                else
-                    return Integer.compare(o1[1], o2[1]);
+            public int compare(String o1, String o2) {
+                return Integer.compare(o1.length(), o2.length());
             }
         });
-        for(int[] a : list) {
-            System.out.println(a[0] +" " + a[1]);
+        int i = 0;
+        int j = 0;
+
+        for(i = 0; i < num - 1; i++) {
+            for(j = i  +1; j < num; j++) {
+                if(arr[i].length() != arr[j].length()) {
+                    break;
+                }
+            }
+            Arrays.sort(arr, i, j);
+        }
+        String prev = "";
+        for(i = 0; i < num; i++) {
+            if(prev.equals(arr[i])) {
+                continue;
+            }
+            System.out.println(arr[i]);
+            prev = arr[i];
         }
     }
    /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
