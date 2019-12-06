@@ -1,42 +1,21 @@
 package programmers;
 
-import java.io.*;
-import java.util.HashMap;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer token = null;
-
-        String str = br.readLine();
-        str = str.toUpperCase();
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        int maxNum = 1;
-        for(int i = 0; i < str.length(); i++) {
-            if(map.containsKey(str.charAt(i))) {
-                map.put(str.charAt(i), map.get(str.charAt(i)) + 1);
-                if(map.get(str.charAt(i)) > maxNum) {
-                    maxNum = map.get(str.charAt(i));
-                }
-            }
-            else {
-                map.put(str.charAt(i), 1);
-            }
+        String str = br.readLine().trim();
+        if (str.isEmpty())
+            System.out.println(0);
+        else {
+            System.out.println(str.split(" ").length);
         }
-
-        String result = "";
-        for(char c : map.keySet()) {
-            if(map.get(c) == maxNum) {
-                System.out.println(c +": "+maxNum);
-                if(!result.equals("")) {
-                    System.out.println("?");
-                    System.exit(0);
-                }
-                result += c;
-            }
-        }
-        System.out.print(result);
         br.close();
     }
 
