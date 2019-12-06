@@ -1,7 +1,7 @@
 package programmers;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -9,24 +9,34 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer token = null;
 
-        int num = Integer.parseInt(br.readLine());
-        int recur = 0;
-        String str = "";
-        String[] result = new String[num];
-
-        for(int i = 0; i < num; i++) {
-            token = new StringTokenizer(br.readLine());
-            recur = Integer.parseInt(token.nextToken());
-            str = token.nextToken();
-            result[i] = "";
-            for(int a = 0; a < str.length(); a++) {
-                for(int b = 0; b < recur; b++) {
-                    result[i] += str.charAt(a);
+        String str = br.readLine();
+        str = str.toUpperCase();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int maxNum = 1;
+        for(int i = 0; i < str.length(); i++) {
+            if(map.containsKey(str.charAt(i))) {
+                map.put(str.charAt(i), map.get(str.charAt(i)) + 1);
+                if(map.get(str.charAt(i)) > maxNum) {
+                    maxNum = map.get(str.charAt(i));
                 }
             }
+            else {
+                map.put(str.charAt(i), 1);
+            }
         }
-        for(String r : result)
-            System.out.println(r);
+
+        String result = "";
+        for(char c : map.keySet()) {
+            if(map.get(c) == maxNum) {
+                System.out.println(c +": "+maxNum);
+                if(!result.equals("")) {
+                    System.out.println("?");
+                    System.exit(0);
+                }
+                result += c;
+            }
+        }
+        System.out.print(result);
         br.close();
     }
 
