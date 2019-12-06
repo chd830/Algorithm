@@ -8,19 +8,25 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer token = null;
-        String str = br.readLine();
-        int[] alph = new int[26];
-        Arrays.fill(alph, -1);
-        for(int i = 0; i < str.length(); i++) {
-            int asc = (int)str.charAt(i) - 97;
-            if(alph[asc] != -1) {
-                continue;
-            }
-            alph[asc] = i;
 
+        int num = Integer.parseInt(br.readLine());
+        int recur = 0;
+        String str = "";
+        String[] result = new String[num];
+
+        for(int i = 0; i < num; i++) {
+            token = new StringTokenizer(br.readLine());
+            recur = Integer.parseInt(token.nextToken());
+            str = token.nextToken();
+            result[i] = "";
+            for(int a = 0; a < str.length(); a++) {
+                for(int b = 0; b < recur; b++) {
+                    result[i] += str.charAt(a);
+                }
+            }
         }
-        for(int a : alph)
-            System.out.print(a+" ");
+        for(String r : result)
+            System.out.println(r);
         br.close();
     }
 
