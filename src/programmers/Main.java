@@ -1,18 +1,22 @@
 package programmers;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        char c = br.readLine().charAt(0);
-        int asc = (int) c;
-        bw.write(asc + "\n");
-        bw.flush();
-        br.close();
+        StringTokenizer token = null;
+        int len = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        int sum = 0;
+        for(int i = 0; i < len; i++) {
+            sum += str.charAt(i) - '0';
+        }
+        System.out.println(sum);
         bw.close();
+        br.close();
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
