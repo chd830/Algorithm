@@ -1,21 +1,26 @@
 package programmers;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer token = null;
-        int len = Integer.parseInt(br.readLine());
         String str = br.readLine();
-        int sum = 0;
-        for(int i = 0; i < len; i++) {
-            sum += str.charAt(i) - '0';
+        int[] alph = new int[26];
+        Arrays.fill(alph, -1);
+        for(int i = 0; i < str.length(); i++) {
+            int asc = (int)str.charAt(i) - 97;
+            if(alph[asc] != -1) {
+                continue;
+            }
+            alph[asc] = i;
+
         }
-        System.out.println(sum);
-        bw.close();
+        for(int a : alph)
+            System.out.print(a+" ");
         br.close();
     }
 
