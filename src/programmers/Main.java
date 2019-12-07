@@ -9,14 +9,20 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer token = null;
-        String str = br.readLine().trim();
-        if (str.isEmpty())
-            System.out.println(0);
-        else {
-            System.out.println(str.split(" ").length);
-        }
-        br.close();
+        StringTokenizer token = new StringTokenizer(br.readLine());
+
+        String num1 = token.nextToken();
+        String num2 = token.nextToken();
+
+        StringBuilder builder = new StringBuilder(num1);
+        num1 = builder.reverse().toString();
+        builder = new StringBuilder(num2);
+        num2 = builder.reverse().toString();
+        System.out.println(num1+", "+num2);
+        if(Integer.parseInt(num1) < Integer.parseInt(num2))
+            System.out.println(num2);
+        else
+            System.out.println(num1);
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
