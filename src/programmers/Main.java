@@ -1,28 +1,40 @@
 package programmers;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer token = new StringTokenizer(br.readLine());
-
-        String num1 = token.nextToken();
-        String num2 = token.nextToken();
-
-        StringBuilder builder = new StringBuilder(num1);
-        num1 = builder.reverse().toString();
-        builder = new StringBuilder(num2);
-        num2 = builder.reverse().toString();
-        System.out.println(num1+", "+num2);
-        if(Integer.parseInt(num1) < Integer.parseInt(num2))
-            System.out.println(num2);
-        else
-            System.out.println(num1);
+    public static void main(String[] args) {
+        List<char[]> list = new ArrayList<>();
+        list.add(null);
+        list.add(null);
+        list.add(null);
+        list.add(new char[]{'A','B','C'});
+        list.add(new char[]{'D','E','F'});
+        list.add(new char[]{'G','H','I'});
+        list.add(new char[]{'J','K','L'});
+        list.add(new char[]{'M','N','O'});
+        list.add(new char[]{'P','Q','R','S'});
+        list.add(new char[]{'T','U','V'});
+        list.add(new char[]{'W','X','Y','Z'});
+        Scanner scan = new Scanner(System.in);
+        String str = scan.next();
+        int result = 0;
+        for(char c : str.toCharArray()) {
+            for(int i = 3; i < list.size(); i++) {
+                if(list.get(i)[0] == c || list.get(i)[1] == c || list.get(i)[2] == c) {
+                    result += i;
+                    break;
+                }
+                if(list.get(i).length == 4 && list.get(i)[3] == c) {
+                    result += i;
+                    break;
+                }
+            }
+        }
+        System.out.println(result);
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
