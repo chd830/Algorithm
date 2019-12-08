@@ -1,21 +1,39 @@
 package programmers;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
-        String[] words = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine().trim();
-        for(int i = 0; i < words.length; i++) {
-            if(str.contains(words[i])) {
-                str = str.replaceAll(words[i], "*");
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = null;
+        st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken()); // 단어의 개수
+        int groupWordCount = n; // 그룹단어 수
+
+
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            String word = st.nextToken();
+
+            int[] checkArray = new int[26];
+            checkArray[word.charAt(0) - 97] = -1; // 초기값 설정
+
+            if (word.length() > 1) {
+
+                for (int j = 1; j < word.length(); j++) {
+
+                    if (checkArray[word.charAt(j) - 97] == -1 && word.charAt(j) != word.charAt(j - 1)) { // 한 번 나왔기도 했는데 앞의 알파벳과 다르면 그룹단어에서 탈락
+                        groupWordCount--;
+                        break;
+                    }
+                    checkArray[word.charAt(j) - 97] = -1; // 해당 알파벳이 나오면 -1로 바꿈(나중에 체크할 시점에서 이미 한 번 나왔었다는 증거)
+                }
             }
         }
-        System.out.println(str.length());
+        bw.write(String.valueOf(groupWordCount));
+        bw.flush();
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
