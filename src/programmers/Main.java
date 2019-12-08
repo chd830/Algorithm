@@ -1,40 +1,21 @@
 package programmers;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        List<char[]> list = new ArrayList<>();
-        list.add(null);
-        list.add(null);
-        list.add(null);
-        list.add(new char[]{'A','B','C'});
-        list.add(new char[]{'D','E','F'});
-        list.add(new char[]{'G','H','I'});
-        list.add(new char[]{'J','K','L'});
-        list.add(new char[]{'M','N','O'});
-        list.add(new char[]{'P','Q','R','S'});
-        list.add(new char[]{'T','U','V'});
-        list.add(new char[]{'W','X','Y','Z'});
-        Scanner scan = new Scanner(System.in);
-        String str = scan.next();
-        int result = 0;
-        for(char c : str.toCharArray()) {
-            for(int i = 3; i < list.size(); i++) {
-                if(list.get(i)[0] == c || list.get(i)[1] == c || list.get(i)[2] == c) {
-                    result += i;
-                    break;
-                }
-                if(list.get(i).length == 4 && list.get(i)[3] == c) {
-                    result += i;
-                    break;
-                }
+    public static void main(String[] args) throws IOException{
+        String[] words = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine().trim();
+        for(int i = 0; i < words.length; i++) {
+            if(str.contains(words[i])) {
+                str = str.replaceAll(words[i], "*");
             }
         }
-        System.out.println(result);
+        System.out.println(str.length());
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
