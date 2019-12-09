@@ -6,49 +6,45 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer token = null;
-        Stack<String> stack = new Stack<String>();
         int num = Integer.parseInt(br.readLine());
-        Queue<String> que = new LinkedList<>();
+        Stack<Integer> stack = null;
+        List<String> result = new ArrayList<>();
 
         for(int i = 0; i < num; i++) {
-            token = new StringTokenizer(br.readLine());
-            switch (token.nextToken()) {
-                case "push":
-                    stack.push(token.nextToken());
-                    break;
-                case "top":
-                    if(!stack.isEmpty()) {
-                        que.add(stack.peek());
+            stack = new Stack<>();
+            String str = br.readLine();
+            int count = 0;
+            int max = str.length();
+            for(char c : str.toCharArray()) {
+                if(c == '(') {
+//                    System.out.print("push\t");
+                    stack.push(1);
+                }
+                else {
+                    if(stack.isEmpty()) {
+//                        System.out.print("pop\t\t");
+//                        System.out.println("NO");
+                        break;
                     }
                     else {
-                        que.add("-1");
+//                        System.out.print("pop\t");
+                        stack.pop();
                     }
-                    break;
-                case "pop":
-                    if(!stack.isEmpty()) {
-                        que.add(stack.pop());
-                    }
-                    else {
-                        que.add("-1");
-                    }
-                    break;
-                case "empty":
-                    if(!stack.isEmpty()) {
-                        que.add("0");
-                    }
-                    else {
-                        que.add("1");
-                    }
-                    break;
-                case "size":
-                    que.add(""+stack.size());
-                    break;
+                }
+//                System.out.println(stack.isEmpty());
+                count++;
+            }
+            if(count == max && stack.isEmpty()) {
+//                System.out.println("YES");
+                result.add("YES");
+            }
+            else {
+//                System.out.println("NO");
+                result.add("NO");
             }
         }
-        while(!que.isEmpty()) {
-            System.out.println(que.poll());
-        }
+        for(String s : result)
+            System.out.println(s);
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
