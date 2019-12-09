@@ -1,53 +1,52 @@
 package programmers;
 
-import java.util.*;
-import java.io.*;
-
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        List<String> result = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
+        List<String> result = new ArrayList();
+        int size = Integer.parseInt(br.readLine());
 
-        while (true) {
-            String input = br.readLine();
-
-            if (input.equals(".")) {
-                break;
+        int num = 1;
+        boolean check = false;
+        for (int i = 0; i < size; i++) {
+            int input = Integer.parseInt(br.readLine());
+            check = false;
+            for(int j = num; j <= input; j++) {
+                result.add("+");
+                num++;
+                stack.push(j);
+                check = true;
             }
-
-            Stack<Character> stack = new Stack();
-            boolean check = true;
-
-            // 한 글자씩 검사
-            for (char one : input.toCharArray()) {
-                if (one == '(' || one == '[')
-                    stack.push(one);
-                else if (one == ')') {
-                    if (stack.isEmpty() || stack.pop() != '(') {
-                        check = false;
-                        break;
-                    }
-                } else if (one == ']') {
-                    if (stack.isEmpty() || stack.pop() != '[') {
-                        check = false;
-                        break;
-                    }
-                }
+//            System.out.println("push");
+//            for(String s : result)
+//                System.out.print(s+"\t");
+            while(!stack.isEmpty() && input <= stack.peek()) {
+                check = true;
+                result.add("-");
+                stack.pop();
             }
-            if (!stack.isEmpty())
-                check = false;
-            if (!check)
-                result.add("no");
-            else
-                result.add("yes");
+//            System.out.println("\npop");
+//            for(String s : result)
+//                System.out.print(s+"\t");
+//            System.out.println("\n------");
         }
-        for(String s : result)
-            System.out.println(s);
+//        System.out.println("------");
+        if(!check)
+            System.out.println("NO");
+        else {
+            for(String s : result) {
+                System.out.println(s);
+            }
+        }
     }
-
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
          int cnt[] = new int [8001]; // 절대값 4000까지의 정수를 저장해야하므로 총 8000개를 만들었는데, 런타임 에러가 나서 +1 해줬다.
          ArrayList<Integer> arrayList = new ArrayList<Integer>();
