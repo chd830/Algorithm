@@ -1,47 +1,48 @@
 package programmers;
 
+import java.util.*;
+import java.io.*;
+
 import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int num = Integer.parseInt(br.readLine());
-        Stack<Integer> stack = null;
         List<String> result = new ArrayList<>();
 
-        for(int i = 0; i < num; i++) {
-            stack = new Stack<>();
-            String str = br.readLine();
-            int count = 0;
-            int max = str.length();
-            for(char c : str.toCharArray()) {
-                if(c == '(') {
-//                    System.out.print("push\t");
-                    stack.push(1);
-                }
-                else {
-                    if(stack.isEmpty()) {
-//                        System.out.print("pop\t\t");
-//                        System.out.println("NO");
+        while (true) {
+            String input = br.readLine();
+
+            if (input.equals(".")) {
+                break;
+            }
+
+            Stack<Character> stack = new Stack();
+            boolean check = true;
+
+            // 한 글자씩 검사
+            for (char one : input.toCharArray()) {
+                if (one == '(' || one == '[')
+                    stack.push(one);
+                else if (one == ')') {
+                    if (stack.isEmpty() || stack.pop() != '(') {
+                        check = false;
                         break;
                     }
-                    else {
-//                        System.out.print("pop\t");
-                        stack.pop();
+                } else if (one == ']') {
+                    if (stack.isEmpty() || stack.pop() != '[') {
+                        check = false;
+                        break;
                     }
                 }
-//                System.out.println(stack.isEmpty());
-                count++;
             }
-            if(count == max && stack.isEmpty()) {
-//                System.out.println("YES");
-                result.add("YES");
-            }
-            else {
-//                System.out.println("NO");
-                result.add("NO");
-            }
+            if (!stack.isEmpty())
+                check = false;
+            if (!check)
+                result.add("no");
+            else
+                result.add("yes");
         }
         for(String s : result)
             System.out.println(s);
