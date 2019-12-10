@@ -6,49 +6,49 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer token = null;
-        Stack<String> stack = new Stack<String>();
-        int num = Integer.parseInt(br.readLine());
-        Queue<String> que = new LinkedList<>();
-
-        for(int i = 0; i < num; i++) {
-            token = new StringTokenizer(br.readLine());
-            switch (token.nextToken()) {
-                case "push":
-                    stack.push(token.nextToken());
-                    break;
-                case "top":
-                    if(!stack.isEmpty()) {
-                        que.add(stack.peek());
-                    }
-                    else {
-                        que.add("-1");
-                    }
-                    break;
-                case "pop":
-                    if(!stack.isEmpty()) {
-                        que.add(stack.pop());
-                    }
-                    else {
-                        que.add("-1");
-                    }
-                    break;
-                case "empty":
-                    if(!stack.isEmpty()) {
-                        que.add("0");
-                    }
-                    else {
-                        que.add("1");
-                    }
-                    break;
-                case "size":
-                    que.add(""+stack.size());
-                    break;
+        // 리더 생성
+        int n = Integer.parseInt(br.readLine());
+        // 사이즈 입력
+        int[] arr = new int[n];
+        // 배열 생성
+        int[] ans = new int[n];
+        // 정답 배열 생성
+        String[] temp = br.readLine().split(" ");
+        // 임시로 받고
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(temp[i]);
+            // int로 변환
+        }
+        Stack<Integer> stack = new Stack<>();
+        // 스택 생성
+        stack.push(0);
+        // 첫번째 인덱스 저장
+        for (int index = 1; index < n; index++) {
+            if (stack.isEmpty()) {
+                stack.push(index);
+                // 반복문에 들어올 때 스택이 비어있으면 인덱스 저장
             }
+            while (!stack.isEmpty() && arr[stack.peek()] < arr[index]) {
+                // 비어있지 않고 숫자가 인덱스 가장 위쪽 숫자보다 크면
+                ans[stack.pop()] = arr[index];
+                // 정답 배열 중 스택의 가장 위쪽 숫자와 같은 인덱스에 i번째 숫자를 넣는다
+            }
+            stack.push(index);
+            // 다음번에 비교할 숫자를 stack에 집어넣는다
         }
-        while(!que.isEmpty()) {
-            System.out.println(que.poll());
+
+        while (!stack.empty()) {
+            // 반복문을 다 돌고 나왔는데 스택이 비어있지 않다면 빌 때 까지
+            ans[stack.pop()] = -1;
+            // stack에 쌓인 index에 -1을 넣고
         }
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        for (int i = 0; i < n; i++) {
+            bw.write(ans[i] + " ");
+            // 출력한다
+        }
+        bw.write("\n");
+        bw.flush();
     }
 
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
