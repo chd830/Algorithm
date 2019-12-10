@@ -6,43 +6,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Stack<Integer> stack = new Stack<>();
-        List<String> result = new ArrayList();
-        int size = Integer.parseInt(br.readLine());
-
-        int num = 1;
-        boolean check = false;
-        for (int i = 0; i < size; i++) {
-            int input = Integer.parseInt(br.readLine());
-            check = false;
-            for(int j = num; j <= input; j++) {
-                result.add("+");
-                num++;
-                stack.push(j);
-                check = true;
-            }
-            if(stack.isEmpty()) {
-                check = false;
-                break;
-            }
-
-            while(input <= stack.peek()) {
-                check = true;
-                result.add("-");
-                stack.pop();
-            }
-        }
-        if(!check)
-            System.out.println("NO");
-        else {
-            for(String s : result) {
-                System.out.println(s);
-            }
-        }
+        StringTokenizer token = null;
     }
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
          int cnt[] = new int [8001]; // 절대값 4000까지의 정수를 저장해야하므로 총 8000개를 만들었는데, 런타임 에러가 나서 +1 해줬다.
