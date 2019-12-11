@@ -1,17 +1,20 @@
 package programmers;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer token = null;
+        int num = Integer.parseInt(br.readLine());
+        int[] arr = new int[3];
+        arr[0] = 0;
+        arr[1] = 1;
+        for(int i = 2; i <= num; i++) {
+            arr[2] = arr[0] + arr[1];
+            arr[0] = arr[1];
+            arr[1] = arr[2];
+        }
+        System.out.print(arr[2]);
     }
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
          int cnt[] = new int [8001]; // 절대값 4000까지의 정수를 저장해야하므로 총 8000개를 만들었는데, 런타임 에러가 나서 +1 해줬다.
