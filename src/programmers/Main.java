@@ -1,33 +1,18 @@
 package programmers;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int size = Integer.parseInt(br.readLine());
-        List<long[]> list = new ArrayList();
-        long[] arr = new long[] {1, 0};
-        int[] input = new int[size];
-        list.add(arr);
-        arr = new long[] {0, 1};
-        list.add(arr);
-
-        for(int i = 0; i < size; i++) {
-            int num = Integer.parseInt(br.readLine());
-            input[i] = num;
-            for(int j = 2; j <= num; j++) {
-                if(list.size() > j)
-                    continue;
-                arr = new long[] {list.get(j - 1)[0] + list.get(j - 2)[0], list.get(j - 1)[1] + list.get(j - 2)[1]};
-                list.add(arr);
-            }
+        long[] arr = new long[size + 1];
+        arr[1] = 1;
+        arr[2] = 2;
+        for(int num = 3; num <= size; num++) {
+            arr[num] = (arr[num - 1]  + arr[num - 2])%15746;
         }
-        for(int i = 0; i < size; i++) {
-            System.out.println(list.get(input[i])[0]+" "+list.get(input[i])[1]);
-        }
+        System.out.println(arr[size]);
     }
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
          int cnt[] = new int [8001]; // 절대값 4000까지의 정수를 저장해야하므로 총 8000개를 만들었는데, 런타임 에러가 나서 +1 해줬다.
