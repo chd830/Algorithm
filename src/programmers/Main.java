@@ -19,14 +19,14 @@ public class Main {
             int num = Integer.parseInt(br.readLine());
             input[i] = num;
             for(int j = 2; j <= num; j++) {
+                if(list.size() > j)
+                    continue;
                 arr = new long[] {list.get(j - 1)[0] + list.get(j - 2)[0], list.get(j - 1)[1] + list.get(j - 2)[1]};
                 list.add(arr);
             }
         }
-//        System.out.println(list.get(40)[0] + " " + list.get(40)[1]);
         for(int i = 0; i < size; i++) {
-            System.out.println();
-            System.out.println(input[i]+", "+list.get(input[i])[0]+" "+list.get(input[i])[1]);
+            System.out.println(list.get(input[i])[0]+" "+list.get(input[i])[1]);
         }
     }
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
