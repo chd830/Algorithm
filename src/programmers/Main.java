@@ -6,13 +6,33 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int size = Integer.parseInt(br.readLine());
-        long[] arr = new long[size + 1];
-        arr[1] = 1;
-        arr[2] = 2;
-        for(int num = 3; num <= size; num++) {
-            arr[num] = (arr[num - 1]  + arr[num - 2])%15746;
+        int[] arr = new int[100];
+        int[] input = new int[size];
+        int[] result = new int[100];
+
+        for(int recur = 0; recur < size; recur++) {
+            int N = Integer.parseInt(br.readLine());
+            input[recur] = N;
+            if(N < 3) {
+                result[recur] = 1;
+            }
+            else if(N <= 4) {
+                result[recur] = 2;
+            }
+            else {
+                arr[0] = 1;
+                arr[1] = 1;
+                arr[2] = 1;
+                arr[3] = 2;
+                arr[4] = 2;
+                for(int num = 5; num <= N; num++) {
+                    arr[num] = arr[num - 5] + arr[num - 1];
+                }
+                result[recur] = arr[N];
+            }
         }
-        System.out.println(arr[size]);
+        for(int i : input)
+            System.out.print(result[i]);
     }
     /* static int manny(int[] arr) { // 최빈값을 구하는 메소드
          int cnt[] = new int [8001]; // 절대값 4000까지의 정수를 저장해야하므로 총 8000개를 만들었는데, 런타임 에러가 나서 +1 해줬다.
