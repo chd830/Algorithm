@@ -2,6 +2,7 @@ package com.swexpertacademy;
 
 import java.util.Scanner;
 
+//원재의 메모리 복구하기
 public class d3_1289 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

@@ -2,6 +2,7 @@ package com.swexpertacademy;
 
 import java.util.Scanner;
 
+//거듭제곱
 public class d3_1217 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

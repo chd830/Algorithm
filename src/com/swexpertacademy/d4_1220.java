@@ -2,6 +2,7 @@ package com.swexpertacademy;
 
 import java.util.Scanner;
 
+//ladder2
 public class d4_1220 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

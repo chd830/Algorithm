@@ -2,6 +2,7 @@ package com.swexpertacademy;
 
 import java.util.*;
 
+//암호문3
 public class d3_1230 {
     public d3_1230() {
         for(int T = 1; T <= 10; T++) {

@@ -2,6 +2,7 @@ package com.swexpertacademy;
 
 import java.util.Scanner;
 
+//준환이의 운동관리
 public class d3_3431 {
     public d3_3431() {
         Scanner sc = new Scanner(System.in);
