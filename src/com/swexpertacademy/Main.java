@@ -6,6 +6,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        d3_7102 d = new d3_7102();
+        d3_7193 d = new d3_7193();
     }
 }
