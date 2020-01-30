@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 //ladder2
 public class d4_1220 {
+    /*
+    처음에 시작할 수 있는 위치를 저장하고
+    왼쪽으로 갈때는 위치-- 오른쪽으로 갈때는 위치++로 접근해서 풀어보자.
+     */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		for(int a = 0; a < 10; a++) {
