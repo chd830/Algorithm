@@ -2,6 +2,7 @@ package com.swexpertacademy;
 
 import java.util.Scanner;
 
+//파스칼의 삼각형
 public class d2_2005 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
