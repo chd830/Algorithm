@@ -6,6 +6,7 @@ import java.util.Scanner;
 //어디에 단어가 들어갈 수 있을까
 public class d2_1979 {
     static int[][] arr;
+    static int[][] pos = {{0, 1}, {1, 0}};
     static int N = 0;
     static int K = 0;
 //    public static void main(String[] args) {
@@ -17,30 +18,52 @@ public class d2_1979 {
             int K = sc.nextInt();
             int result = 0;
             arr = new int[N][N];
-            String[] strs = new String[N];
             for(int i = 0; i < N; i++) {
-                strs[i] = "";
                 for(int j = 0; j < N; j++) {
                     arr[i][j] = sc.nextInt();
-                    strs[i] += arr[i][j];
                 }
             }
-            for(int i = 0; i < strs.length; i++ ) {
-                for(int j = 0; j < N - K; j++) {
-                    System.out.print(strs[i].substring(j, j+K)+" ");
-                    if(strs[i].substring(j, j+K).contains("0")) {
-                        continue;
-                    }
-                    else {
-                        if(j+K == N - 1 || j+K < N - 1 && strs[i].charAt(j+K+1) == '1') {
+            int count = 0;
+            int bcount = 0;
+            for(int i = 0; i < N; i++) {
+                for(int j = 0; j < N; j++) {
+//                    System.out.println("i: "+i+", j: "+j);
+                    for(int k = 0; k < 2; k++) {
+                        count = 0;
+                        bcount = 0;
+                        int x = i;
+                        int y = j;
+
+                        while(x < N && x >= 0 && y < N && y >= 0 && arr[x][y] == 1) {
+                            x += pos[k][0];
+                            y += pos[k][1];
+                            count++;
+                        }
+                        if(count == K) {
+                            x -= pos[k][0];
+                            y -= pos[k][1];
+                            while(x < N && x >= 0 && y < N && y >= 0 && arr[x][y] == 1) {
+                                x -= pos[k][0];
+                                y -= pos[k][1];
+                                bcount++;
+                            }
+//                            if(bcount == K) {
+//                                result++;
+//                            }
+                        }
+                        if(count == K && bcount == K) {
                             result++;
-                            break;
                         }
                     }
+//                    System.out.println("count: "+count+", bcount: "+bcount+", result: "+result);
                 }
-                System.out.println("\n"+strs[i]+", result: "+result);
             }
             System.out.println("#"+t+" "+result);
+        }
+    }
+    static void print(int[][] arr) {
+        for(int i = 0; i < arr.length; i++) {
+            System.out.println(Arrays.toString(arr[i]));
         }
     }
 }
