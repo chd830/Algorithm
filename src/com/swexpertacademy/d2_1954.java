@@ -18,12 +18,12 @@ public class d2_1954 {
             int l = N;
             int count = 1;
             while (true) {
-                if(count>N*N) {
+                if(count > N*N) {
                     break;
                 }
-                System.out.println("x: "+x+", y: "+y);
                 for (int n = 0; n < l; n++) {
                     y = y + k;
+//                    System.out.println("y: "+y);
                     arr[x][y] = count;
                     count++;
                 }
@@ -31,13 +31,13 @@ public class d2_1954 {
 
                 for (int n = 0; n < l; n++) {
                     x = x + k;
+//                    System.out.println("x: "+x);
                     arr[x][y] = count;
                     count++;
                 }
                 k = -k ;
             }
             print(arr);
-
         }
     }
 
