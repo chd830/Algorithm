@@ -20,28 +20,28 @@ public class d7_9327 {
             int[] e = new int[m];
             int[] c = new int[m];
             for(int i = 0; i < m; i++) {
-                s[i] = sc.nextInt();
-                e[i] = sc.nextInt();
-                c[i] = sc.nextInt();
+                s[i] = sc.nextInt();//첫번째도시
+                e[i] = sc.nextInt();//두번째도시
+                c[i] = sc.nextInt();//얻을 수 있는 이득
             }
             for(int i = 0; i < m; i++) {
-                boolean[] isInstall = new boolean[n+1];
+                boolean[] isInstall = new boolean[n+1]; //통신쌍이 설치된 위치
                 for(int j = i; j < m; j++) {
-                    if(i == j) {
+                    if(i == j) { //순서쌍이 순서대로 하나씩만 적용되었을 때의 경우
                         profit[i][j] = c[i] - (cost[s[i]] + cost[e[i]]);
                         isInstall[s[j]] = true;
                         isInstall[e[j]] = true;
                         continue;
                     }
-                    if(!isInstall[s[j]]) {
+                    if(!isInstall[s[j]]) { //첫번째 도시가 이미 통신쌍이 설치되어 있을 때
                         isInstall[s[j]] = true;
                         profit[i][j] -= cost[s[j]];
                     }
-                    if(!isInstall[e[j]]) {
+                    if(!isInstall[e[j]]) { //두번째 도시가 이미 통신쌍이 설치되어 있을 때
                         isInstall[e[j]] = true;
                         profit[i][j] -= cost[e[j]];
                     }
-                    profit[i][j] += profit[i][j-1] + c[j];
+                    profit[i][j] += profit[i][j-1] + c[j]; //
                 }
             }
             for(int i = 0; i < m; i++) {
