@@ -28,9 +28,11 @@ public class d2_1983 {
                     }
                 }
             }
-            System.out.println(Arrays.toString(sum));
-            System.out.println(Arrays.toString(rank));
-            System.out.println("#"+t+" "+grade[rank[K+1]/(N/10)]);
+//            System.out.println(Arrays.toString(sum));
+//            Arrays.sort(sum);
+//            System.out.println(Arrays.toString(sum));
+//            System.out.println(Arrays.toString(rank));
+            System.out.println("#"+t+" "+grade[rank[K-1]/(N/10)]);
 //            System.out.println("#"+t+" "+(rank[K]/(N/10) % 2 == 0 ? grade[rank[K]/(N/10)+1] : grade[rank[K]/(N/10)-1]));
         }
     }
