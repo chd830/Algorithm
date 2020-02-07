@@ -11,58 +11,32 @@ public class d2_1954 {
         for(int t = 1; t <= T; t++) {
             int num = sc.nextInt();
             int[][] arr = new int[num][num];
-            boolean[][] visited = new boolean[num][num];
+
+            int count = 1;
             int r = 0;
             int c = 0;
-            int count = 1;
-
-            int i = 0;
-            int j = 0;
-            while(true) {
-                for(i = 0; i < num; i++) {
-                    if(!visited[j][i]) {
-                        arr[j][i] = count++;
-                        visited[j][i] = true;
-                    }
+//            int i = 1;
+            int index = 0;
+            for(int j = num; j >= 0; j -= 2) { //j는 num에서 -2만큼 지속적으로 줄어든다.
+                for(r = 0; r < j; r++) {//오른쪽으로 감
+                    arr[index][index+r] = count++;
                 }
-                i--;
-                System.out.println();
-                print(arr);
-                print(visited);
-                for(j = 0; j < num; j++) {
-                    if(!visited[j][i]) {
-                        arr[j][i] = count++;
-                        visited[j][i] = true;
-                    }
+                for(c = 1; c < j; c++) {//아래로 내려감
+                    //num-index-1은 맨바깥에서 안쪽으로 한칸씩 이동하게 한다.
+                    arr[index+c][num-index-1] = count++;
                 }
-                j--;
-                System.out.println();
-                print(arr);
-                print(visited);
-                for(; i >= 0; i--) {
-                    if(!visited[j][i]) {
-                        arr[j][i] = count++;
-                        visited[j][i] = true;
-                    }
+                for(r = 1; r < j; r++) {//왼쪽으로 감
+                    //num-index-r-1은 맨바깥에서 이미 지나온 r만큼 뺀다.
+                    arr[num-index-1][num-index-r-1] = count++;
                 }
-                i++;
-                System.out.println();
-                print(arr);
-                print(visited);
-                for(; j >= 0; j--) {
-                    if(!visited[j][i]) {
-                        arr[j][i] = count++;
-                        visited[j][i] = true;
-                    }
+                for(c = 1; c < j - 1; c++) {//위로 감
+                    //num-indx-c-1도 역시 맨바깥에서 지나온 c만큼 뺀다.
+                    arr[num-index-c-1][index] = count++;
                 }
-                j++;
-                System.out.println();
-                print(arr);
-                if(count == num * num) {
-                    break;
-                }
+                index++;
             }
             System.out.println("#"+t);
+            print(arr);
         }
     }
     static void print(int[][] arr) {
@@ -70,12 +44,6 @@ public class d2_1954 {
             System.out.println(Arrays.toString(arr[l]));
         }
     }
-    static void print(boolean[][] arr) {
-        for(int i = 0; i < arr.length; i++) {
-            System.out.println(Arrays.toString(arr[i]));
-        }
-    }
-//    //    public static void main(String[] args) {
 //    public d2_1954() {
 //        Scanner sc = new Scanner(System.in);
 //        int T = sc.nextInt();
