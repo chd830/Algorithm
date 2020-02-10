@@ -1,7 +1,10 @@
 package net.acmicpc;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        블랙잭 d = new 블랙잭();
+    public static void main(String[] args) throws IOException {
+
+        단어뒤집기2 d = new 단어뒤집기2();
     }
 }
