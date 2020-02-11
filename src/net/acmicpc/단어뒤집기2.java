@@ -1,8 +1,7 @@
 package net.acmicpc;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.*;
 
 public class 단어뒤집기2 {
     //    public static void main(String[] args) {
@@ -10,27 +9,30 @@ public class 단어뒤집기2 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder b = new StringBuilder();
         String str = br.readLine();
-//        str = str.replaceAll(">", "> ");
-//        str = str.replaceAll("<", " <");
-//        str = str.trim();
-//        String[] strs = str.split(" ");
-
-        for(int i = 0; i < str.length(); i++) {
+//        String[] strs = str.split(">");
+//        for(String s : strs)
+//            System.out.println(s);
+        Stack<Character> stack = new Stack<Character>();
+        for(int i =0 ; i < str.length();) {
+            if(str.charAt(i) == ' ') {
+                b.append(' ');
+                i++;
+            }
             if(str.charAt(i) == '<') {
                 while(str.charAt(i) != '>') {
                     b.append(str.charAt(i));
                     i++;
-                    System.out.println("StringBuilder: "+b.toString());
                 }
-                System.out.println(b.toString());
                 b.append('>');
+                i++;
             }
             else {
-                StringBuilder sb = new StringBuilder();
-                while(str.charAt(i) != '<') {
-                    sb.append(str.charAt(i));
+                StringBuilder reverse = new StringBuilder();
+                while(i < str.length() && (str.charAt(i) != ' ' && str.charAt(i) != '<')) {
+                    reverse.append(str.charAt(i));
+                    i++;
                 }
-                b.append(sb.reverse());
+                b.append(reverse.reverse());
             }
         }
         System.out.println(b.toString());

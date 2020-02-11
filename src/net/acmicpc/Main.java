@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        별찍기1 d = new 별찍기1();
+        단어뒤집기2 d = new 단어뒤집기2();
     }
 }
