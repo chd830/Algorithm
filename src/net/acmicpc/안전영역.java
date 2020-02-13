@@ -1,5 +1,6 @@
 package net.acmicpc;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -10,67 +11,64 @@ public class 안전영역 {
     static int[][] map;
     static boolean[][] visited;
     static int[][] pos = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    //    public static void main(String[] args) {
-    public 안전영역() {
+    public static void main(String[] args) {
+//    public 안전영역() {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         map = new int[N][N];
+        Arrays.copyOf(map, map.length);
         visited = new boolean[N][N];
         int max = 0;
         cnt = 0;
+        int area = 0;
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
                 map[i][j] = sc.nextInt();
                 max = Math.max(max, map[i][j]);
             }
         }
-        for(int rain = 1; rain < max; rain++) {
-            for(int i = 0; i < N; i++) {
-                for(int j = 0; j < N; j++) {
-                    if(map[i][j] > rain && !visited[i][j]) {
-//                        bfs(i, j, rain);
-                        cnt++;
+        for(int i = 0; i <= max; i++) {
+            for(int j = 0 ; j < N; j++){
+                for(int k = 0; k < N; k++) {
+                    if(map[j][k] > i && !visited[j][k]) {
+                        bfs(j, k, i);
                     }
                 }
             }
+            area = Math.max(cnt, area);
+            cnt = 0;
+            visited = new boolean[N][N];
+        }
+        System.out.println(area);
+    }
+    static class Node {
+        int x;
+        int y;
+        Node(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
-
-    public static void dfs(int r, int c, int height) {
-        for(int k = 0; k < 4; k++) {
-            int nr = r + pos[k][0];
-            int nc = c + pos[k][1];
-            if(nr < N && nr >= 0 && nc < N && nc >= 0 && !visited[nr][nc] && map[nr][nc] > height) {
-                visited[nr][nc] = true;
-                dfs(nr, nc, height);
-//                bfs(nr, nc, height);
-            }
-        }
-    }
-    /*
-
-     */
-    public static void bfs(int r, int c, int height) {
-        Queue<Area> q = new LinkedList<>();
-        q.add(new Area(r, c));
-        visited[r][c] = true;
-        while(!q.isEmpty()) {
-            Area a = q.poll();
+    public static void bfs(int x, int y, int height) {
+        Queue<Node> que = new LinkedList<>();
+        que.add(new Node(x, y));
+        visited[x][y] = true;
+        cnt++;
+        while(!que.isEmpty()) {
+            Node n = que.poll();
             for(int i = 0; i < 4; i++) {
-                int nr = r + pos[i][0];
-                int nc = c + pos[i][1];
-                if(nr < N && nr >= 0 && nc < N && nc >= 0 && !visited[nr][nc] && map[nr][nc] > height) {
-                    visited[nr][nc] = true;
-                    q.add(new Area(nr, nc));
+                int dx = n.x + pos[i][0];
+                int dy = n.y + pos[i][1];
+                if(dx < map.length && dx >= 0 && dy < map.length && dy >= 0 && !visited[dx][dy] && map[dx][dy] > height) {
+                    que.add(new Node(dx, dy));
+                    visited[dx][dy] = true;
                 }
             }
         }
     }
-    static class Area {
-        int r, c;
-        Area(int r, int c) {
-            this.r = r;
-            this.c = c;
+    public static void print() {
+        for(int i = 0; i < visited.length; i++) {
+            System.out.println(Arrays.toString(visited[i]));
         }
     }
 }
