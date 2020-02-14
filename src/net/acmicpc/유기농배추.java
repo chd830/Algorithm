@@ -31,7 +31,7 @@ public class 유기농배추 {
             int N = sc.nextInt();
             int K = sc.nextInt();
             arr = new int[M][N];
-            visited = new boolean[M]<];
+            visited = new boolean[M][N];
             Queue<Node> que = new LinkedList<>();
             int cnt = 0;
             for (int i = 0; i < K; i++) {
