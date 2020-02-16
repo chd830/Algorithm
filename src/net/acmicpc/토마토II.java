@@ -67,7 +67,7 @@ public class 토마토II {
                     }
                 }
             }
-        }
+        }print();
         System.out.println(--max);
     }
     public static void print() {

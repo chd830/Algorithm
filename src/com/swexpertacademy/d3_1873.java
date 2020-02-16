@@ -52,7 +52,7 @@ public class d3_1873 {
                 }
             }
 //            System.out.println("dir: "+dir);
-//            System.out.println("방향: "+pos[dir][0]+", "+pos[dir][1]+". 시작위치: "+startX+", "+startY);
+//            System.out.println("방향: "+move[dir][0]+", "+move[dir][1]+". 시작위치: "+startX+", "+startY);
                 /*
                 방향을 바꾸고 평지일 때 한칸 이동
                 Up
@@ -119,7 +119,7 @@ public class d3_1873 {
     }
 
     public static void shoot(int dir) {
-//        System.out.println(pos[dir][0]+" "+pos[dir][1]);
+//        System.out.println(move[dir][0]+" "+move[dir][1]);
         int xPos = startX + pos[dir][0];
         int yPos = startY + pos[dir][1];
         int count = 0;

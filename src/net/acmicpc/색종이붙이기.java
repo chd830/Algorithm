@@ -3,67 +3,35 @@ package net.acmicpc;
 import java.util.Scanner;
 
 public class 색종이붙이기 {
+    static int min;
+    static int[] size = {1, 2, 3, 4, 5};
     static int[][] arr;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        min = 0;
         arr = new int[10][10];
         int[] paper = new int[5];
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 10; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
-        for(int a = 5; a > 0; a--) {
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    if (arr[i][j] == 1) {
-                        if(check(a, i, j)) {
-                            paper[a-1]++;
-                            paste(a, i, j);
-//                            for(int k = 0; k < 10; k++) {
-//                                System.out.println(Arrays.toString(arr[k]));
-//                            }
-//                            System.out.println(Arrays.toString(paper));
-                        }
-                    }
+        for(int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (arr[i][j] == 1) {
+                    dfs(i, j);
                 }
             }
         }
-        int sum = 0;
-        for(int p : paper) {
-            if(p > 5) {
-                System.out.println("-1");
-                System.exit(0);
-            }
-            else {
-                sum += p;
-            }
-        }
-        System.out.println(sum);
     }
-    public static boolean check(int size, int x, int y) {
-        if(x + size > arr.length || y + size > arr.length)
-            return false;
-//        System.out.println("("+x+", "+y+")의 "+size+"색종이");
-        for(int i = x; i < x + size; i++) {
-            for(int j = y; j < y + size; j++) {
-                if(arr[i][j] == 0) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    public static void paste(int x, int y) {
+
     }
 
-    public static void paste(int size, int x, int y) {
-        if(x + size > arr.length || y + size > arr.length)
-            return;
-        for(int i = x; i < x + size; i++) {
-            for(int j = y; j < y + size; j++) {
-                arr[i][j] = 0;
-            }
-        }
+    public static void dfs(int i, int j) {
+
     }
+}
 
 //    static int[][] map = new int[10][10];
 //    static int[] paper = {0, 5, 5, 5, 5, 5};
@@ -126,4 +94,3 @@ public class 색종이붙이기 {
 //        }
 //    }
 //    static int ans = 987654321;
-}
