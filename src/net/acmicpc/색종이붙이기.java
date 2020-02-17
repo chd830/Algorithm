@@ -2,6 +2,7 @@ package net.acmicpc;
 
 import java.util.Scanner;
 
+//dfs를 통해서 색종이를 계속 붙여가면서 최소개수를 찾아야한다.
 public class 색종이붙이기 {
     static int min;
     static int[] size = {1, 2, 3, 4, 5};
