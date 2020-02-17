@@ -60,7 +60,7 @@ public class 토마토 {
                 }
             }
 //            for(int j = 0; j < N; j++) {
-//                System.out.println(Arrays.toString(arr[j]));
+//                System.out.println(Arrays.toString(visited[j]));
 //            }
 //            System.out.println();
         }

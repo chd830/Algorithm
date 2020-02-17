@@ -89,27 +89,27 @@ public class 미로탐색 {
 //        que.add(new int[] {x, y});
 //
 //        while(!que.isEmpty()) {
-//            int[] arr = que.poll();
-//            visited[arr[0]][arr[1]] = true;
-//            if(arr[0] > 1 && map[arr[0]-1][arr[1]] >= 1 && !visited[arr[0]-1][arr[1]]) {
-//                que.add(new int[] {arr[0]-1, arr[1]});
-//                map[arr[0]-1][arr[1]] = map[arr[0]][arr[1]]+1;
-//                visited[arr[0]-1][arr[1]] = true;
+//            int[] visited = que.poll();
+//            visited[visited[0]][visited[1]] = true;
+//            if(visited[0] > 1 && map[visited[0]-1][visited[1]] >= 1 && !visited[visited[0]-1][visited[1]]) {
+//                que.add(new int[] {visited[0]-1, visited[1]});
+//                map[visited[0]-1][visited[1]] = map[visited[0]][visited[1]]+1;
+//                visited[visited[0]-1][visited[1]] = true;
 //            }
-//            if(arr[0] < N && map[arr[0]+1][arr[1]] >= 1 && !visited[arr[0]+1][arr[1]]) {
-//                que.add(new int[] {arr[0]+1, arr[1]});
-//                map[arr[0]+1][arr[1]] = map[arr[0]][arr[1]]+1;
-//                visited[arr[0]+1][arr[1]] = true;
+//            if(visited[0] < N && map[visited[0]+1][visited[1]] >= 1 && !visited[visited[0]+1][visited[1]]) {
+//                que.add(new int[] {visited[0]+1, visited[1]});
+//                map[visited[0]+1][visited[1]] = map[visited[0]][visited[1]]+1;
+//                visited[visited[0]+1][visited[1]] = true;
 //            }
-//            if(arr[1] > 1 && map[arr[0]][arr[1]-1] >= 1 && !visited[arr[0]][arr[1]-1]) {
-//                que.add(new int[] {arr[0], arr[1]-1});
-//                map[arr[0]][arr[1]-1] = map[arr[0]][arr[1]]+1;
-//                visited[arr[0]][arr[1]-1] = true;
+//            if(visited[1] > 1 && map[visited[0]][visited[1]-1] >= 1 && !visited[visited[0]][visited[1]-1]) {
+//                que.add(new int[] {visited[0], visited[1]-1});
+//                map[visited[0]][visited[1]-1] = map[visited[0]][visited[1]]+1;
+//                visited[visited[0]][visited[1]-1] = true;
 //            }
-//            if(arr[1] < M && map[arr[0]][arr[1]+1] >= 1 && !visited[arr[0]][arr[1]+1]) {
-//                que.add(new int[] {arr[0], arr[1]+1});
-//                map[arr[0]][arr[1]+1] = map[arr[0]][arr[1]]+1;
-//                visited[arr[0]][arr[1]+1] = true;
+//            if(visited[1] < M && map[visited[0]][visited[1]+1] >= 1 && !visited[visited[0]][visited[1]+1]) {
+//                que.add(new int[] {visited[0], visited[1]+1});
+//                map[visited[0]][visited[1]+1] = map[visited[0]][visited[1]]+1;
+//                visited[visited[0]][visited[1]+1] = true;
 //            }
 ////            for(int i = 0; i <= N; i++) {
 ////                System.out.println(Arrays.toString(map[i]));

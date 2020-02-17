@@ -30,7 +30,7 @@ public class 영식이와친구들 {
                 }
             }
             count++;
-//            System.out.println(Arrays.toString(arr));
+//            System.out.println(Arrays.toString(visited));
         }
         System.out.println(count);
     }

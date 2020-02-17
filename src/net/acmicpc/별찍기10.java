@@ -16,7 +16,7 @@ public class 별찍기10 {
 
         recur(0, 0, num);
 //        for (int i = 0; i < num; i++) {
-//            System.out.println(arr[i]);
+//            System.out.println(visited[i]);
 //        }
     }
 

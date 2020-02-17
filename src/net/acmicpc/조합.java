@@ -26,7 +26,7 @@ public class 조합 {
 		combination(idx+1, s_idx);
 		
 //		combination(idx+1, s_idx);
-//		sel[s_idx] = arr[idx];
+//		sel[s_idx] = visited[idx];
 //		combination(idx+1, s_idx+1);
 	}
 }
