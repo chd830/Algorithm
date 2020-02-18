@@ -41,8 +41,7 @@ public class 효율적인해킹 {
         }
         for(int i = 1; i <= N; i++) {
             if(check[i] == max) {
-                sb.append(
-                        i+" ");
+                sb.append(i+" ");
             }
         }
         System.out.println(sb.toString());
