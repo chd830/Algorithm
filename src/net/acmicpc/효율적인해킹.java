@@ -55,6 +55,7 @@ public class 효율적인해킹 {
             }
         }
     }
+
     public static void bfs(int start) {
         Queue<Integer> que = new LinkedList<>();
         que.add(start);
