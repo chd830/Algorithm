@@ -20,10 +20,24 @@ public class 안전영역re {
                 max = Math.max(map[i][j], max);
             }
         }
-
-        for(int i = 1; i <= max; i++) {
-            bfs(i);
+        int maxArea = 0;
+        for(int i = 0; i <= max; i++) {
+            for(int x = 0; x < N; x++) {
+                for(int y = 0; y < N; y++) {
+                    if(map[x][y] > i && !check[x][y]) {
+                        bfs(x, y, i);
+                        area++;
+                    }
+                }
+            }
+            for(int a = 0; a < N; a++) {
+                Arrays.fill(check[a], false);
+            }
+//            System.out.println("area: "+area+", maxArea: "+maxArea);
+            maxArea = Math.max(area, maxArea);
+            area = 0;
         }
+        System.out.println(maxArea);
     }
 
     static class Node {
@@ -35,9 +49,10 @@ public class 안전영역re {
         }
     }
     static boolean[][] check;
-    public static void bfs(int depth) {
+    public static void bfs(int x, int y, int depth) {
         Queue<Node> que = new LinkedList<>();
-        que.add(new Node(0, 0));
+        que.add(new Node(x, y));
+        check[x][y] = true;
         while(!que.isEmpty()) {
             Node n = que.poll();
             for(int i = 0; i < 4; i++) {
