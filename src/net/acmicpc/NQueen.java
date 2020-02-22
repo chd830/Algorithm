@@ -13,36 +13,42 @@ public class NQueen {
         cnt = 0;
         arr = new int[N][N];
         set(0, N);
+        System.out.println(cnt);
     }
     public static void set(int idx, int num) {
         if(idx == N) {
             cnt++;
-            for(int i = 0; i < N; i++) {
-                System.out.println(Arrays.toString(arr[i]));
-            }
-            System.out.println();
+//            for(int i = 0; i < N; i++) {
+//                System.out.println(Arrays.toString(arr[i]));
+//            }
+//            System.out.println();
             return;
         }
         for(int i = 0; i < num; i++) {
-            if(isPossibole(idx, i)) {
+            if(isPossible(idx, i)) {
                 arr[idx][i] = 1;
                 set(idx+1, num);
                 arr[idx][i] = 0;
             }
         }
     }
-    public static boolean isPossibole(int x, int y) {
-        for(int i = 0; i < arr.length; i++) {
-            if(arr[x][i] == 1) {
+    public static boolean isPossible(int x, int y) {
+        //왼쪽위
+        for(int i = 0; x-i >= 0 && y-i >= 0; i++) {
+            if(arr[x-i][y-i] == 1) {
                 return false;
             }
+        }
+        //오른쪽위
+        for(int i = 0; x-i >= 0 && y+i < N; i++) {
+            if(arr[x-i][y+i] == 1) {
+                return false;
+            }
+        }
+        //위
+        for(int i = x; i >= 0; i--) {
             if(arr[i][y] == 1) {
                 return false;
-            }
-            for(int j = 0, num = x + y; j < arr.length ;j++) {
-                if((i + j) == num && arr[i][j] == 1) {
-                    return false;
-                }
             }
         }
         return true;
