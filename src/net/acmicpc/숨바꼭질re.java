@@ -12,6 +12,10 @@ public class 숨바꼭질re {
         K = sc.nextInt();
         time = new int[100001];
 //        System.out.println(Arrays.toString(time));
+        if(N >= K) {
+            System.out.println(N-K);
+            System.exit(0);
+        }
         find(N, K);
         System.out.println(time[K]);
     }
@@ -28,7 +32,7 @@ public class 숨바꼭질re {
                 que.add(N+1);
 //                System.out.println(Arrays.toString(time));
             }
-            if (N - 1 <= 100000 && time[N - 1] == 0) {
+            if (N - 1 >= 0 && time[N - 1] == 0) {
                 time[N - 1] = time[N] + 1;
                 que.add(N-1);
 //                System.out.println(Arrays.toString(time));
