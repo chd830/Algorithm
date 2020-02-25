@@ -79,7 +79,7 @@ public class 단지번호붙이기re {
     public static void bfs(int x, int y) {
         Queue<Node> que = new LinkedList<>();
         que.add(new Node(x, y));
-//        visited[x][y] = true;
+//        visited[left][right] = true;
         while(!que.isEmpty()) {
             Node n = que.poll();
             System.out.println("("+n.x+", "+n.y+")");

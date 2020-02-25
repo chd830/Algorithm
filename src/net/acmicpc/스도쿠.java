@@ -1,6 +1,5 @@
 package net.acmicpc;
 
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class 스도쿠 {
@@ -18,26 +17,30 @@ public class 스도쿠 {
                 }
             }
         }
-        for(int i = 0; i < 9; i++) {
-            setSudoku(i, cnt);
-        }
+            setSudoku(0, 0);
         print();
     }
     //수를 하나하나 넣어서 되는지 체크하고 true이면 계속 아니면 다시한다.
-    public static void setSudoku(int x, int cnt) {
-        if(cnt == 0) {
-            return;
+    public static boolean setSudoku(int x, int y) {
+        if(x == 9) {
+            return true;
         }
-        for(int j = 0; j < 9; j++) {
-            if(sudoku[x][j] == 0) {
-                for(int k = 1; k <= 9; k++) {
-                    if(check(x, j, k)) {
-                        sudoku[x][j] = k;
-
-                    }
+        if(y == 9) {
+            return setSudoku(x+1, 0);
+        }
+        if(sudoku[x][y] != 0) {
+            return setSudoku(x, y+1);
+        }
+        for(int i = 1; i <= 9; i++) {
+            if(check(x, y, i)) {
+                sudoku[x][y] = i;
+                if(setSudoku(x, y+1)) {
+                    return true;
                 }
+                sudoku[x][y] = 0;
             }
         }
+        return false;
     }
 
     public static boolean check(int x, int y, int num) {
@@ -67,52 +70,52 @@ public class 스도쿠 {
 }
 /*
     //하나씩 넣어서 겹치는 수가 있는지 확인하는 코드. 앞에서 이미 값이 정해져있는 경우에는 틀릴 수 있다.
-    public static void sudoku(int x, int y, int cnt) {
+    public static void sudoku(int left, int right, int cnt) {
         System.out.println("cnt: "+cnt);
         print();
         System.out.println();
         if(cnt == 0) {
             return;
         }
-        if(y == 9) {
-            sudoku(x+1, 0, cnt);
+        if(right == 9) {
+            sudoku(left+1, 0, cnt);
         }
-        if(x == 9) {
+        if(left == 9) {
             print();
             System.out.println();
             sudoku(0, 0, cnt);
         }
 //        print();
 //        System.out.println();
-        if(sudoku[x][y] != 0) {
-            sudoku(x, y+1, cnt);
+        if(sudoku[left][right] != 0) {
+            sudoku(left, right+1, cnt);
         }
-        else if(sudoku[x][y] == 0) {
+        else if(sudoku[left][right] == 0) {
             for(int i = 1; i < 10; i++) {
-                sudoku[x][y] = i;
-                if(isPossible(x, y)) {
-                    sudoku(x, y + 1, cnt-1);
+                sudoku[left][right] = i;
+                if(isPossible(left, right)) {
+                    sudoku(left, right + 1, cnt-1);
                     return;
                 }
             }
         }
     }
 
-    public static boolean isPossible(int x, int y) {
+    public static boolean isPossible(int left, int right) {
         HashSet<Integer> ver = new HashSet<>();
         HashSet<Integer> hor = new HashSet<>();
         HashSet<Integer> square = new HashSet<>();
         for (int i = 0, a = 0; i < 9; i++) {
-//            System.out.print(sudoku[i][y]+" ");
-            if (sudoku[i][y] != 0 && !ver.add(sudoku[i][y])) {
+//            System.out.print(sudoku[i][right]+" ");
+            if (sudoku[i][right] != 0 && !ver.add(sudoku[i][right])) {
 //                System.out.println();
                 return false;
             }
         }
 //        System.out.println();
         for(int i = 0; i < 9; i++) {
-//            System.out.print(sudoku[x][i]+" ");
-            if (sudoku[x][i] != 0 && !hor.add(sudoku[x][i])) {
+//            System.out.print(sudoku[left][i]+" ");
+            if (sudoku[left][i] != 0 && !hor.add(sudoku[left][i])) {
 //                System.out.println();
                 return false;
             }
@@ -120,7 +123,7 @@ public class 스도쿠 {
         for(int a = 0; a < 3; a++) {
 //            if(a < 3) {
                 for (int b = 0; b < 3; b++) {
-                    if (sudoku[3 * (x / 3) + a][3 * (y / 3) + b] != 0 && !square.add(sudoku[3 * (x / 3) + a][3 * (y / 3) + b])) {
+                    if (sudoku[3 * (left / 3) + a][3 * (right / 3) + b] != 0 && !square.add(sudoku[3 * (left / 3) + a][3 * (right / 3) + b])) {
                         return false;
                     }
 //                }
@@ -149,10 +152,10 @@ public class 스도쿠 {
 //        }
 //        print();
 
-//    public static void setSudoku(int x, int y) {
+//    public static void setSudoku(int left, int right) {
 //        for (int i = 1; i <= 9; i++) {
-//            sudoku[x][y] = i;
-//            if (isSudoku(x, y)) {
+//            sudoku[left][right] = i;
+//            if (isSudoku(left, right)) {
 //                return;
 //            }
 //        }
@@ -160,21 +163,21 @@ public class 스도쿠 {
 //
 
 //
-//    public static boolean isSudoku(int x, int y) {
+//    public static boolean isSudoku(int left, int right) {
 //        HashSet<Integer> ver = new HashSet<>();
 //        HashSet<Integer> hor = new HashSet<>();
 //        HashSet<Integer> square = new HashSet<>();
 //        for (int i = 0, a = 0; i < 9; i++) {
-//            if (sudoku[i][y] != 0 && !ver.add(sudoku[i][y])) {
+//            if (sudoku[i][right] != 0 && !ver.add(sudoku[i][right])) {
 //                return false;
 //            }
-//            if (sudoku[i][y] != 0 && !hor.add(sudoku[x][i])) {
+//            if (sudoku[i][right] != 0 && !hor.add(sudoku[left][i])) {
 //                return false;
 //            }
 //            if(a < 3) {
 //                for (int b = 0; b < 3; b++) {
-////                    System.out.print("["+(3*(x/3)+a)+"]["+(3*(y/3)+b)+"] ");
-//                    if (sudoku[3 * (x / 3) + a][3 * (y / 3) + b] != 0 && !square.add(sudoku[3 * (x / 3) + a][3 * (y / 3) + b])) {
+////                    System.out.print("["+(3*(left/3)+a)+"]["+(3*(right/3)+b)+"] ");
+//                    if (sudoku[3 * (left / 3) + a][3 * (right / 3) + b] != 0 && !square.add(sudoku[3 * (left / 3) + a][3 * (right / 3) + b])) {
 ////                        System.out.println();
 //                        return false;
 //                    }

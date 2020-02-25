@@ -84,9 +84,9 @@ public class 미로탐색 {
 ////        }
 //        System.out.println(map[N][M]);
 //    }
-//    public static void bfs(int x, int y) {
+//    public static void bfs(int left, int right) {
 //        Queue<int[]> que = new LinkedList();
-//        que.add(new int[] {x, y});
+//        que.add(new int[] {left, right});
 //
 //        while(!que.isEmpty()) {
 //            int[] visited = que.poll();
@@ -117,26 +117,26 @@ public class 미로탐색 {
 ////            System.out.println();
 //        }
 //    }
-////    public static void dfs(int x, int y, int value) {
-////        if(x == N && y == M) {
+////    public static void dfs(int left, int right, int value) {
+////        if(left == N && right == M) {
 ////            if(min > value ) {
 ////                min = value;
 ////            }
 ////            return;
 ////        }
-////        System.out.print("("+x+", "+y+") ");
-////        visited[x][y] = true;
-////        if(x > 1 && map[x-1][y] == '1' && !visited[x-1][y]) {
-////            dfs(x-1, y, value+1);
+////        System.out.print("("+left+", "+right+") ");
+////        visited[left][right] = true;
+////        if(left > 1 && map[left-1][right] == '1' && !visited[left-1][right]) {
+////            dfs(left-1, right, value+1);
 ////        }
-////        if(x < N && map[x+1][y] == '1' && !visited[x+1][y]) {
-////            dfs(x+1, y, value+1);
+////        if(left < N && map[left+1][right] == '1' && !visited[left+1][right]) {
+////            dfs(left+1, right, value+1);
 ////        }
-////        if(y > 1 && map[x][y-1] == '1' && !visited[x][y-1]) {
-////            dfs(x, y-1, value+1);
+////        if(right > 1 && map[left][right-1] == '1' && !visited[left][right-1]) {
+////            dfs(left, right-1, value+1);
 ////        }
-////        if(y < M && map[x][y+1] == '1' && !visited[x][y+1]) {
-////            dfs(x, y+1, value+1);
+////        if(right < M && map[left][right+1] == '1' && !visited[left][right+1]) {
+////            dfs(left, right+1, value+1);
 ////        }
 ////    }
 //}

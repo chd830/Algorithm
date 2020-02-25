@@ -62,8 +62,8 @@ public class 벽부수고이동하기 {
         visited[0][0][0] = 1;
         visited[0][0][1] = 1;
         while (!que.isEmpty()) {
-            //벽을 뚫고가지 않는 최소값을 [x][y][0]에 저장한다.
-            //벽을 뚫고가는 최소값을 [x][y][1]에 저장하고
+            //벽을 뚫고가지 않는 최소값을 [left][right][0]에 저장한다.
+            //벽을 뚫고가는 최소값을 [left][right][1]에 저장하고
             Node n = que.poll();
             if (n.x == N && n.y == M) {
                 return;
@@ -80,9 +80,9 @@ public class 벽부수고이동하기 {
                     }
                 }
 //                if (dx < N && dy < M && dx >= 0 && dy >= 0 && visited[dx][dy][0] == 0 && visited[dx][dy][1] == 0) {
-//                    visited[dx][dy][0] = (char) (visited[n.x][n.y][0] - '0' + 1);
+//                    visited[dx][dy][0] = (char) (visited[n.left][n.right][0] - '0' + 1);
 //                    que.add(new Node(dx, dy, 0));
-//                    visited[dx][dy][1] = (char) Math.min((char) (visited[n.x][n.y][0] - '0' + 1), visited[n.x][n.y][1]);
+//                    visited[dx][dy][1] = (char) Math.min((char) (visited[n.left][n.right][0] - '0' + 1), visited[n.left][n.right][1]);
 //                    que.add(new Node(dx, dy, 1));
 //                }
             }

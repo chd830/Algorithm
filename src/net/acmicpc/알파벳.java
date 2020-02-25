@@ -74,17 +74,17 @@ DGAGEH
 //        count[0][0] = 1;
 //        while(!que.isEmpty()) {
 //            Node n = que.poll();
-//            if(n.x == R && n.y == C) {
+//            if(n.left == R && n.right == C) {
 //                return;
 //            }
 //            for(int i = 0; i < 4; i++) {
-//                int dx = n.x + move[i][0];
-//                int dy = n.y + move[i][1];
+//                int dx = n.left + move[i][0];
+//                int dy = n.right + move[i][1];
 //                if(dx >= 0 && dy >= 0 && dx < R && dy < C && alph[map[dx][dy] - 65] == 0 && count[dx][dy] == 0) {
 ////                    System.out.print(map[dx][dy]+" ");
 ////                    System.out.println(Arrays.toString(alph));
 //                    que.add(new Node(dx, dy));
-//                    count[dx][dy] = count[n.x][n.y]+1;
+//                    count[dx][dy] = count[n.left][n.right]+1;
 //                    max = Math.max(count[dx][dy], max);
 //                    alph[map[dx][dy] - 65]++;
 //                }
