@@ -1,98 +1,67 @@
 package net.acmicpc;
 
-import java.io.*;
 import java.util.*;
 
 public class 순열의순서 {
-    static int N;
-    static int cnt;
-    static int[] arr;
-    static int[] start;
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        cnt = 0;
-        StringTokenizer token = new StringTokenizer(br.readLine());
-        int K = Integer.parseInt(token.nextToken());
-        start = new int[N];
-        for (int i = 0; i < N; i++) {
-            start[i] = (i + 1);
+    //팩토리얼 값이 들어있는 배열
+    static long[] f = new long[21];
+    //방문했는지 여부체크용 배열
+    static boolean[] c = new boolean[21];
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        f[0] = 1;
+        for (int i=1; i<=20; i++) {
+            f[i] = f[i-1] * i;
         }
-        if (K == 1) {
-            nextPermute(N, Integer.parseInt(token.nextToken()));
-        }
-        else {
-            arr = new int[N];
-            for(int i = 0; i < N; i++) {
-                arr[i] = Integer.parseInt(token.nextToken());
+        int n = sc.nextInt();
+        int what = sc.nextInt();
+        /*
+        7, 3, 5, 6, 1일 때
+        1, x, x, x, x >> 5!
+        3, x, x, x, x >> 5!
+        5, x, x, x, x >> 5!
+        6, x, x, x, x >> 5!
+        7, 1, x, x, x >> 4!
+        순서로 접근해서 갯수를 순열의 순서를 파악하고
+        K - x!을 통해서 순열의 순서를 파악할 수 있다.
+         */
+        //임의의 순열이 몇번째인지 체크
+        if (what == 2) {
+            int[] a = new int[n];
+            for (int i=0; i<n; i++) {
+                a[i] = sc.nextInt();
             }
-            prevPermute(N, 1);
+            long ans = 0;
+            for (int i=0; i<n; i++) {
+                for (int j=1; j<a[i]; j++) {
+                    //방문하지 않았을 때 팩토리얼만큼 더해놓기
+                    if (c[j] == false) {
+                        ans += f[n-i-1];
+                    }
+                }
+                c[a[i]] = true;
+            }
+            System.out.println(ans+1);
+            //K번째 순열이 뭔지 구하기.
+        } else if (what == 1) {
+            long k = sc.nextLong();
+            int[] a = new int[n];
+            for (int i=0; i<n; i++) {
+                for (int j=1; j<=n; j++) {
+                    if (c[j] == true) continue;
+                    if (f[n-i-1] < k) {
+                        k -= f[n-i-1];
+                    } else {
+                        a[i] = j;
+                        c[j] = true;
+                        break;
+                    }
+                }
+            }
+            for (int i=0; i<n; i++) {
+                System.out.print(a[i] + " ");
+            }
+            System.out.println();
         }
-    }
-
-    public static void prevPermute(int N, int K) {
-        if(Arrays.equals(start, arr)) {
-            System.out.println(K);
-            return;
-        }
-        int i = N-1;
-        while(i > 0 && arr[i] >= arr[i-1]) {
-            i--;
-        }
-        if(i == 0) {
-            print(arr);
-            return;
-        }
-        int j = N-1;
-        while(arr[i-1] < arr[j]) {
-            j--;
-        }
-        swap(arr,i-1, j);
-        j = N-1;
-        while(i < j) {
-            swap(arr, i, j);
-            i++;
-            j--;
-        }
-        prevPermute(N, K+1);
-    }
-
-    public static void nextPermute(int N, int K) {
-        if(K == 1) {
-            print(start);
-        }
-        int i = N-1;
-        while(i > 0 && start[i] <= start[i-1]) {
-            i--;
-        }
-        if(i <= 0) {
-            return;
-        }
-        int j = N-1;
-        while(start[i-1] > start[j]) {
-            j--;
-        }
-        swap(start, i-1, j);
-        j = N-1;
-        while(i < j) {
-            swap(start, i, j);
-            i++;
-            j--;
-        }
-        nextPermute(N, K-1);
-        return;
-    }
-
-    public static void print(int[] arr) {
-        for(int i : arr) {
-            System.out.print(i+" ");
-        }
-        System.out.println();
-    }
-
-    public static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
     }
 }
