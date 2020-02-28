@@ -8,8 +8,7 @@ import java.util.*;
 public class 로또 {
     static int N;
     static int[] arr;
-    static List<List<Integer>> lists;
-    static boolean[] visited;
+    static int[] sub;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while(true) {
@@ -19,36 +18,27 @@ public class 로또 {
                 System.exit(0);
             }
             arr = new int[N];
-            lists = new ArrayList();
-            visited = new boolean[N];
+            sub = new int[6];
             for (int i = 0; i < N; i++) {
                 arr[i] = Integer.parseInt(token.nextToken());
             }
-            recur(lists, new ArrayList(), arr);
+            permute(0, 0);
             System.out.println();
         }
     }
-    public static void recur(List<List<Integer>> result, List<Integer> list, int[] nums ) {
-        if(list.size() == 6) {
-            Collections.sort(list);
-//            if(!result.contains(list)) {
-//                result.add(new ArrayList<>(list));
-                for(int i : list) {
-                    System.out.print(i+" ");
-                }
-                System.out.println();
-//            }
-        }
-        else {
-            for(int i = 0; i < nums.length; i++) {
-                if(list.contains(nums[i])) {
-                    continue;
-                }
-                list.add(nums[i]);
-                recur(result, list, nums);
-                list.remove(list.size() - 1);
+    static void permute(int idx, int s_idx) {
+        if(s_idx == sub.length) {
+            for(int i : sub) {
+                System.out.print(i+" ");
             }
+            System.out.println();
+            return;
         }
-
+        if(idx == arr.length) {
+            return;
+        }
+        sub[s_idx] = arr[idx];
+        permute(idx+1, s_idx+1);
+        permute(idx+1, s_idx);
     }
 }
