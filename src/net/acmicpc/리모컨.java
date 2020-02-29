@@ -3,54 +3,56 @@ package net.acmicpc;
 import java.util.Scanner;
 
 public class 리모컨 {
+    static boolean[] broken = new boolean[10];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //이동하려는 채널
-        String str = sc.next();
-        int[] chanel = new int[str.length()];
-        for(int i = 0; i < str.length(); i++) {
-            chanel[i] = str.charAt(i)-'0';
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        for (int i = 0; i < m; i++) {
+            int x = sc.nextInt();
+            broken[x] = true;
         }
-        //고장난 버튼의 수
-        int M = sc.nextInt();
-        int[] error = new int[M];
-        for(int i = 0; i < M; i++) {
-            error[i] = sc.nextInt();
-        }
+        int pow = 1;
+        int cnt = 0;
+        int num = n;
         int min = 0;
-        int cnt = str.length();
-        boolean check = true;
-        //주어진 채널보다 -로 내려가서
-        //에러없이 누를 수 있는 채널을 찾고 그 채널까지의 거리찾기
-        while(check) {
-            outer:for(int i = 0; i < str.length(); i++) {
-                for(int j = 0; j < M; j++) {
-                    if(chanel[i] == error[j]) {
-                        check = true;
-                        chanel[str.length()-1]--;
-                        cnt++;
-                        break outer;
-                    }
+        while(n > 0) {
+            if(n == 10) {
+                if(broken[1]) {
+
                 }
-                check = false;
+
+            }
+            if(n < 10) {
+                if(broken[n]) {
+                    cnt += pow*1;
+                    n--;
+                }
+            }
+            if(broken[n%10]) {
+                cnt += pow*1;
+                n--;
+            }
+            else {
+                n /= 10;
+                pow *= 10;
             }
         }
         min = cnt;
-        cnt = str.length();
-        while(check) {
-            outer:for(int i = 0; i < str.length(); i++) {
-                for(int j = 0; j < M; j++) {
-                    if(chanel[i] == error[j]) {
-                        check = true;
-                        chanel[str.length()-1]++;
-                        cnt++;
-                        break outer;
-                    }
-                    check = false;
-                }
+        cnt = 0;
+        n = num;
+        pow = 1;
+        while(n >= 10) {
+            if(broken[n%10]) {
+                cnt += pow*1;
+                n++;
+            }
+            else {
+                n /= 10;
+                pow *= 10;
             }
         }
         min = Math.min(min, cnt);
-        System.out.println(min);
+        System.out.println((int)(Math.log10(num)+1)+cnt);
     }
 }

@@ -1,75 +1,71 @@
-/*
 package com.swexpertacademy;
 
 import java.util.Scanner;
 
 public class 벌꿀채취Solution {
-    static int N;
-    static int M;
-    static int C;
-    static int[][] map;
-    static int[][] maxMap;
+    static int N,M,C;
+    static int[][] honey;
+    static int[][] cal;
+    static int answer;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
-        for(int t = 1; t <= T; t++) {
-            N = sc.nextInt();
-            M = sc.nextInt();
-            C = sc.nextInt();
-            map = new int[N][N];
-            maxMap = new int[N][N];
-            for(int i = 0; i < N; i++) {
-                for(int j = 0; j < N; j++) {
-                    map[i][j] = sc.nextInt();
+        int T=sc.nextInt();
+        for(int test_case =1; test_case<=T; test_case++) {
+            N=sc.nextInt();
+            M=sc.nextInt();
+            C=sc.nextInt();
+            honey= new int[N][N];
+            cal= new int[N][N-M+1];
+            answer=0;
+            for(int i=0;i<N;i++) {
+                for(int j=0;j<N;j++) {
+                    honey[i][j]=sc.nextInt();
+                }
+            }
+            int maxValue=0,maxR=-1,maxC=-1;
+            for(int i=0;i<N;i++) {
+                for(int j=0;j<N-M+1;j++) {
+                    cal[i][j]=calMax(i,j,0,0,0);
+
                 }
             }
 
-            System.out.println("#"+t+" ");
+
+            choice(0,0,0,0);
+
+
+            System.out.println("#"+test_case+" "+answer);
         }
     }
-    static void makeMaxMap() {
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j < N-M; j++) {
 
-            }
-        }
-    }
-    */
-/*
-    i: 행위치
-    j: 열위치
-    cnt: 부분집합을 고려하는 원소 수
-    sum: 부분집합에 속한 원소들의 합
-    powSum: 부분집합에 속한 원소의 이익
-     *//*
-
-    static void makeMaxSubset(int i, int j, int cnt, int sum, int powSum) {
-        //부분집합의 합이 목표량을 초과하면 끝낸다.
-        if(sum > C) {
+    public static void choice(int r, int c , int value,int count) {
+        if(count==2) {
+            answer=Math.max(answer, value);
             return;
         }
-        if(cnt == M) {
-            if(maxMap[i][j-M] < powSum) {
-                maxMap[i][j-M] = 0;
-            }
+        if(c>=cal[0].length) {
+            c=0;
+            r++;
         }
-        //i, j위치 원소 선택
-        makeMaxSubset(i, j+1, cnt+1, sum+map[i][j], powSum+map[i][j]*map[i][j]);
-        //i, j위치 비선택
-        makeMaxSubset(i, j+1, cnt+1, sum, powSum);
-    }
-    static int getMaxBenefit() {
-        int max = 0;
-        int temp = 0;
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j <= N-M; j++) {
-                for(int k = j + M; k <= N-M; k++) {
-                    temp = maxMap[i][j] + maxMap[i][k];
-                }
+        if(r>=cal.length){
+            return;
+        }
+        choice(r,c+1,value,count);
+        choice(r,c+M,value+cal[r][c],count+1);
 
-            }
-        }
-        return max;
+
     }
+
+    public static int calMax(int r, int c,int curSum, int curRet,int pos) {
+        if(pos>M||curSum>C) {
+            return -1;
+        }
+        if(pos==M||curSum==C) {
+            return curRet;
+        }
+
+
+        return Math.max(calMax(r,c+1,curSum,curRet,pos+1), calMax(r,c+1,curSum+honey[r][c],curRet+(honey[r][c]*honey[r][c]),pos+1));
+    }
+
 }
-*/

@@ -57,7 +57,7 @@ public class 미로탐색 {
 //    static int N;
 //    static int M;
 //    static int cnt;
-//    static int[][] map;
+//    static int[][] dist;
 //    static boolean[][] visited;
 //    //    public static void main(String[] args) {
 //    public 미로탐색() {
@@ -66,23 +66,23 @@ public class 미로탐색 {
 //        M = sc.nextInt();
 //        cnt = 0;
 ////        min = Integer.MAX_VALUE;
-//        map = new int[N+1][M+1];
+//        dist = new int[N+1][M+1];
 //        visited = new boolean[N+1][M+1];
 //        for(int i = 0; i < N; i++) {
 //            String str = sc.next();
 //            for(int j = 0; j < str.length(); j++) {
-//                map[i+1][j+1] = Integer.parseInt("" +str.charAt(j));
+//                dist[i+1][j+1] = Integer.parseInt("" +str.charAt(j));
 //            }
 //        }
 ////        for(int i = 0; i < N; i++) {
-////            System.out.println(Arrays.toString(map[i]));
+////            System.out.println(Arrays.toString(dist[i]));
 ////        }
 ////        System.out.println();
 //        bfs(1, 1);
 ////        for(int i = 0; i <= N; i++) {
-////            System.out.println(Arrays.toString(map[i]));
+////            System.out.println(Arrays.toString(dist[i]));
 ////        }
-//        System.out.println(map[N][M]);
+//        System.out.println(dist[N][M]);
 //    }
 //    public static void bfs(int left, int right) {
 //        Queue<int[]> que = new LinkedList();
@@ -91,28 +91,28 @@ public class 미로탐색 {
 //        while(!que.isEmpty()) {
 //            int[] visited = que.poll();
 //            visited[visited[0]][visited[1]] = true;
-//            if(visited[0] > 1 && map[visited[0]-1][visited[1]] >= 1 && !visited[visited[0]-1][visited[1]]) {
+//            if(visited[0] > 1 && dist[visited[0]-1][visited[1]] >= 1 && !visited[visited[0]-1][visited[1]]) {
 //                que.add(new int[] {visited[0]-1, visited[1]});
-//                map[visited[0]-1][visited[1]] = map[visited[0]][visited[1]]+1;
+//                dist[visited[0]-1][visited[1]] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]-1][visited[1]] = true;
 //            }
-//            if(visited[0] < N && map[visited[0]+1][visited[1]] >= 1 && !visited[visited[0]+1][visited[1]]) {
+//            if(visited[0] < N && dist[visited[0]+1][visited[1]] >= 1 && !visited[visited[0]+1][visited[1]]) {
 //                que.add(new int[] {visited[0]+1, visited[1]});
-//                map[visited[0]+1][visited[1]] = map[visited[0]][visited[1]]+1;
+//                dist[visited[0]+1][visited[1]] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]+1][visited[1]] = true;
 //            }
-//            if(visited[1] > 1 && map[visited[0]][visited[1]-1] >= 1 && !visited[visited[0]][visited[1]-1]) {
+//            if(visited[1] > 1 && dist[visited[0]][visited[1]-1] >= 1 && !visited[visited[0]][visited[1]-1]) {
 //                que.add(new int[] {visited[0], visited[1]-1});
-//                map[visited[0]][visited[1]-1] = map[visited[0]][visited[1]]+1;
+//                dist[visited[0]][visited[1]-1] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]][visited[1]-1] = true;
 //            }
-//            if(visited[1] < M && map[visited[0]][visited[1]+1] >= 1 && !visited[visited[0]][visited[1]+1]) {
+//            if(visited[1] < M && dist[visited[0]][visited[1]+1] >= 1 && !visited[visited[0]][visited[1]+1]) {
 //                que.add(new int[] {visited[0], visited[1]+1});
-//                map[visited[0]][visited[1]+1] = map[visited[0]][visited[1]]+1;
+//                dist[visited[0]][visited[1]+1] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]][visited[1]+1] = true;
 //            }
 ////            for(int i = 0; i <= N; i++) {
-////                System.out.println(Arrays.toString(map[i]));
+////                System.out.println(Arrays.toString(dist[i]));
 ////            }
 ////            System.out.println();
 //        }
@@ -126,16 +126,16 @@ public class 미로탐색 {
 ////        }
 ////        System.out.print("("+left+", "+right+") ");
 ////        visited[left][right] = true;
-////        if(left > 1 && map[left-1][right] == '1' && !visited[left-1][right]) {
+////        if(left > 1 && dist[left-1][right] == '1' && !visited[left-1][right]) {
 ////            dfs(left-1, right, value+1);
 ////        }
-////        if(left < N && map[left+1][right] == '1' && !visited[left+1][right]) {
+////        if(left < N && dist[left+1][right] == '1' && !visited[left+1][right]) {
 ////            dfs(left+1, right, value+1);
 ////        }
-////        if(right > 1 && map[left][right-1] == '1' && !visited[left][right-1]) {
+////        if(right > 1 && dist[left][right-1] == '1' && !visited[left][right-1]) {
 ////            dfs(left, right-1, value+1);
 ////        }
-////        if(right < M && map[left][right+1] == '1' && !visited[left][right+1]) {
+////        if(right < M && dist[left][right+1] == '1' && !visited[left][right+1]) {
 ////            dfs(left, right+1, value+1);
 ////        }
 ////    }

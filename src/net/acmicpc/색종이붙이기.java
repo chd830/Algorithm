@@ -34,13 +34,13 @@ public class 색종이붙이기 {
     }
 }
 
-//    static int[][] map = new int[10][10];
+//    static int[][] dist = new int[10][10];
 //    static int[] paper = {0, 5, 5, 5, 5, 5};
 //    public static void main(String[] args) {
 //        Scanner sc = new Scanner(System.in);
 //        for(int i = 0; i < 10; i++) {
 //            for(int j = 0; j < 10; j++)
-//                map[i][j] = sc.nextInt();
+//                dist[i][j] = sc.nextInt();
 //        }
 //        dfs(0);
 //        System.out.println(ans == 987654321 ? -1 : ans);
@@ -50,7 +50,7 @@ public class 색종이붙이기 {
 //        int startC = -1;
 //        out:for(int i = 0; i < 10; i++) {
 //            for(int j = 0; j < 10; j++) {
-//                if( map[i][j] == 1 ) {
+//                if( dist[i][j] == 1 ) {
 //                    startR = i;
 //                    startC = j;
 //                    break out;
@@ -66,7 +66,7 @@ public class 색종이붙이기 {
 //            boolean isOk = true;
 //            out: for(int i = 0; i < max; i++) {
 //                for(int j = 0; j < max; j++) {
-//                    if( startR + i >= 10 || startC + j >= 10 || map[startR+i][startC+j] == 0 ) {
+//                    if( startR + i >= 10 || startC + j >= 10 || dist[startR+i][startC+j] == 0 ) {
 //                        isOk = false;
 //                        break out;
 //                    }
@@ -80,7 +80,7 @@ public class 색종이붙이기 {
 //            if( paper[i] > 0) {
 //                for(int r = startR; r < startR + i; r++) {
 //                    for(int c = startC; c < startC + i; c++) {
-//                        map[r][c] = 0;
+//                        dist[r][c] = 0;
 //                    }
 //                }
 //                paper[i]--;
@@ -88,7 +88,7 @@ public class 색종이붙이기 {
 //                paper[i]++;
 //                for(int r = startR; r < startR + i; r++) {
 //                    for(int c = startC; c < startC + i; c++) {
-//                        map[r][c] = 1;
+//                        dist[r][c] = 1;
 //                    }
 //                }
 //            }

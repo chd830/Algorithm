@@ -117,14 +117,14 @@ public class 달이차오른다가자 {
 //            loop: for(int i = 0; i < 4; i++) {
 //                int dx = n.left +pos[i][0];
 //                int dy = n.right + pos[i][1];
-//                while(dx >= 0 && dx < map.length && dy >= 0 && dy < map[0].length && map[dx][dy] != '#') {
-//                    if(map[dx][dy] == '1') {
+//                while(dx >= 0 && dx < dist.length && dy >= 0 && dy < dist[0].length && dist[dx][dy] != '#') {
+//                    if(dist[dx][dy] == '1') {
 //                        return;
 //                    }
 //                    //a-49 == 0
-//                    if(map[dx][dy] >= 65 && map[dx][dy] <= 90) {
-//                        if(alph[map[dx][dy] - 65] != 0) {
-//                            alph[map[dx][dy] - 65]--;
+//                    if(dist[dx][dy] >= 65 && dist[dx][dy] <= 90) {
+//                        if(alph[dist[dx][dy] - 65] != 0) {
+//                            alph[dist[dx][dy] - 65]--;
 //                            visited[dx][dy] = visited[n.left][n.right]+1;
 //                            que.add(new Node(dx, dy));
 //                        }
@@ -132,8 +132,8 @@ public class 달이차오른다가자 {
 //                            continue loop;
 //                        }
 //                    }
-//                    else if(map[dx][dy] >= 97 && map[dx][dy] <= 122) {
-//                        alph[map[dx][dy] - 97]++;
+//                    else if(dist[dx][dy] >= 97 && dist[dx][dy] <= 122) {
+//                        alph[dist[dx][dy] - 97]++;
 //                        visited[dx][dy] = visited[n.left][n.right]+1;
 //                        que.add(new Node(dx, dy));
 //                    }

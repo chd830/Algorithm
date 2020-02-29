@@ -18,7 +18,7 @@ public class 오목 {
 				map[r][c] = sc.nextInt();
 			}
 		}
-//		print(map);
+//		print(dist);
 		boolean flag = false;
 		for(int r = 1; r < N; r++) {
 			for(int c = 1; c < N; c++) {

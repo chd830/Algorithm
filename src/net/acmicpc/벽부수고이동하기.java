@@ -34,7 +34,7 @@ public class 벽부수고이동하기 {
             }
         }
 //        for(int i = 0; i < N; i++) {
-//            System.out.println(Arrays.toString(map[i]));
+//            System.out.println(Arrays.toString(dist[i]));
 //        }
 //        System.out.println();
         bfs();

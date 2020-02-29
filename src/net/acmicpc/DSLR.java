@@ -5,65 +5,66 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class DSLR {
-    static final int MAX = 100000;
-    static String[] from;
-    static int[] order;
+    static final int MAX = 10001;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
         for(int t = 1; t <= T; t++) {
-            String A = sc.next();
-            String B = sc.next();
-            int[] map = new int[MAX];
-            from = new String[MAX];
-            order = new int[MAX];
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int[] d = new int[MAX];
+            int[] v = new int[MAX];
+            boolean[] c = new boolean[MAX];
+            char[] w = new char[MAX];
             Queue<Integer> que = new LinkedList<>();
-            que.add(Integer.parseInt(A));
+            que.add(n);
+            c[n] = true;
+            d[n] = 0;
+            v[n] = -1;
             while(!que.isEmpty()) {
-                int n = que.poll();
-                if(map[n*2%10000] == 0) {
-                    map[n*2%10000] = map[n] + 1;
-                    from[n*2%10000] = "D";
-                    order[n*2%10000] = n;
-                    que.add(n*2%10000);
+                int now = que.poll();
+                int next = (now*2)%10000;
+                if(c[next] == false) {
+                    que.add(next);
+                    c[next] = true;
+                    d[next] = d[now] + 1;
+                    v[next] = now;
+                    w[next] = 'D';
                 }
-                if(n-1 >= 0 && map[n] == 0) {
-                    if(n == 1) {
-                        map[n-1] = 9999;
-                    }
-                    else {
-                        map[n - 1] = map[n] + 1;
-                    }
-                    from[n-1] = "S";
-                    order[n-1] = n;
-                    que.add(n-1);
+                next = now - 1;
+                if(next == -1) {
+                    next = 9999;
                 }
-                int left = (n/10) + (n%10)*1000;
-                int right = (n%1000)*10 + n/1000;
-                if(map[left] == 0) {
-                    map[left] = n + 1;
-                    from[left] = "L";
-                    order[left] = n;
-                    que.add(left);
+                if(c[next] == false) {
+                    d[next] = d[now] + 1;
+                    w[next] = 'S';
+                    c[next] = true;
+                    v[next] = now;
+                    que.add(next);
                 }
-                if(map[right] == 0) {
-                    map[right] = n + 1;
-                    from[right] = "R";
-                    order[right] = n;
-                    que.add(right);
+                next = (now%1000)*10 + now/1000;
+                if(d[next] == 0) {
+                    d[next] = now + 1;
+                    c[next] = true;
+                    w[next] = 'L';
+                    v[next] = now;
+                    que.add(next);
+                }
+                next = (now/10) + (now%10)*1000;
+                if(d[next] == 0) {
+                    d[next] = now + 1;
+                    w[next] = 'R';
+                    v[next] = now;
+                    c[next] = true;
+                    que.add(next);
                 }
             }
-            sb = new StringBuilder();
-            print(Integer.parseInt(A), Integer.parseInt(B));
-            sb = sb.delete(0, 1);
-            System.out.println(sb.toString());
+            StringBuilder ans = new StringBuilder();
+            while(m != n) {
+                ans.append(w[m]);
+                m = v[m];
+            }
+            System.out.println(ans.reverse().toString());
         }
-    }
-    static StringBuilder sb;
-    public static void print(int n, int m) {
-        if(n != m) {
-            print(n, order[m]);
-        }
-        sb.append(from[m]);
     }
 }
