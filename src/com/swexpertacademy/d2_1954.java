@@ -40,7 +40,7 @@ public class d2_1954 {
 //        int T = sc.nextInt();
 //        for(int t = 1; t <= T; t++) {
 //            int num = sc.nextInt();
-//            int[][] arr = new int[num][num];
+//            int[][] customer = new int[num][num];
 //
 //            int count = 1;
 //            int r = 0;
@@ -49,29 +49,29 @@ public class d2_1954 {
 //            int index = 0;
 //            for(int j = num; j >= 0; j -= 2) { //j는 num에서 -2만큼 지속적으로 줄어든다.
 //                for(r = 0; r < j; r++) {//오른쪽으로 감
-//                    arr[index][index+r] = count++;
+//                    customer[index][index+r] = count++;
 //                }
 //                for(c = 1; c < j; c++) {//아래로 내려감
 //                    //num-index-1은 맨바깥에서 안쪽으로 한칸씩 이동하게 한다.
-//                    arr[index+c][num-index-1] = count++;
+//                    customer[index+c][num-index-1] = count++;
 //                }
 //                for(r = 1; r < j; r++) {//왼쪽으로 감
 //                    //num-index-r-1은 맨바깥에서 이미 지나온 r만큼 뺀다.
-//                    arr[num-index-1][num-index-r-1] = count++;
+//                    customer[num-index-1][num-index-r-1] = count++;
 //                }
 //                for(c = 1; c < j - 1; c++) {//위로 감
 //                    //num-indx-c-1도 역시 맨바깥에서 지나온 c만큼 뺀다.
-//                    arr[num-index-c-1][index] = count++;
+//                    customer[num-index-c-1][index] = count++;
 //                }
 //                index++;
 //            }
 //            System.out.println("#"+t);
-//            print(arr);
+//            print(customer);
 //        }
 //    }
-//    static void print(int[][] arr) {
-//        for(int l = 0; l < arr.length; l++) {
-//            System.out.println(Arrays.toString(arr[l]));
+//    static void print(int[][] customer) {
+//        for(int l = 0; l < customer.length; l++) {
+//            System.out.println(Arrays.toString(customer[l]));
 //        }
 //    }
 ////    public d2_1954() {
@@ -79,7 +79,7 @@ public class d2_1954 {
 ////        int T = sc.nextInt();
 ////        for (int t = 1; t <= T; t++) {
 ////            int N = sc.nextInt();
-////            int[][] arr = new int[N][N];
+////            int[][] customer = new int[N][N];
 ////            System.out.println("#" + t);
 ////            int x = 0;
 ////            int y = -1;
@@ -93,7 +93,7 @@ public class d2_1954 {
 ////                for (int n = 0; n < l; n++) {
 ////                    y = y + k;
 //////                    System.out.println("y: "+y);
-////                    arr[x][y] = count;
+////                    customer[x][y] = count;
 ////                    count++;
 ////                }
 ////                l--;
@@ -101,19 +101,19 @@ public class d2_1954 {
 ////                for (int n = 0; n < l; n++) {
 ////                    x = x + k;
 //////                    System.out.println("x: "+x);
-////                    arr[x][y] = count;
+////                    customer[x][y] = count;
 ////                    count++;
 ////                }
 ////                k = -k ;
 ////            }
-////            print(arr);
+////            print(customer);
 ////        }
 ////    }
 //
-////    static void print(int[][] arr) {
-////        for (int i = 0; i < arr.length; i++) {
-////            for (int j = 0; j < arr.length; j++) {
-////                System.out.print(arr[i][j] + " ");
+////    static void print(int[][] customer) {
+////        for (int i = 0; i < customer.length; i++) {
+////            for (int j = 0; j < customer.length; j++) {
+////                System.out.print(customer[i][j] + " ");
 ////            }
 ////            System.out.println();
 ////        }

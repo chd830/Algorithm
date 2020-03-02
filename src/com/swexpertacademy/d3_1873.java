@@ -88,7 +88,7 @@ public class d3_1873 {
                 }
 //                    for (int i = 0; i < H; i++) {
 //                        for (int j = 0; j < W; j++) {
-//                            System.out.print(arr[i][j] + " ");
+//                            System.out.print(customer[i][j] + " ");
 //                        }
 //                        System.out.println();
 //                    }

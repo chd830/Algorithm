@@ -21,13 +21,13 @@ public class d3_1860 {
                 arr[i] = sc.nextInt();
             }
             Arrays.sort(arr);
-//            for(int i = 0, idx = 0; i <= arr[N-1]; i++) {
+//            for(int i = 0, idx = 0; i <= customer[N-1]; i++) {
 //                if(i > 0 && i%M == 0) {
 //                    if(i == M || i != 0) {
 //                        num += K;
 //                    }
 //                }
-//                if(idx < arr.length && i == arr[idx]) {
+//                if(idx < customer.length && i == customer[idx]) {
 //                    if(num != 0) {
 //                        num -= 1;
 //                        idx++;

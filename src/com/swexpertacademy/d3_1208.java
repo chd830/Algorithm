@@ -19,14 +19,14 @@ public class d3_1208 {
             while(num > 0) {
                 Arrays.sort(arr);
                 if(arr[end] - arr[start] > 1) {
-//                    System.out.println(arr[start]+" "+arr[end]);
+//                    System.out.println(customer[start]+" "+customer[end]);
                     arr[end]--;
                     arr[start]++;
                     num--;
                     continue;
                 }
                 if(arr[end] - arr[start] <= 1) {
-//                    System.out.println(arr[start]+" "+arr[end]);
+//                    System.out.println(customer[start]+" "+customer[end]);
                     start++;
                     end--;
                 }

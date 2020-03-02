@@ -23,35 +23,29 @@ public class 최적경로 {
                 map[i][1] = sc.nextInt();
             }
             min = Integer.MAX_VALUE;
-            recur(0, 0, 0, 0);
+            recur(1);
             System.out.println("#"+t+" "+min);
         }
     }
     static int min;
     static int sum;
-    public static void recur(int idx, int x, int y, int sum) {
-        if(idx == map.length) {
-//            sum = 0;
-//            for(int i = 1; i < copy.length; i++) {
-//                sum += Math.abs(copy[i][0] - copy[i-1][0]) + Math.abs(copy[i][1] - copy[i-1][1]);
-//                if(min < sum) {
-//                    return;
-//                }
-//            }
-            if(min < sum)
-                return;
-            System.out.print(x+" "+y+".\t\t");
-            sum = (Math.abs(x - copy[copy.length-1][0])) + Math.abs(y - copy[copy.length-1][1]);
-            System.out.println("sum: "+sum);
+    public static void recur(int idx) {
+        if(idx == map.length+1) {
+            sum = 0;
+            for(int i = 1; i < copy.length; i++) {
+                sum += Math.abs(copy[i][0] - copy[i-1][0]) + Math.abs(copy[i][1] - copy[i-1][1]);
+                if(min < sum) {
+                    return;
+                }
+            }
             min = sum;
             return;
         }
         for(int i = 0; i < map.length; i++) {
             if(!visited[i]) {
-//                copy[idx] = map[i];
+                copy[idx] = map[i];
                 visited[i] = true;
-                System.out.print(x+" "+y+".\t");
-                recur(idx + 1, map[idx][0], map[idx][1], x+Math.abs(x - map[idx][0]) + y+Math.abs(y - map[idx][1]));
+                recur(idx + 1);
                 visited[i] = false;
             }
         }
