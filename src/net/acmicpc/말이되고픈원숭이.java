@@ -1,57 +1,52 @@
 package net.acmicpc;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 //움직일 수 있는 걸 말이랑 원숭이를 같이 생각하고...말처럼 움직일 수 있는 횟수를 카운팅한다.
 public class 말이되고픈원숭이 {
-    static int[][] move = {{-2, 1}, {-1, 2},{2, 1}, {1, 2}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}, {0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    static int K;
+    static int N;
+    static int H;
+    static int max;
+    static int[][] map;
+    static boolean[][] visited;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        K = sc.nextInt();
-        int W = sc.nextInt();
-        int H = sc.nextInt();
-        int[][] arr = new int[W][H];
-        for(int i = 0; i < W; i++) {
+        int K = sc.nextInt();
+        max = 0;
+        N = sc.nextInt();
+        H = sc.nextInt();
+        map = new int[N][H];
+        visited = new boolean[N][H];
+        for(int i = 0; i < N; i++) {
             for(int j = 0; j < H; j++) {
-                arr[i][j] = sc.nextInt();
-                if(arr[i][j] == 1) {
-                    arr[i][j] = -1;
-                }
+                map[i][j] = sc.nextInt();
             }
         }
-        Queue<Node> que = new LinkedList<>();
-        que.add(new Node(0, 0));
-        while(!que.isEmpty()) {
-            Node n = que.poll();
-            if(K > 0) {
-                for(int i = 0; i < 8; i++) {
-                    int dx = n.x + move[i][0];
-                    int dy = n.y + move[i][1];
-                    if(dx < W && dy < H && dx >= 0 && dy >= 0 && arr[dx][dy] != -1 && arr[dx][dy] == 0) {
-                        que.add(new Node(dx, dy));
-                        arr[dx][dy] = arr[n.x][n.y] + 1;
-                    }
-                }
-                K--;
-            }
-            for(int i = 0; i < W; i++) {
-                System.out.println(Arrays.toString(arr[i]));
-            }
-            System.out.println();
-        }
-        System.out.println(arr[W-1][H-1]);
+        dfs(0, 0, K, 0);
+        System.out.println(max);
     }
-
-    static class Node {
-        int x;
-        int y;
-        Node(int x, int y) {
-            this.x = x;
-            this.y = y;
+    static int[][] move = {{-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}, {0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    static void dfs(int x, int y, int K, int cnt) {
+        if(K <= 0) {
+            return;
+        }
+        if(x == N && y == H) {
+            return;
+        }
+        for(int i = 0; i < move.length; i++) {
+            int dx = x + move[i][0];
+            int dy = y + move[i][1];
+            if(dx >= 0 && dy >= 0 && dx < N && dy < H && !visited[dx][dy]) {
+                visited[dx][dy] = true;
+                max = Math.max(max, cnt);
+                if(i < 8) {
+                    dfs(dx, dy, K-1, cnt+1);
+                }
+                else {
+                    dfs(dx, dy, K, cnt+1);
+                }
+                visited[dx][dy] = false;
+            }
         }
     }
 }
