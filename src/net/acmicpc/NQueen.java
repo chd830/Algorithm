@@ -18,7 +18,7 @@ public class NQueen {
     public static void set(int idx, int num) {
         if(idx == N) {
             cnt++;
-//            for(int i = 0; i < N; i++) {
+//            for(int i = 0; i < W; i++) {
 //                System.out.println(Arrays.toString(arr[i]));
 //            }
 //            System.out.println();

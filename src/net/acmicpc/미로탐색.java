@@ -54,7 +54,7 @@ public class 미로탐색 {
         }
     }
 }
-//    static int N;
+//    static int W;
 //    static int M;
 //    static int cnt;
 //    static int[][] dist;
@@ -62,27 +62,27 @@ public class 미로탐색 {
 //    //    public static void main(String[] args) {
 //    public 미로탐색() {
 //        Scanner sc = new Scanner(System.in);
-//        N = sc.nextInt();
+//        W = sc.nextInt();
 //        M = sc.nextInt();
 //        cnt = 0;
 ////        min = Integer.MAX_VALUE;
-//        dist = new int[N+1][M+1];
-//        visited = new boolean[N+1][M+1];
-//        for(int i = 0; i < N; i++) {
+//        dist = new int[W+1][M+1];
+//        visited = new boolean[W+1][M+1];
+//        for(int i = 0; i < W; i++) {
 //            String str = sc.next();
 //            for(int j = 0; j < str.length(); j++) {
 //                dist[i+1][j+1] = Integer.parseInt("" +str.charAt(j));
 //            }
 //        }
-////        for(int i = 0; i < N; i++) {
+////        for(int i = 0; i < W; i++) {
 ////            System.out.println(Arrays.toString(dist[i]));
 ////        }
 ////        System.out.println();
 //        bfs(1, 1);
-////        for(int i = 0; i <= N; i++) {
+////        for(int i = 0; i <= W; i++) {
 ////            System.out.println(Arrays.toString(dist[i]));
 ////        }
-//        System.out.println(dist[N][M]);
+//        System.out.println(dist[W][M]);
 //    }
 //    public static void bfs(int left, int right) {
 //        Queue<int[]> que = new LinkedList();
@@ -96,7 +96,7 @@ public class 미로탐색 {
 //                dist[visited[0]-1][visited[1]] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]-1][visited[1]] = true;
 //            }
-//            if(visited[0] < N && dist[visited[0]+1][visited[1]] >= 1 && !visited[visited[0]+1][visited[1]]) {
+//            if(visited[0] < W && dist[visited[0]+1][visited[1]] >= 1 && !visited[visited[0]+1][visited[1]]) {
 //                que.add(new int[] {visited[0]+1, visited[1]});
 //                dist[visited[0]+1][visited[1]] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]+1][visited[1]] = true;
@@ -111,14 +111,14 @@ public class 미로탐색 {
 //                dist[visited[0]][visited[1]+1] = dist[visited[0]][visited[1]]+1;
 //                visited[visited[0]][visited[1]+1] = true;
 //            }
-////            for(int i = 0; i <= N; i++) {
+////            for(int i = 0; i <= W; i++) {
 ////                System.out.println(Arrays.toString(dist[i]));
 ////            }
 ////            System.out.println();
 //        }
 //    }
 ////    public static void dfs(int left, int right, int value) {
-////        if(left == N && right == M) {
+////        if(left == W && right == M) {
 ////            if(min > value ) {
 ////                min = value;
 ////            }
@@ -129,7 +129,7 @@ public class 미로탐색 {
 ////        if(left > 1 && dist[left-1][right] == '1' && !visited[left-1][right]) {
 ////            dfs(left-1, right, value+1);
 ////        }
-////        if(left < N && dist[left+1][right] == '1' && !visited[left+1][right]) {
+////        if(left < W && dist[left+1][right] == '1' && !visited[left+1][right]) {
 ////            dfs(left+1, right, value+1);
 ////        }
 ////        if(right > 1 && dist[left][right-1] == '1' && !visited[left][right-1]) {

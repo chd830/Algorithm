@@ -19,7 +19,7 @@ public class MergeIntervals {
             System.out.println(interval[0]+", "+interval[1]);
         }
         for (int[] interval : intervals) {
-            if (interval[0] <= arr[1]) // Overlapping intervals, move the end if needed
+            if (interval[0] <= arr[1]) // Overlapping intervals, horse the end if needed
                 arr[1] = Math.max(arr[1], interval[1]);
             else {                             // Disjoint intervals, add the new interval to the list
                 arr = interval;

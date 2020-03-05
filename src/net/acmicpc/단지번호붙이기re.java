@@ -12,10 +12,10 @@ public class 단지번호붙이기re {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 //        Scanner sc = new Scanner(System.in);
-//        N = sc.nextInt();
+//        W = sc.nextInt();
         N = Integer.parseInt(br.readLine());
         map = new char[N+2][N+2];
-//        visited = new boolean[N][N];
+//        visited = new boolean[W][W];
         List<Integer> list = new ArrayList();
         for(int i = 0; i < N; i++) {
 //            String str = sc.next();
@@ -47,7 +47,7 @@ public class 단지번호붙이기re {
     }
 
 //    static void print() {
-//        for(int i = 0; i < N; i++) {
+//        for(int i = 0; i < W; i++) {
 //            System.out.println(Arrays.toString(visited[i]));
 //        }
 //        System.out.println();
@@ -58,7 +58,7 @@ public class 단지번호붙이기re {
         for(int i = 0; i < 4; i++) {
             int nx = x + move[i][0];
             int ny = y + move[i][1];
-            if(/*nx < N && nx >= 0 && ny < N && ny >= 0 &&*//* !visited[nx][ny] && */map[nx][ny] == '1') {
+            if(/*nx < W && nx >= 0 && ny < W && ny >= 0 &&*//* !visited[nx][ny] && */map[nx][ny] == '1') {
 //                visited[nx][ny] = true;
                 map[nx][ny] = '0';
                 cnt++;
@@ -86,7 +86,7 @@ public class 단지번호붙이기re {
             for(int i = 0; i < 4; i++) {
                 int nx = n.x + move[i][0];
                 int ny = n.y + move[i][1];
-                if(/*nx >= 0 && ny >= 0 && nx < N && ny < N &&*//* !visited[nx][ny] && */map[nx][ny] == '1') {
+                if(/*nx >= 0 && ny >= 0 && nx < W && ny < W &&*//* !visited[nx][ny] && */map[nx][ny] == '1') {
                     que.add(new Node(nx, ny));
 //                    visited[nx][ny] = true;
                     map[nx][ny] = '0';

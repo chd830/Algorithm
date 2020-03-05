@@ -18,7 +18,7 @@ public class 미로탐색rere {
         map = new int[N + 2][M + 2];
         visited = new boolean[N+2][M+2];
         /*
-        dist = new int[N+2][M+2]로 하면
+        dist = new int[W+2][M+2]로 하면
         0이 벽이기 때문에 배열 범위 검사를 해줄 필요가 없어진다.
          */
         for (int i = 1; i <= N; i++) {

@@ -100,7 +100,7 @@ public class 회의실배정 {
 //    }
 //}
 //        int[] maxArray = new int[max+1];
-//        for(int i = 0; i  < N; i++) {
+//        for(int i = 0; i  < W; i++) {
 //            for(int j = arr[i][0]; j <= arr[i][1]; j++) {
 //                maxArray[j]++;
 //            }

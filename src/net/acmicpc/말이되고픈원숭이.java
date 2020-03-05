@@ -1,52 +1,69 @@
 package net.acmicpc;
 
-import java.util.Scanner;
+import java.util.*;
 
-//움직일 수 있는 걸 말이랑 원숭이를 같이 생각하고...말처럼 움직일 수 있는 횟수를 카운팅한다.
 public class 말이되고픈원숭이 {
-    static int N;
+    static int W;
     static int H;
-    static int max;
+    static int K;
     static int[][] map;
-    static boolean[][] visited;
+    static boolean[][][] visited;
+    static int[][] horse = {{-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}};
+    static int[][] monkey = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    static class Node {
+        int x;
+        int y;
+        int cnt;
+        Node(int x, int y, int cnt) {
+            this.x = x;
+            this.y = y;
+            this.cnt = cnt;
+        }
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int K = sc.nextInt();
-        max = 0;
-        N = sc.nextInt();
+        K = sc.nextInt();
+        W = sc.nextInt();
         H = sc.nextInt();
-        map = new int[N][H];
-        visited = new boolean[N][H];
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j < H; j++) {
+        map = new int[H][W];
+        visited = new boolean[H][W][K+1];
+        for(int i = 0; i < H; i++) {
+            for(int j = 0; j < W; j++) {
                 map[i][j] = sc.nextInt();
             }
         }
-        dfs(0, 0, K, 0);
-        System.out.println(max);
+        for(int i = 0; i < K; i++) {
+            visited[0][0][i] = true;
+        }
+        System.out.println(bfs(K));
     }
-    static int[][] move = {{-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}, {0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    static void dfs(int x, int y, int K, int cnt) {
-        if(K <= 0) {
-            return;
-        }
-        if(x == N && y == H) {
-            return;
-        }
-        for(int i = 0; i < move.length; i++) {
-            int dx = x + move[i][0];
-            int dy = y + move[i][1];
-            if(dx >= 0 && dy >= 0 && dx < N && dy < H && !visited[dx][dy]) {
-                visited[dx][dy] = true;
-                max = Math.max(max, cnt);
-                if(i < 8) {
-                    dfs(dx, dy, K-1, cnt+1);
+    public static int bfs(int k) {
+        Queue<Node> que = new LinkedList<>();
+        que.add(new Node(0, 0, 0));
+
+        while(!que.isEmpty()) {
+            Node n = que.poll();
+            if(n.x == H-1 && n.y == W -1) {
+                return n.cnt;
+            }
+
+            for(int i = 0; i < 4; i++) {
+                int dx = n.x + monkey[i][0];
+                int dy = n.y + monkey[i][1];
+//                if(dx >= 0 && dy >= 0 && dx < H && dy < W && map[dx][dy] != 1 && !visited[dx][dy][n.k]) {
+//                    visited[dx][dy][n.cnt] = true;
+//                    que.add(new Node(dx, dy, n.cnt + 1));
+//                }
+            }
+            for(int i = 0; i < 8; i++) {
+                int dx = n.x + horse[i][0];
+                int dy = n.y + horse[i][1];
+                if(dx >= 0 && dy >= 0 && dx < H && dy < W && map[dx][dy] != 1 && !visited[dx][dy][n.cnt+1]) {
+                    visited[dx][dy][n.cnt+1] = true;
+                    que.add(new Node(dx, dy, n.cnt + 1));
                 }
-                else {
-                    dfs(dx, dy, K, cnt+1);
-                }
-                visited[dx][dy] = false;
             }
         }
+        return -1;
     }
 }

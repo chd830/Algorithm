@@ -35,7 +35,7 @@ public class 토마토 {
          */
         arr = new int[N][M];
         check = new int[N][M];
-//        visited = new boolean[N][M];
+//        visited = new boolean[W][M];
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < M; j++) {
                 arr[i][j] = sc.nextInt();
@@ -59,7 +59,7 @@ public class 토마토 {
                     que.add(new Node(dx, dy));
                 }
             }
-//            for(int j = 0; j < N; j++) {
+//            for(int j = 0; j < W; j++) {
 //                System.out.println(Arrays.toString(visited[j]));
 //            }
 //            System.out.println();
