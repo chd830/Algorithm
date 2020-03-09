@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class 지희의고장난계산기 {
     static int N;
     static int min;
-    static boolean[] nums;
+    static int size;
     static int[] memo;
+    static boolean[] nums;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
@@ -18,22 +19,75 @@ public class 지희의고장난계산기 {
                 nums[i] = sc.nextInt() == 1 ? true : false;
             }
             N = sc.nextInt();
+            size = (int)Math.sqrt(N);
             memo = new int[N+1];
-            for(int i = 1; i < N; i++) {
-                if(N%i == 0) {
-                    System.out.println(i+" "+(N/i)+"\t\t");
-                    if((i == 1 && canPush((N/i)+"")) || (canPush(i + "")) && canPush((N/i) + "")) {
-                        int len = length(i + "");
-                        if (i != 1) {
-                            len += 2;
-                        }
-                        System.out.println("\t\t" + len);
-                        min = Math.min(min, len);
+//            for(int i = 1; i < N; i++) {
+//                if(N%i == 0) {
+//                    System.out.println(i+" "+(N/i)+"\t\t");
+//                    if((i == 1 && canPush((N/i)+"")) || (canPush(i + "")) && canPush((N/i) + "")) {
+//                        int len = length(i + "");
+//                        if (i != 1) {
+//                            len += 2;
+//                        }
+//                        System.out.println("\t\t" + len);
+//                        min = Math.min(min, len);
+//                    }
+//                }
+//            }
+            find(N, 0);
+            System.out.println("#"+t+" "+(min == Integer.MAX_VALUE ? -1 : min));
+        }
+    }
+
+    private static int find(int x, int cnt) {
+        if(x < size && memo[x] != 0) {
+            return memo[x];
+        }
+
+        // base case => 종료조건
+        if(canPush(x+"")) {
+            // x값이 주어진 모든 수로 누를수 있는지 검사
+            // x길이를 리턴
+            int count = len(x) + 1;
+            if(cnt == 0) {
+                min = count; // 계산 버튼을 위해 1을 더한다.
+            }
+            if(x < size) {
+                memo[x] = count;
+            }
+            return count;
+        }
+
+        // 처리
+        // result 값을 -1로 초기화
+        int result = -1;
+        // 2 ~ 제곱근 까지 반복(i)
+        for (int i = 2, end = (int)Math.sqrt(x)+1; i < end; i++) {
+            // i는 x의 약수, 모든 수로 누를수 있는지 검사
+            if(x % i == 0 && canPush(i+"")) {
+                // i의 길이를 구하고
+                int len1 = len(i) + 1; // 곱하기 버튼을 위해 1을 더한다.
+                // 몫이 x의 약수, 모든 수로 누를수 있는지 검사 ==> 재귀 호출
+                int len2 = find(x/i, cnt+1);
+                // 몫이 -1이 아니면 => x의 약수, 모든 수로 누를수
+                if(len2 > -1) {
+                    // i의 길이와 몫의 길이 +  *=
+                    result = len1 + len2;
+                    if(result < min && x == N) {
+                        // 결과가 min비교해서 갱신
+                        min = result;
                     }
                 }
             }
-            System.out.println("#"+t+" "+(min == Integer.MAX_VALUE ? -1 : min));
         }
+        if(x < size) {
+            memo[x] = result;
+        }
+        return result;
+    }
+
+    private static int len(int x) {
+        return (int)Math.log10(x)+1;
     }
 
     public static int length(String n) {
@@ -42,15 +96,11 @@ public class 지희의고장난계산기 {
     }
 
     public static boolean canPush(String n) {
-        if(memo[Integer.parseInt(n)] == 1) {
-            return true;
-        }
         for(char c : n.toCharArray()) {
             if(!nums[c-'0']) {
                 return false;
             }
         }
-        memo[Integer.parseInt(n)] = 1;
         return true;
     }
 }
@@ -146,8 +196,8 @@ public class 지희의고장난계산기 {
     }
 
     private static boolean isMake(String x) {
-        for (char c : x.toCharArray()) {
-            if(!btn[c-'0']) {
+        for (char y : x.toCharArray()) {
+            if(!btn[y-'0']) {
                 return false;
             }
         }

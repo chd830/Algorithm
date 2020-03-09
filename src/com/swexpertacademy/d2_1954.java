@@ -43,25 +43,25 @@ public class d2_1954 {
 //            int[][] customer = new int[num][num];
 //
 //            int count = 1;
-//            int r = 0;
-//            int c = 0;
+//            int x = 0;
+//            int y = 0;
 ////            int i = 1;
 //            int index = 0;
 //            for(int j = num; j >= 0; j -= 2) { //j는 num에서 -2만큼 지속적으로 줄어든다.
-//                for(r = 0; r < j; r++) {//오른쪽으로 감
-//                    customer[index][index+r] = count++;
+//                for(x = 0; x < j; x++) {//오른쪽으로 감
+//                    customer[index][index+x] = count++;
 //                }
-//                for(c = 1; c < j; c++) {//아래로 내려감
+//                for(y = 1; y < j; y++) {//아래로 내려감
 //                    //num-index-1은 맨바깥에서 안쪽으로 한칸씩 이동하게 한다.
-//                    customer[index+c][num-index-1] = count++;
+//                    customer[index+y][num-index-1] = count++;
 //                }
-//                for(r = 1; r < j; r++) {//왼쪽으로 감
-//                    //num-index-r-1은 맨바깥에서 이미 지나온 r만큼 뺀다.
-//                    customer[num-index-1][num-index-r-1] = count++;
+//                for(x = 1; x < j; x++) {//왼쪽으로 감
+//                    //num-index-x-1은 맨바깥에서 이미 지나온 r만큼 뺀다.
+//                    customer[num-index-1][num-index-x-1] = count++;
 //                }
-//                for(c = 1; c < j - 1; c++) {//위로 감
-//                    //num-indx-c-1도 역시 맨바깥에서 지나온 c만큼 뺀다.
-//                    customer[num-index-c-1][index] = count++;
+//                for(y = 1; y < j - 1; y++) {//위로 감
+//                    //num-indx-y-1도 역시 맨바깥에서 지나온 c만큼 뺀다.
+//                    customer[num-index-y-1][index] = count++;
 //                }
 //                index++;
 //            }

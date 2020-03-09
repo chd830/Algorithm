@@ -18,7 +18,7 @@ public class d3_1289 {
                 }
                 prev = c;
             }
-            System.out.printf("#%d %d",(i+1), count);
+            System.out.printf("#%cnt %cnt",(i+1), count);
         }
     }
 }

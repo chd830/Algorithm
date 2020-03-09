@@ -7,7 +7,7 @@ public class d2_1983 {
 //    public static void main(String[] args) {
     public d2_1983() {
         Scanner sc = new Scanner(System.in);
-        String[] grade = {"A+", "A0", "A-", "B+", "B0", "B-", "C+", "C0", "C-", "D0"};
+        String[] grade = {"A+", "A0", "A-", "B+", "B0", "B-", "M+", "C0", "M-", "D0"};
         int T = sc.nextInt();
         for(int t = 1; t <= T; t++) {
             int N = sc.nextInt();

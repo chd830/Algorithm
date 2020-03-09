@@ -14,9 +14,12 @@ public class 말이되고픈원숭이 {
         int x;
         int y;
         int cnt;
-        Node(int x, int y, int cnt) {
+        //말처럼 움직인 횟수
+        int horseCnt;
+        Node(int x, int y, int horseCnt, int cnt) {
             this.x = x;
             this.y = y;
+            this.horseCnt = horseCnt;
             this.cnt = cnt;
         }
     }
@@ -32,35 +35,33 @@ public class 말이되고픈원숭이 {
                 map[i][j] = sc.nextInt();
             }
         }
-        for(int i = 0; i < K; i++) {
-            visited[0][0][i] = true;
-        }
-        System.out.println(bfs(K));
+        System.out.println(bfs());
     }
-    public static int bfs(int k) {
+    public static int bfs() {
         Queue<Node> que = new LinkedList<>();
-        que.add(new Node(0, 0, 0));
-
+        que.add(new Node(0, 0, 0, 0));
+        visited[0][0][0] = true;
         while(!que.isEmpty()) {
             Node n = que.poll();
-            if(n.x == H-1 && n.y == W -1) {
+            int dx = n.x;
+            int dy = n.y;
+            if(dx == H-1 && dy == W-1) {
                 return n.cnt;
             }
-
             for(int i = 0; i < 4; i++) {
-                int dx = n.x + monkey[i][0];
-                int dy = n.y + monkey[i][1];
-//                if(dx >= 0 && dy >= 0 && dx < H && dy < W && map[dx][dy] != 1 && !visited[dx][dy][n.k]) {
-//                    visited[dx][dy][n.cnt] = true;
-//                    que.add(new Node(dx, dy, n.cnt + 1));
-//                }
+                dx = n.x + monkey[i][0];
+                dy = n.y + monkey[i][1];
+                if(dx >= 0 && dy >= 0 && dx < H && dy < W && !visited[dx][dy][n.horseCnt] && map[dx][dy] != 1) {
+                    que.add(new Node(dx, dy, n.horseCnt, n.cnt+1));
+                    visited[dx][dy][n.horseCnt] = true;
+                }
             }
             for(int i = 0; i < 8; i++) {
-                int dx = n.x + horse[i][0];
-                int dy = n.y + horse[i][1];
-                if(dx >= 0 && dy >= 0 && dx < H && dy < W && map[dx][dy] != 1 && !visited[dx][dy][n.cnt+1]) {
-                    visited[dx][dy][n.cnt+1] = true;
-                    que.add(new Node(dx, dy, n.cnt + 1));
+                dx = n.x + horse[i][0];
+                dy = n.y + horse[i][1];
+                if(dx >= 0 && dy >= 0 && dx < H && dy < W && n.horseCnt < K && !visited[dx][dy][n.horseCnt+1] && map[dx][dy] != 1) {
+                    que.add(new Node(dx, dy, n.horseCnt+1, n.cnt+1));
+                    visited[dx][dy][n.horseCnt+1] = true;
                 }
             }
         }

@@ -1,83 +1,70 @@
 package net.acmicpc;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
-/*
-이 케이스에서 18이 답이 나와야 함.
-6 5
-00000
-11110
-00000
-01111
-01111
-00010
- */
 public class 벽부수고이동하기 {
     static int N;
     static int M;
-    static Node[][] map;
-    static boolean cracking;
-    static int[][] cnt;
-    static int[][] move = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    static class Node {
-        int x;
-        int y;
-        char c;
-        Node(int x, int y, char c) {
-            this.x = x;
-            this.y = y;
-            this.c = c;
-        }
-    }
-
+    static int[][] map = new int[1000][1000];
+    static int[][][] cnt = new int[1000][1000][2];
+    static boolean[][][] visited = new boolean[1000][1000][2];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
         M = sc.nextInt();
-        cracking = false;
-        map = new Node[N][M];
-        cnt = new int[N][M];
         for(int i = 0; i < N; i++) {
             String str = sc.next();
             for(int j = 0; j < M; j++) {
-                map[i][j] = new Node(i, j, str.charAt(j) == '1' ? '-' : 0);
+                map[i][j] = str.charAt(j)-'0';
             }
         }
-        cnt[0][0] = 1;
-        dfs(0, 0);
-        print();
-        System.out.println(cnt[N-1][M-1]);
+        int res = bfs();
+        System.out.println(res == -1 ? -1 : res+1);
     }
-    public static void print() {
-        for(int i = 0; i < N; i++) {
-            System.out.println(Arrays.toString(cnt[i]));
+    static class Node {
+        int x;
+        int y;
+        int cnt;
+        int wall;
+        Node(int x, int y, int cnt, int wall) {
+            this.x = x;
+            this.y = y;
+            this.cnt = cnt;
+            this.wall = wall;
         }
-        System.out.println();
     }
-    public static void dfs(int x, int y) {
-        //기저상태
-        if(x == N && y == M) {
-            return;
-        }
-        //움직이는 경로
-        for(int i = 0; i < 4; i++) {
-            int dx = x + move[i][0];
-            int dy = y + move[i][1];
-            if(dx >= 0 && dy >= 0 && dx < N && dy < M && cnt[dx][dy] == 0) {
-                if(map[dx][dy].c == '-' && !cracking) {
-                    cracking = true;
+    static int[][] move = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public static int bfs() {
+        Queue<Node> que = new LinkedList<>();
+        que.add(new Node(0, 0, 0, 0));
+        while(!que.isEmpty()) {
+            Node n = que.poll();
+            if(n.x == N-1 && n.y == M-1) {
+                return n.cnt;
+            }
+            for(int i = 0; i < 4; i++) {
+                int dx = n.x + move[i][0];
+                int dy = n.y + move[i][1];
+                if(dx >= 0 && dx < N && dy >= 0 && dy < M) {
+                    if(n.wall == 1) { //벽을 지나갔을 때
+                        if(map[dx][dy] == 0 && !visited[dx][dy][n.wall]) { //벽을 뚫지 않은 지점만 지나갈 수 있다.
+                            visited[dx][dy][n.wall] = true;
+                            que.add(new Node(dx, dy, n.cnt+1, n.wall));
+                        }
+                    }
+                    else { //벽을 지나 가지 않았을 때
+                        if(map[dx][dy] == 1 && !visited[dx][dy][n.wall+1]) { //벽을 지나갈 때
+                            visited[dx][dy][n.wall+1] = true;
+                            que.add(new Node(dx, dy, n.cnt+1, n.wall+1));
+                        }
+                        if(map[dx][dy] == 0 && !visited[dx][dy][n.wall]) { //벽이 아닐 때
+                            visited[dx][dy][n.wall] = true;
+                            que.add(new Node(dx, dy, n.cnt+1, n.wall));
+                        }
+                    }
                 }
-                else if(map[dx][dy].c == '-' && cracking) {
-                    continue;
-                }
-                cnt[dx][dy] = cnt[x][y]+1;
-//                cnt[dx][dy] = cnt[dx][dy] != 0 ? Math.min(cnt[dx][dy],cnt[x][y] + 1) : cnt[x][y] + 1;
-                print();
-                dfs(dx, dy);
-                cracking = false;
             }
         }
+        return -1;
     }
-
 }
