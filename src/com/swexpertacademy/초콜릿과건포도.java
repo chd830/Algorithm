@@ -74,7 +74,7 @@ public class 초콜릿과건포도 {
             if(dp[y][x+i][h][w-i] == Integer.MAX_VALUE) {
                 dp[y][x+i][h][w-i] =  dfs(y,x+i,h,w-i);
             }
-//            int sum3 = sum + dp[y][x][h][i] + dp[y][x+i][h][w-i];
+//            int sum3 = sum + dp[col][row][h][i] + dp[col][row+i][h][w-i];
             dp[y][x][h][w] = Math.min(dp[y][x][h][w],  sum + dp[y][x][h][i] + dp[y][x+i][h][w-i]);
         }
 //        재귀호출

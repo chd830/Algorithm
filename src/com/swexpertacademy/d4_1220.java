@@ -25,7 +25,7 @@ public class d4_1220 {
 					}
 				}
 			}
-			//2인지점에서 출발해서 [0][y]인 위치에 도달할 때 까지 반복 
+			//2인지점에서 출발해서 [0][col]인 위치에 도달할 때 까지 반복
             for(int i = 98; i > 0; i--) { 
                 if(y-1 >= 0) {
                     if(ladder[i][y-1] == 1) {  
@@ -62,26 +62,26 @@ public class d4_1220 {
         } 
 		sc.close();
 //			for(int i = 99; i >= 0; i--) {
-//				if(ladder[i][y+1] == 1) {
+//				if(ladder[i][col+1] == 1) {
 //					while(true) {
-//						System.out.println("("+i+", "+y+")");
-//						y++;
-//						if(ladder[i][y+1] != 1) {
+//						System.out.println("("+i+", "+col+")");
+//						col++;
+//						if(ladder[i][col+1] != 1) {
 //							break;
 //						}
 //					}
 //				}
-//				else if(ladder[i][y-1] == 1) {
+//				else if(ladder[i][col-1] == 1) {
 //					while(true) {
-//						System.out.println("("+i+", "+y+")");
-//						y--;
-//						if(ladder[i][y-1] != 1) {
+//						System.out.println("("+i+", "+col+")");
+//						col--;
+//						if(ladder[i][col-1] != 1) {
 //							break;
 //						}
 //					}
 //				}
 //			}
-//			System.out.println("#"+T+" "+y);
+//			System.out.println("#"+T+" "+col);
 //		}
 	}
 }

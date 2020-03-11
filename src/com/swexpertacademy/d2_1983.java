@@ -7,7 +7,7 @@ public class d2_1983 {
 //    public static void main(String[] args) {
     public d2_1983() {
         Scanner sc = new Scanner(System.in);
-        String[] grade = {"A+", "A0", "A-", "B+", "B0", "B-", "M+", "C0", "M-", "D0"};
+        String[] grade = {"A+", "A0", "A-", "B+", "B0", "B-", "H+", "C0", "H-", "D0"};
         int T = sc.nextInt();
         for(int t = 1; t <= T; t++) {
             int N = sc.nextInt();
@@ -33,7 +33,7 @@ public class d2_1983 {
 //            System.out.println(Arrays.toString(sum));
 //            System.out.println(Arrays.toString(rank));
             System.out.println("#"+t+" "+grade[rank[K-1]/(N/10)]);
-//            System.out.println("#"+t+" "+(rank[K]/(N/10) % 2 == 0 ? grade[rank[K]/(N/10)+1] : grade[rank[K]/(N/10)-1]));
+//            System.out.println("#"+t+" "+(rank[K]/(W/10) % 2 == 0 ? grade[rank[K]/(W/10)+1] : grade[rank[K]/(W/10)-1]));
         }
     }
 }

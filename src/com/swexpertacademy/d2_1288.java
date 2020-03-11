@@ -17,7 +17,7 @@ public class d2_1288 {
             int count = 0;
             while(set.size() != 10) {
                 copy = N * num;
-//                System.out.println(num+"N: "+num*N);
+//                System.out.println(num+"W: "+num*W);
                 while(copy > 10) {
                     int last = copy % 10;
 //                    System.out.print(last+" ");

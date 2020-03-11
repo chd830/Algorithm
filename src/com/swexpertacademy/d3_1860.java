@@ -21,9 +21,9 @@ public class d3_1860 {
                 arr[i] = sc.nextInt();
             }
             Arrays.sort(arr);
-//            for(int i = 0, idx = 0; i <= customer[N-1]; i++) {
-//                if(i > 0 && i%M == 0) {
-//                    if(i == M || i != 0) {
+//            for(int i = 0, idx = 0; i <= customer[W-1]; i++) {
+//                if(i > 0 && i%H == 0) {
+//                    if(i == H || i != 0) {
 //                        num += K;
 //                    }
 //                }

@@ -20,10 +20,10 @@ public class 디저트카페 {
         for (int tc = 1; tc <=T; tc++) {
 //          max를 0으로 초기화
             max = 0;
-//          N을 입력 받아 N*N배열을 생성
+//          N을 입력 받아 W*N배열을 생성
             N = Integer.parseInt(in.readLine());
             map = new int[N][N];
-//          N*N boolean 타입의 visit 배열을 생성
+//          W*W boolean 타입의 visit 배열을 생성
             visit = new boolean[N][N];
 
 //             데이타 읽기
@@ -36,7 +36,7 @@ public class 디저트카페 {
 
 
 //      탐색 (dfs)
-//         N*N을 반복 돌면서 i j번째의 카페 부터 투어
+//         W*N을 반복 돌면서 i j번째의 카페 부터 투어
             for (int i = 0; i <N; i++) {
                 for (int j = 0; j < N; j++) {
 //                   시작 좌표를 i,j로 설정

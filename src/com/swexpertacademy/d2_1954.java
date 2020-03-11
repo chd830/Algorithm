@@ -43,25 +43,25 @@ public class d2_1954 {
 //            int[][] customer = new int[num][num];
 //
 //            int count = 1;
-//            int x = 0;
-//            int y = 0;
+//            int row = 0;
+//            int col = 0;
 ////            int i = 1;
 //            int index = 0;
 //            for(int j = num; j >= 0; j -= 2) { //j는 num에서 -2만큼 지속적으로 줄어든다.
-//                for(x = 0; x < j; x++) {//오른쪽으로 감
-//                    customer[index][index+x] = count++;
+//                for(row = 0; row < j; row++) {//오른쪽으로 감
+//                    customer[index][index+row] = count++;
 //                }
-//                for(y = 1; y < j; y++) {//아래로 내려감
+//                for(col = 1; col < j; col++) {//아래로 내려감
 //                    //num-index-1은 맨바깥에서 안쪽으로 한칸씩 이동하게 한다.
-//                    customer[index+y][num-index-1] = count++;
+//                    customer[index+col][num-index-1] = count++;
 //                }
-//                for(x = 1; x < j; x++) {//왼쪽으로 감
-//                    //num-index-x-1은 맨바깥에서 이미 지나온 r만큼 뺀다.
-//                    customer[num-index-1][num-index-x-1] = count++;
+//                for(row = 1; row < j; row++) {//왼쪽으로 감
+//                    //num-index-row-1은 맨바깥에서 이미 지나온 r만큼 뺀다.
+//                    customer[num-index-1][num-index-row-1] = count++;
 //                }
-//                for(y = 1; y < j - 1; y++) {//위로 감
-//                    //num-indx-y-1도 역시 맨바깥에서 지나온 c만큼 뺀다.
-//                    customer[num-index-y-1][index] = count++;
+//                for(col = 1; col < j - 1; col++) {//위로 감
+//                    //num-indx-col-1도 역시 맨바깥에서 지나온 c만큼 뺀다.
+//                    customer[num-index-col-1][index] = count++;
 //                }
 //                index++;
 //            }
@@ -78,30 +78,30 @@ public class d2_1954 {
 ////        Scanner sc = new Scanner(System.in);
 ////        int T = sc.nextInt();
 ////        for (int t = 1; t <= T; t++) {
-////            int N = sc.nextInt();
-////            int[][] customer = new int[N][N];
+////            int W = sc.nextInt();
+////            int[][] customer = new int[W][W];
 ////            System.out.println("#" + t);
-////            int x = 0;
-////            int y = -1;
+////            int row = 0;
+////            int col = -1;
 ////            int k = 1;
-////            int l = N;
+////            int l = W;
 ////            int count = 1;
 ////            while (true) {
-////                if(count > N*N) {
+////                if(count > W*W) {
 ////                    break;
 ////                }
 ////                for (int n = 0; n < l; n++) {
-////                    y = y + k;
-//////                    System.out.println("y: "+y);
-////                    customer[x][y] = count;
+////                    col = col + k;
+//////                    System.out.println("col: "+col);
+////                    customer[row][col] = count;
 ////                    count++;
 ////                }
 ////                l--;
 ////
 ////                for (int n = 0; n < l; n++) {
-////                    x = x + k;
-//////                    System.out.println("x: "+x);
-////                    customer[x][y] = count;
+////                    row = row + k;
+//////                    System.out.println("row: "+row);
+////                    customer[row][col] = count;
 ////                    count++;
 ////                }
 ////                k = -k ;

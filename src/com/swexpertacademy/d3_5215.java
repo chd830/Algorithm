@@ -40,10 +40,10 @@ public class d3_5215 {
             System.out.println(Arrays.toString(tastes));
             System.out.println(Arrays.toString(calories));
 //            int maxTaste = 0;
-//            for(int i = 0; i < 1<<N; i++) {
+//            for(int i = 0; i < 1<<W; i++) {
 //                int taste = 0;
 //                int cal = 0;
-//                for(int j = 0; j < N; j++) {
+//                for(int j = 0; j < W; j++) {
 //                    if((i & 1 <<j) != 0) {
 //                        taste += tastes[j];
 //                        cal += calories[j];
