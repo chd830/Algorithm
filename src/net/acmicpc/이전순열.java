@@ -33,7 +33,7 @@ public class 이전순열 {
             i--;
         }
         //주어진 배열이
-        // 만들 수 있는 순열 중에서 제일 작을 때 false 반환
+        // 만들 수 있는 조합 중에서 제일 작을 때 false 반환
         if(i <= 0) {
             return false;
         }

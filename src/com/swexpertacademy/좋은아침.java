@@ -7,7 +7,7 @@ public class 좋은아침 {
     public static void main(String[] args) {
         //chars로 만들 수 있는 부분집합
         makeSubArray();
-        //chars로 3개를 고르는 순열
+        //chars로 3개를 고르는 조합
         int r = 3;
         makePermutationUsingRecur(r, new char[r], new boolean[chars.length]);
         //chars에서 3개를 고르는 조합
