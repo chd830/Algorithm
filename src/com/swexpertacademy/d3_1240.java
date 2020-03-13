@@ -27,7 +27,7 @@ public class d3_1240 {
             int N = sc.nextInt();
             int M = sc.nextInt();
             String[] pwd = new String[M];
-//            Stack<Integer> stack = new Stack<Integer>();
+//            BrowserTest<Integer> stack = new BrowserTest<Integer>();
             for (int i = 0; i < N; i++) {
                 pwd[i] = sc.next();
             }
