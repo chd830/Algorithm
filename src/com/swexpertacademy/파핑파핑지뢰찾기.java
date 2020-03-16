@@ -18,18 +18,14 @@ public class 파핑파핑지뢰찾기 {
                 String str = sc.next();
                 for(int j = 0; j < N; j++) {
                     map[i][j] = str.charAt(j);
-                }
-            }
-            for(int i = 0; i < N; i++) {
-                for(int j = 0; j < N; j++) {
-                    if(map[i][j] == '.' && countMine(i, j) == '0') {
-                        bfs(i, j);
+                    if(map[i][j] == '.') {
+                        cnt++;
                     }
                 }
             }
             for(int i = 0; i < N; i++) {
                 for(int j = 0; j < N; j++) {
-                    if(map[i][j] == '.') {
+                    if(map[i][j] == '.' && countMine(i, j) == '0') {
                         bfs(i, j);
                     }
                 }
@@ -50,7 +46,6 @@ public class 파핑파핑지뢰찾기 {
     static int[][] dir = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
     static void bfs(int x, int y) {
         Queue<Node> que = new LinkedList<>();
-        cnt++;
         map[x][y] = (char) countMine(x, y);
         if(map[x][y] != '0') {
             return;
@@ -63,6 +58,7 @@ public class 파핑파핑지뢰찾기 {
                 int dy = n.y + dir[i][1];
                 if(isIn(dx, dy) && map[dx][dy] == '.') {
                     map[dx][dy] = (char) countMine(dx, dy);
+                    cnt--;
                     if(map[dx][dy] == '0') {
                         que.add(new Node(dx, dy));
                     }

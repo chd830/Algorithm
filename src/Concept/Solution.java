@@ -53,6 +53,7 @@ public class Solution {
                         brickCnt++;
                     }
                 }
+
             }
             answer = brickCnt;
             /*
