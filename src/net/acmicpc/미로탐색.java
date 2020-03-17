@@ -117,26 +117,26 @@ public class 미로탐색 {
 ////            System.out.println();
 //        }
 //    }
-////    public static void dfs(int left, int right, int value) {
+////    public static void dfs(int left, int right, int items) {
 ////        if(left == W && right == M) {
-////            if(min > value ) {
-////                min = value;
+////            if(min > items ) {
+////                min = items;
 ////            }
 ////            return;
 ////        }
 ////        System.out.print("("+left+", "+right+") ");
 ////        visited[left][right] = true;
 ////        if(left > 1 && dist[left-1][right] == '1' && !visited[left-1][right]) {
-////            dfs(left-1, right, value+1);
+////            dfs(left-1, right, items+1);
 ////        }
 ////        if(left < W && dist[left+1][right] == '1' && !visited[left+1][right]) {
-////            dfs(left+1, right, value+1);
+////            dfs(left+1, right, items+1);
 ////        }
 ////        if(right > 1 && dist[left][right-1] == '1' && !visited[left][right-1]) {
-////            dfs(left, right-1, value+1);
+////            dfs(left, right-1, items+1);
 ////        }
 ////        if(right < M && dist[left][right+1] == '1' && !visited[left][right+1]) {
-////            dfs(left, right+1, value+1);
+////            dfs(left, right+1, items+1);
 ////        }
 ////    }
 //}
