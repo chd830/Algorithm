@@ -43,7 +43,6 @@ public class 블랙잭 {
                 sum += i;
             }
             list.add(sum);
-//            System.out.println(Arrays.toString(sub)/*+", sum: "+sum*/);
             return;
         }
         if(idx == arr.length) {
