@@ -1,63 +1,60 @@
 package com.swexpertacademy;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class 요리사 {
     static int N;
-    static int[] nums;
-    static boolean[] visited;
+    static int min;
     static int[][] map;
-    static List<Integer> list;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
+    static boolean[] visited;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int T = Integer.parseInt(br.readLine());
         for(int t = 1; t <= T; t++) {
-            N = sc.nextInt();
+            sb.append("#"+t+" ");
+            N = Integer.parseInt(br.readLine());
             map = new int[N][N];
-            nums = new int[N];
+            min = Integer.MAX_VALUE;
             visited = new boolean[N];
-            list = new ArrayList();
             for(int i = 0; i < N; i++) {
+                StringTokenizer token = new StringTokenizer(br.readLine());
                 for(int j = 0; j < N; j++) {
-                    map[i][j] = sc.nextInt();
+                    map[i][j] = Integer.parseInt(token.nextToken());
                 }
             }
-            //N/2의 수를 뽑아서...시너지의 수를 구한다...
-            for(int i = 0; i < N; i++) {
-                nums[i] = (i+1);
-            }
-            permute(0, 0);
-//            System.out.println("#"+t+" ");
+            combination(0, 0);
+            sb.append(min+"\n");
         }
+        System.out.println(sb);
+        br.close();
     }
-
-    public static void permute(int idx, int s_idx) {
-        if(idx == nums.length) {
+    static void combination(int cnt, int cur) {
+        if(cur >= N) {
             return;
         }
-        if(s_idx == N/2) {
-            int sum = 0;
-            /*
-            1, 2
-            2, 1
-
-            1, 2 >> 2, 1
-            2, 3 >> 3, 2
-            3, 1 >> 1, 3
-             */
+        if(cnt == N/2) {
             int sum1 = 0;
-            int sum2 = 0;
-            for(int i = 0; i < N; i++) {
-                for(int j = i+1; j < N; j++) {
-
+            int sum0 = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = i + 1; j < N; j++) {
+                    if (visited[i] != visited[j]) continue;
+                    if (visited[i]) sum1 += map[i][j] + map[j][i];
+                    else sum0 += map[i][j] + map[j][i];
                 }
             }
+            min = Math.min(min, Math.abs(sum1 - sum0));
             return;
         }
-        for(int i = idx; i < N; i++) {
-            visited[i] = true;
-            permute(idx+1, i+1);
-            visited[i] = false;
+        for(int i = cur; i < N; i++) {
+            if(!visited[i]) {
+                visited[i] = true;
+                combination(cnt+1, i+1);
+                visited[i] = false;
+            }
         }
     }
 }
