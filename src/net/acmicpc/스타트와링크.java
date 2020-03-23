@@ -1,54 +1,45 @@
 package net.acmicpc;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class 스타트와링크 {
-    static int[][] team;
-    static int[] teamInfo;
-    static int[] start;
-    static int[] link;
-    static int max;
-    static int min;
     static int N;
+    static int min;
+    static int[][] map;
+    static boolean[] visited;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        N = sc.nextInt();
-        max = Integer.MIN_VALUE;
         min = Integer.MAX_VALUE;
-        team = new int[N][N];
-        teamInfo = new int[N];
-        start = new int[N/2];
-        link = new int[N/2];
-        for(int i = 0; i< N; i++) {
-            teamInfo[i] = (i+1);
-        }
-        for(int i = 0 ;i < N; i++) {
+        N = sc.nextInt();
+        map = new int[N][N];
+        visited = new boolean[N];
+        for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
-                team[i][j] = sc.nextInt();
+                map[i][j] = sc.nextInt();
             }
         }
-        divideTeam(0);
+        comb(0, 0);
+        System.out.println(min);
     }
-    public static void divideTeam(int idx) {
-        if(idx == N/2) {
-            for(int i = 0, j= 0; i < N; i++) {
-                if(teamInfo[i]  > 0) {
-                    link[j] = teamInfo[i];
-                    j++;
+    static void comb(int idx, int cnt) {
+        if(cnt == N/2) {
+            int sum1 = 0;
+            int sum2 = 0;
+            for(int i = 0; i < N; i++) {
+                for(int j = i+1; j < N; j++) {
+                    if(visited[i] != visited[j]) continue;
+                    if(visited[i]) sum1 += map[i][j] + map[j][i];
+                    else sum2 += map[i][j] + map[j][i];
                 }
             }
-            System.out.println(Arrays.toString(start)+" "+Arrays.toString(link));
-            
+            min = Math.min(min, Math.abs(sum1-sum2));
             return;
         }
-        for(int i = 0; i < N; i++) {
-            if(teamInfo[i] > 0) {
-                start[idx] = teamInfo[i];
-                teamInfo[i] = -1;
-                divideTeam(idx+1);
-                teamInfo[i] = (i+1);
+        for(int i = idx; i < N; i++) {
+            if(!visited[i]) {
+                visited[i] = true;
+                comb(i+1, cnt+1);
+                visited[i] = false;
             }
         }
     }

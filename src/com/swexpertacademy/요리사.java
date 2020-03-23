@@ -39,6 +39,7 @@ public class 요리사 {
         if(cnt == N/2) {
             int sum1 = 0;
             int sum0 = 0;
+            //선택한 것들과 선택하지 않은 것들의 차를 구한다.
             for (int i = 0; i < N; i++) {
                 for (int j = i + 1; j < N; j++) {
                     if (visited[i] != visited[j]) continue;
