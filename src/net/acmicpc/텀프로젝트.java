@@ -1,45 +1,59 @@
 package net.acmicpc;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class 텀프로젝트 {
     static int N;
     static int cnt;
     static int[] arr;
+    //방문 여부 체크
     static boolean[] visited;
-    static List<Integer>[] list;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
+    //방문한 노드에서 싸이클이 끝났는지 확인
+    static boolean[] finished;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer token = null;
+        StringBuilder sb = new StringBuilder();
+        int T = Integer.parseInt(br.readLine());
         for(int t = 1; t <= T; t++) {
-            N = sc.nextInt();
+            N = Integer.parseInt(br.readLine());
+            cnt = 0;
             arr = new int[N+1];
-            list = new ArrayList[N+1];
-            for(int i = 0; i < N+1; i++) {
-                list[i] = new ArrayList();
-            }
-            int result = 0;
-            for(int i = 1; i <= N; i++) {
-                int num = sc.nextInt();
-                list[i].add(num);
-            }
             visited = new boolean[N+1];
+            finished = new boolean[N+1];
+            token = new StringTokenizer(br.readLine());
             for(int i = 1; i <= N; i++) {
-                cnt = 0;
+                arr[i] = Integer.parseInt(token.nextToken());
             }
-            System.out.println(result);
+            for(int i = 1; i <= N; i++) {
+                dfs(i);
+            }
+            sb.append((N-cnt)+"\n");
         }
+        System.out.println(sb);
     }
-    static int dfs(int start, int num) {
-        if(visited[num]) {
-            return num;
+
+    static void dfs(int now) {
+        if(visited[now]) {
+            return;
         }
-        if(start == num) {
-            return start;
+        visited[now] = true;
+        int next = arr[now];
+        if(!visited[next]) {
+            dfs(next);
         }
-        visited[num] = true;
-        return dfs(start, arr[num]);
+        else {
+            //다음 노드 기준으로 싸이클을 확인한다.
+            if(!finished[next]) {
+                cnt++;
+                for(int i = next; i != now; i = arr[i]) {
+                    cnt++;
+                }
+            }
+        }
+        finished[now] = true;
     }
 }
