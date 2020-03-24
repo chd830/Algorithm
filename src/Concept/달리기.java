@@ -1,5 +1,6 @@
 package Concept;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class 달리기 {
@@ -8,37 +9,40 @@ public class 달리기 {
     static int M;
     static int cnt;
     static int[] needs;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
         T = sc.nextInt();
-        for(int t = 1; t <= T; t++) {
+        for (int t = 1; t <= T; t++) {
             int f;
             int s;
-            sb.append("#"+t+" ");
+            sb.append("#" + t + " ");
             N = sc.nextInt();
             M = sc.nextInt();
             needs = new int[N];
-            for(int i = 0; i < M; i++) {
-                f = sc.nextInt()-1;
-                s = sc.nextInt()-1;
-                needs[f] |= 1<<s;
+            for (int i = 0; i < M; i++) {
+                f = sc.nextInt() - 1;
+                s = sc.nextInt() - 1;
+                needs[f] |= 1 << s;
+                System.out.println(Arrays.toString(needs));
             }
             cnt = 0;
             dfs(0);
-            sb.append(cnt+"\n");
+            sb.append(cnt + "\n");
             System.out.println(sb);
         }
     }
+
     static void dfs(int flag) {
-        if(flag == M) {
+        if (flag == M) {
             cnt++;
             return;
         }
-        for(int i = 0; i < N; i++) {
-            if((flag & 1<<i) == 0) {
-                if((flag & needs[i]) == needs[i]) {
-                    dfs(flag | 1<<i);
+        for (int i = 0; i < N; i++) {
+            if ((flag & 1 << i) == 0) {
+                if ((flag & needs[i]) == needs[i]) {
+                    dfs(flag | 1 << i);
                 }
             }
         }

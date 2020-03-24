@@ -16,7 +16,7 @@ public class 차이를최대로 {
             arr[i] = sc.nextInt();
         }
         Arrays.sort(arr);
-//        nextPermute(arr);
+//        nextPermute(cnt);
         permute(arr, new int[N], 0);
         System.out.println(max);
     }

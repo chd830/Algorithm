@@ -28,8 +28,8 @@ public class 회의실배정 {
             }
         };
         Arrays.sort(arr, comp);
-//        for(int i = 0; i < arr.length; i++) {
-//            System.out.println(arr[i][0]+" "+arr[i][1]);
+//        for(int i = 0; i < cnt.length; i++) {
+//            System.out.println(cnt[i][0]+" "+cnt[i][1]);
 //        }
 //        System.out.println();
         int cnt = 1;
@@ -60,7 +60,7 @@ public class 회의실배정 {
 //                return 0;
 //            }
 //        };
-//        Arrays.sort(arr, comp);
+//        Arrays.sort(cnt, comp);
 ////        powerset(0);
 //        System.out.println(result);
 //        //모든 부분집합을 구해서 그 부분집합이 차지하는 크기.
@@ -72,8 +72,8 @@ public class 회의실배정 {
 //            boolean check = false;
 //            for(int i = 0; i < visited.length; i++) {
 //                if(visited[i]) {
-////                    System.out.print(arr[i][0] + " " + arr[i][1] + ". ");
-//                    for(int j = arr[i][0]; j <= arr[i][1]; j++) {
+////                    System.out.print(cnt[i][0] + " " + cnt[i][1] + ". ");
+//                    for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
 //                        if(maxV[j]) {
 //                            check = false;
 //                            break;
@@ -101,7 +101,7 @@ public class 회의실배정 {
 //}
 //        int[] maxArray = new int[max+1];
 //        for(int i = 0; i  < W; i++) {
-//            for(int j = arr[i][0]; j <= arr[i][1]; j++) {
+//            for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
 //                maxArray[j]++;
 //            }
 //        }
@@ -124,16 +124,16 @@ public class 회의실배정 {
 //                return 0;
 //            }
 //        };
-//        Arrays.sort(arr, comp);
-//        for(int i = 0; i < arr.length; i++) {
-//            System.out.println(arr[i][0]+" "+arr[i][1]);
+//        Arrays.sort(cnt, comp);
+//        for(int i = 0; i < cnt.length; i++) {
+//            System.out.println(cnt[i][0]+" "+cnt[i][1]);
 //        }
 //        System.out.println();
 //
 //        int cnt = 0;
 //        boolean b = false;
-//        for(int i = 0; i < arr.length; i++) {
-//            for(int j = arr[i][0]; j <= arr[i][1]; j++) {
+//        for(int i = 0; i < cnt.length; i++) {
+//            for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
 //                if(!check[j]) {
 //                    b = true;
 //                    check[j] = true;

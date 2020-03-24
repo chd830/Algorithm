@@ -27,7 +27,7 @@ public class 이전순열 {
         }
     }
     public static boolean prev_permute(int[] arr, int num) {
-        //뒤에서 부터 arr[i]가 arr[i-1]보다 큰 지점을 찾고
+        //뒤에서 부터 cnt[i]가 cnt[i-1]보다 큰 지점을 찾고
         int i = num-1;
         while(i > 0 && arr[i] >= arr[i-1]) {
             i--;
@@ -37,7 +37,7 @@ public class 이전순열 {
         if(i <= 0) {
             return false;
         }
-        //뒤에서 부터 arr[i]보다 작은 지점을 찾아서 바꾼다.
+        //뒤에서 부터 cnt[i]보다 작은 지점을 찾아서 바꾼다.
         int j = num-1;
         while(arr[j] >= arr[i-1]) {
             j--;

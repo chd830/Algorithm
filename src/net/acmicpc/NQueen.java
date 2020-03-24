@@ -19,7 +19,7 @@ public class NQueen {
         if(idx == N) {
             cnt++;
 //            for(int i = 0; i < W; i++) {
-//                System.out.println(Arrays.toString(arr[i]));
+//                System.out.println(Arrays.toString(cnt[i]));
 //            }
 //            System.out.println();
             return;

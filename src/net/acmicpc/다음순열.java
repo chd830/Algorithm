@@ -26,7 +26,7 @@ public class 다음순열 {
         System.out.println(-1);
     }
     static boolean next_permute() {
-        //뒤에서 부터 arr[i-1]보다 arr[i]가 큰 지점을 찾고
+        //뒤에서 부터 cnt[i-1]보다 cnt[i]가 큰 지점을 찾고
         int i = num-1;
         while(i > 0 && arr[i-1] >= arr[i]) {
             i--;
@@ -35,12 +35,12 @@ public class 다음순열 {
         if(i <= 0) {
             return false;
         }
-        //뒤에서 부터 arr[i-1]보다 작은 지점을 찾는다.
+        //뒤에서 부터 cnt[i-1]보다 작은 지점을 찾는다.
         int j = num-1;
         while(arr[j] <= arr[i-1]) {
             j--;
         }
-        //arr[i-1]과 arr[j]를 바꾸고
+        //cnt[i-1]과 cnt[j]를 바꾸고
         int temp = arr[i-1];
         arr[i-1] = arr[j];
         arr[j] = temp;
