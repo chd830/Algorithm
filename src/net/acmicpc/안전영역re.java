@@ -33,7 +33,7 @@ public class 안전영역re {
             for(int a = 0; a < N; a++) {
                 Arrays.fill(check[a], false);
             }
-//            System.out.println("area: "+area+", maxArea: "+maxArea);
+//            System.out.println("paint: "+paint+", maxArea: "+maxArea);
             maxArea = Math.max(area, maxArea);
             area = 0;
         }

@@ -3,17 +3,13 @@ package net.acmicpc;
 import java.util.*;
 
 public class 줄세우기 {
-    static int N;
-    static int M;
-    static int[] cnt;
-    static List<Integer>[] list;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
-        N = sc.nextInt();
-        M = sc.nextInt();
-        cnt = new int[N];
-        list = new ArrayList[N];
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        int[] cnt = new int[N];
+        List<Integer>[] list = new ArrayList[N];
         for(int i = 0; i < N; i++) {
             list[i] = new ArrayList();
         }
