@@ -67,11 +67,11 @@ public class 회의실배정 {
 //    }
 //    static int cnt = 0;
 //    static void powerset(int idx) {
-//        if(idx == visited.length) {
+//        if(idx == visited1.length) {
 //            boolean[] maxV = new boolean[max+1];
 //            boolean check = false;
-//            for(int i = 0; i < visited.length; i++) {
-//                if(visited[i]) {
+//            for(int i = 0; i < visited1.length; i++) {
+//                if(visited1[i]) {
 ////                    System.out.print(cnt[i][0] + " " + cnt[i][1] + ". ");
 //                    for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
 //                        if(maxV[j]) {
@@ -93,9 +93,9 @@ public class 회의실배정 {
 //            Arrays.fill(maxV, false);
 //            return;
 //        }
-//        visited[idx] = true;
+//        visited1[idx] = true;
 //        powerset(idx+1);
-//        visited[idx] = false;
+//        visited1[idx] = false;
 //        powerset(idx+1);
 //    }
 //}

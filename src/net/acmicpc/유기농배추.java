@@ -58,7 +58,7 @@ public class 유기농배추 {
                             }
                         }
 //                        for(int k = 0; k < W; k++) {
-//                            System.out.println(Arrays.toString(visited[k]));
+//                            System.out.println(Arrays.toString(visited1[k]));
 //                        }
 //                        System.out.println();
                     }

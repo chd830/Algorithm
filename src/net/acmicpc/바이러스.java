@@ -8,7 +8,7 @@
 //        int computer = sc.nextInt();
 //        int pair = sc.nextInt();
 //        List<Integer>[] list = new ArrayList[computer+1];
-//        boolean[] visited = new boolean[computer+1];
+//        boolean[] visited1 = new boolean[computer+1];
 //        for(int i = 0; i <= computer; i++) {
 //            list[i] = new ArrayList();
 //        }
@@ -20,21 +20,21 @@
 //        }
 //        Queue<Integer> que = new LinkedList<>();
 //        que.add(1);
-//        visited[1] = true;
+//        visited1[1] = true;
 //        while(!que.isEmpty()) {
 //            int num = que.poll();
 ////            System.out.print(num+" ");
-//            visited[num] = true;
+//            visited1[num] = true;
 //            for(int i = 0; i < list[num].size(); i++) {
-//                if(!visited[list[num].get(i)]) {
+//                if(!visited1[list[num].get(i)]) {
 //                    que.add(list[num].get(i));
-//                    visited[list[num].get(i)] = true;
+//                    visited1[list[num].get(i)] = true;
 //                }
 //            }
 //        }
 ////        System.out.println();
 //        int count = 0;
-//        for(boolean v : visited) {
+//        for(boolean v : visited1) {
 ////            System.out.print(v+" ");
 //            if(v) count++;
 //        }

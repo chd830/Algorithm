@@ -30,7 +30,7 @@ public class 효율적인해킹 {
                 visited = new boolean[100001];
                 dfs(i);
 //                bfs(i);
-//                Arrays.fill(visited, false);
+//                Arrays.fill(visited1, false);
             }
         }
         int max = 0;

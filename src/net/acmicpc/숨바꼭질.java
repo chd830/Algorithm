@@ -41,35 +41,35 @@ public class 숨바꼭질 {
 //        Scanner sc = new Scanner(System.in);
 //        int W = sc.nextInt();
 //        int K = sc.nextInt();
-//        int[] visited = new int[100001];
+//        int[] visited1 = new int[100001];
 //        if(W >= K) {
 //            System.out.println(W-K);
 //            System.exit(0);
 //        }
 //        Queue<Integer> que = new LinkedList<>();
 //        que.add(W);
-//        visited[W] = 1;
+//        visited1[W] = 1;
 //        while(!que.isEmpty()) {
 //            W = que.poll();
 //            if(W == K)
 //                break;
-//            if(W+1 <= 100000 && visited[W+1] == 0) {
+//            if(W+1 <= 100000 && visited1[W+1] == 0) {
 //                que.offer(W+1);
-//                visited[W+1] = visited[W]+1;
+//                visited1[W+1] = visited1[W]+1;
 //            }
-//            if(W-1 >= 0 && visited[W-1] == 0) {
+//            if(W-1 >= 0 && visited1[W-1] == 0) {
 //                que.offer(W-1);
-//                visited[W-1] = visited[W]+1;
+//                visited1[W-1] = visited1[W]+1;
 //            }
-//            if(W*2 <= 100000 && visited[W*2] == 0) {
+//            if(W*2 <= 100000 && visited1[W*2] == 0) {
 //                que.offer(W*2);
-//                visited[W*2] = visited[W]+1;
+//                visited1[W*2] = visited1[W]+1;
 //            }
 //        }
 //        for(int i = 0; i < 20; i++) {
-//            System.out.print(visited[i]+" ");
+//            System.out.print(visited1[i]+" ");
 //        }
 //        System.out.println();
-//        System.out.println(visited[K]-1);
+//        System.out.println(visited1[K]-1);
 //    }
 //}

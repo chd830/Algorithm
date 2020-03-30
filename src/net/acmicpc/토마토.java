@@ -12,7 +12,7 @@ public class 토마토 {
     static int[][] arr;
     static int[][] check;
     static int[][] pos = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-//    static boolean[][] visited;
+//    static boolean[][] visited1;
 
     static class Node {
         int x;
@@ -35,7 +35,7 @@ public class 토마토 {
          */
         arr = new int[N][M];
         check = new int[N][M];
-//        visited = new boolean[W][M];
+//        visited1 = new boolean[W][M];
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < M; j++) {
                 arr[i][j] = sc.nextInt();
@@ -60,7 +60,7 @@ public class 토마토 {
                 }
             }
 //            for(int j = 0; j < W; j++) {
-//                System.out.println(Arrays.toString(visited[j]));
+//                System.out.println(Arrays.toString(visited1[j]));
 //            }
 //            System.out.println();
         }

@@ -42,7 +42,7 @@ public class 효율적인해킹re {
 //        int max = 0;
 //        for(int i = 1; i <= W; i++) {
 //            //방문하는정점, 시작정점
-//            visited = new boolean[10001];
+//            visited1 = new boolean[10001];
 ////            dfs(i, i);
 //            bfs(i);
 //            if(max < count[i]) {

@@ -48,7 +48,7 @@ public class 촌수계산 {
 }
 //    static int[] chain;
 //    static List<Integer>[] list;
-//    static boolean[] visited;
+//    static boolean[] visited1;
 //    static int start;
 //    static int end;
 //    static int cnt;
@@ -60,7 +60,7 @@ public class 촌수계산 {
 //        cnt = 0;
 //        int m = sc.nextInt();
 //        list = new ArrayList[n+1];
-//        visited = new boolean[n+1];
+//        visited1 = new boolean[n+1];
 //        chain = new int[n+1];
 //        for(int i = 0; i <= n; i++) {
 //            list[i] = new ArrayList();
@@ -79,7 +79,7 @@ public class 촌수계산 {
 //    public static void bfs() {
 //        Queue<Integer> que = new LinkedList<>();
 //        que.add(start);
-//        visited[start] = true;
+//        visited1[start] = true;
 //        while(!que.isEmpty()) {
 //            int num = que.poll();
 ////            System.out.print(num+" ");
@@ -88,10 +88,10 @@ public class 촌수계산 {
 //            }
 //            for(int i = 0; i < list[num].size(); i++) {
 //                int l = list[num].get(i);
-//                if(!visited[l]) {
+//                if(!visited1[l]) {
 //                    chain[l] = chain[num]+1;
 ////                    System.out.println("\t"+Arrays.toString(chain));
-//                    visited[l] = true;
+//                    visited1[l] = true;
 //                    que.add(l);
 //                }
 //            }

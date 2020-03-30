@@ -13,7 +13,7 @@ public class 스위치켜고끄기 {
             arr[i] = sc.nextInt();
         }
         num = sc.nextInt();
-//        System.out.println(Arrays.toString(visited));
+//        System.out.println(Arrays.toString(visited1));
         for(int i = 0; i < num; i++) {
             int gender = sc.nextInt();
             int pos = sc.nextInt();
@@ -23,7 +23,7 @@ public class 스위치켜고끄기 {
             else {
                 women(pos);
             }
-//            System.out.println(Arrays.toString(visited));
+//            System.out.println(Arrays.toString(visited1));
         }
         for(int i = 0; i < arr.length; i++) {
             if(i == 0) {
@@ -51,7 +51,7 @@ public class 스위치켜고끄기 {
         for(int i = front; i <= back; i++) {
             swap(i);
         }
-//        System.out.println(Arrays.toString(visited));
+//        System.out.println(Arrays.toString(visited1));
     }
 
     public static void swap(int idx) {
@@ -67,7 +67,7 @@ public class 스위치켜고끄기 {
         for(int i = 1; i < arr.length; i++) {
             if(i%num == 0) {
                 swap(i);
-//                System.out.println(Arrays.toString(visited));
+//                System.out.println(Arrays.toString(visited1));
             }
         }
     }

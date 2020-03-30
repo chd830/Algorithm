@@ -58,7 +58,7 @@ public class 미로탐색 {
 //    static int M;
 //    static int cnt;
 //    static int[][] dist;
-//    static boolean[][] visited;
+//    static boolean[][] visited1;
 //    //    public static void main(String[] args) {
 //    public 미로탐색() {
 //        Scanner sc = new Scanner(System.in);
@@ -67,7 +67,7 @@ public class 미로탐색 {
 //        cnt = 0;
 ////        min = Integer.MAX_VALUE;
 //        dist = new int[W+1][M+1];
-//        visited = new boolean[W+1][M+1];
+//        visited1 = new boolean[W+1][M+1];
 //        for(int i = 0; i < W; i++) {
 //            String str = sc.next();
 //            for(int j = 0; j < str.length(); j++) {
@@ -89,27 +89,27 @@ public class 미로탐색 {
 //        que.add(new int[] {left, right});
 //
 //        while(!que.isEmpty()) {
-//            int[] visited = que.poll();
-//            visited[visited[0]][visited[1]] = true;
-//            if(visited[0] > 1 && dist[visited[0]-1][visited[1]] >= 1 && !visited[visited[0]-1][visited[1]]) {
-//                que.add(new int[] {visited[0]-1, visited[1]});
-//                dist[visited[0]-1][visited[1]] = dist[visited[0]][visited[1]]+1;
-//                visited[visited[0]-1][visited[1]] = true;
+//            int[] visited1 = que.poll();
+//            visited1[visited1[0]][visited1[1]] = true;
+//            if(visited1[0] > 1 && dist[visited1[0]-1][visited1[1]] >= 1 && !visited1[visited1[0]-1][visited1[1]]) {
+//                que.add(new int[] {visited1[0]-1, visited1[1]});
+//                dist[visited1[0]-1][visited1[1]] = dist[visited1[0]][visited1[1]]+1;
+//                visited1[visited1[0]-1][visited1[1]] = true;
 //            }
-//            if(visited[0] < W && dist[visited[0]+1][visited[1]] >= 1 && !visited[visited[0]+1][visited[1]]) {
-//                que.add(new int[] {visited[0]+1, visited[1]});
-//                dist[visited[0]+1][visited[1]] = dist[visited[0]][visited[1]]+1;
-//                visited[visited[0]+1][visited[1]] = true;
+//            if(visited1[0] < W && dist[visited1[0]+1][visited1[1]] >= 1 && !visited1[visited1[0]+1][visited1[1]]) {
+//                que.add(new int[] {visited1[0]+1, visited1[1]});
+//                dist[visited1[0]+1][visited1[1]] = dist[visited1[0]][visited1[1]]+1;
+//                visited1[visited1[0]+1][visited1[1]] = true;
 //            }
-//            if(visited[1] > 1 && dist[visited[0]][visited[1]-1] >= 1 && !visited[visited[0]][visited[1]-1]) {
-//                que.add(new int[] {visited[0], visited[1]-1});
-//                dist[visited[0]][visited[1]-1] = dist[visited[0]][visited[1]]+1;
-//                visited[visited[0]][visited[1]-1] = true;
+//            if(visited1[1] > 1 && dist[visited1[0]][visited1[1]-1] >= 1 && !visited1[visited1[0]][visited1[1]-1]) {
+//                que.add(new int[] {visited1[0], visited1[1]-1});
+//                dist[visited1[0]][visited1[1]-1] = dist[visited1[0]][visited1[1]]+1;
+//                visited1[visited1[0]][visited1[1]-1] = true;
 //            }
-//            if(visited[1] < M && dist[visited[0]][visited[1]+1] >= 1 && !visited[visited[0]][visited[1]+1]) {
-//                que.add(new int[] {visited[0], visited[1]+1});
-//                dist[visited[0]][visited[1]+1] = dist[visited[0]][visited[1]]+1;
-//                visited[visited[0]][visited[1]+1] = true;
+//            if(visited1[1] < M && dist[visited1[0]][visited1[1]+1] >= 1 && !visited1[visited1[0]][visited1[1]+1]) {
+//                que.add(new int[] {visited1[0], visited1[1]+1});
+//                dist[visited1[0]][visited1[1]+1] = dist[visited1[0]][visited1[1]]+1;
+//                visited1[visited1[0]][visited1[1]+1] = true;
 //            }
 ////            for(int i = 0; i <= W; i++) {
 ////                System.out.println(Arrays.toString(dist[i]));
@@ -125,17 +125,17 @@ public class 미로탐색 {
 ////            return;
 ////        }
 ////        System.out.print("("+left+", "+right+") ");
-////        visited[left][right] = true;
-////        if(left > 1 && dist[left-1][right] == '1' && !visited[left-1][right]) {
+////        visited1[left][right] = true;
+////        if(left > 1 && dist[left-1][right] == '1' && !visited1[left-1][right]) {
 ////            dfs(left-1, right, items+1);
 ////        }
-////        if(left < W && dist[left+1][right] == '1' && !visited[left+1][right]) {
+////        if(left < W && dist[left+1][right] == '1' && !visited1[left+1][right]) {
 ////            dfs(left+1, right, items+1);
 ////        }
-////        if(right > 1 && dist[left][right-1] == '1' && !visited[left][right-1]) {
+////        if(right > 1 && dist[left][right-1] == '1' && !visited1[left][right-1]) {
 ////            dfs(left, right-1, items+1);
 ////        }
-////        if(right < M && dist[left][right+1] == '1' && !visited[left][right+1]) {
+////        if(right < M && dist[left][right+1] == '1' && !visited1[left][right+1]) {
 ////            dfs(left, right+1, items+1);
 ////        }
 ////    }
