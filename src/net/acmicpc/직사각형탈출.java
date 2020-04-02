@@ -58,7 +58,7 @@ public class 직사각형탈출 {
                 if(!isIn(dx, dy)) {
                     continue;
                 }
-                //dx, dy가 아닌n.x, n.y로 해서 이동할 수 있는지를 확인한다.
+                //dx, dy가 아닌n.xPos, n.y로 해서 이동할 수 있는지를 확인한다.
                 if(movable(n.x, n.y, i)) {
                     //i방향으로 이동했을 때 방문한 위치인지 확인
                     if(visited[dx][dy]) {

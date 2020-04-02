@@ -17,13 +17,13 @@ public class 순열의순서 {
         int what = sc.nextInt();
         /*
         7, 3, 5, 6, 1일 때
-        1, x, x, x, x >> 5!
-        3, x, x, x, x >> 5!
-        5, x, x, x, x >> 5!
-        6, x, x, x, x >> 5!
-        7, 1, x, x, x >> 4!
+        1, xPos, xPos, xPos, xPos >> 5!
+        3, xPos, xPos, xPos, xPos >> 5!
+        5, xPos, xPos, xPos, xPos >> 5!
+        6, xPos, xPos, xPos, xPos >> 5!
+        7, 1, xPos, xPos, xPos >> 4!
         순서로 접근해서 갯수를 순열의 순서를 파악하고
-        K - x!을 통해서 순열의 순서를 파악할 수 있다.
+        K - xPos!을 통해서 순열의 순서를 파악할 수 있다.
          */
         //임의의 순열이 몇번째인지 체크
         if (what == 2) {
