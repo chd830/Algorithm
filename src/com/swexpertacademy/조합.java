@@ -23,6 +23,31 @@ public class 조합 {
         }
         return result;
     }
+    static long pow(long a, long b) {
+        long result = 1;
+        long num = a%MOD;
+        while(b > 0) {
+            result *= num;
+            result %= MOD;
+            b--;
+        }
+        return result;
+    }
+    public static long power(long base, long ex) {
+        if(ex == 0)
+            return 1;
+        else if(ex == 1)
+            return base;
+        else if(ex%2 == 0) {
+            long result= power(base, ex/2)%MOD;
+            return result*result%MOD;
+        }
+        else {
+            long result = power(base, ex/2)%MOD;
+            return result * result%MOD * base%MOD;
+        }
+    }
+    //2^4 = 2^2 * 2*2 이용
     static long pow(long a, int b) {
         long result= 1;
         long num = a;
@@ -33,7 +58,6 @@ public class 조합 {
             b = b/2;
             num = (num * num) % MOD;
         }
-
         return result;
     }
 }
