@@ -15,36 +15,31 @@ public class Z {
         int pow = (int)Math.pow(2, N);
         map = new int[pow+1][pow+1];
         cnt = new int[pow+1][pow+1];
-        find(1, 1);
+        find(1, 1, 1);
     }
-    static void find(int x, int y) {
+    static void find(int x, int y, int cnt) {
+        System.out.println("("+x+", "+y+"): "+cnt);
         if(x == xPos && y == yPos) {
-            System.out.println(cnt[x][y]);
+            System.out.println(cnt-1);
             System.exit(0);
         }
-        if(x == 0 || y == 0 || x >= map.length || y >= map.length) {
-            return;
+        if(cnt%32 == 0) {
+            find(x+1, y-7, cnt+1);
         }
-        System.out.println("("+x+", "+y+"): "+cnt[x][y]);
-        if(x%4 == 0 && y%4 == 0) {
-            cnt[x-3][y+1] = cnt[x][y]+1;
-            find(x-3, y+1);
+        else if(cnt%16 == 0) {
+            find(x-3, y+1, cnt+1);
         }
-        if(x%2 == 0 && y%4 == 0) {
-            cnt[x+1][y] = cnt[x][y]+1;
-            find(x+1, 1);
+        else if(cnt%8 == 0) {
+            find(x+1, y-3, cnt+1);
         }
-        if(x%2 == 1 && y %2 == 0) {
-            cnt[x+1][y-1] = cnt[x][y]+1;
-            find(x+1, y-1);
+        else if(cnt%4 == 0) {
+            find(x-1, y+1, cnt+1);
         }
-        if(x%2 == 0 && y%2 == 0) {
-            cnt[x-1][y+1] = cnt[x][y]+1;
-            find(x-1, y+1);
+        else if(cnt%2 == 0) {
+            find(x+1, y-1, cnt+1);
         }
-        if(y+1 < map.length) {
-            cnt[x][y+1] = cnt[x][y]+1;
-            find(x, y + 1);
+        else {
+            find(x, y+1, cnt+1);
         }
     }
 }
