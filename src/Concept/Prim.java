@@ -27,13 +27,6 @@ public class Prim {
                     dist[i][j] = dist[j][i] = E*(map[i][0] - map[j][0]) * (map[i][0] - map[j][0]) + E*(map[i][1] - map[j][1]) * (map[i][1] - map[j][1]);
                 }
             }
-//            for(int i = 0; i < N; i++) {
-//                for(int j = 0; j < N; j++) {
-//                    System.out.printf("%5f\t",dist[i][j]);
-//                }
-//                System.out.println();
-//            }
-//            System.out.println();
             System.out.println("#"+t+" "+result);
         }
     }
