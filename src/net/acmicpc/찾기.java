@@ -1,15 +1,23 @@
-package Concept;
+package net.acmicpc;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
-public class KMP {
-    //부분문자열을 찾는 알고리즘
-    //접두사와 접미사 개념 활용. 반복되는 연산 생략
-
-    //파이테이블: 길이별 접두사==접미사의 최대길이 저장
+public class 찾기 {
+    static int cnt;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        String pattern = br.readLine();
+        List<Integer> list = KMP(pattern, str);
+        System.out.println(list.size());
+        for(long l : list) {
+            System.out.print(l+" ");
+        }
+    }
     static int[] getPi(String pattern) {
         int[] pi = new int[pattern.length()];
         int j = 0;
@@ -23,33 +31,24 @@ public class KMP {
         }
         return pi;
     }
-
-    static void KMP(String pattern, String origin) {
+    static List<Integer> KMP(String pattern, String origin) {
+        List<Integer> list = new ArrayList<>();
         int[] pi = getPi(pattern);
         int j = 0;
         for(int i = 0; i < origin.length(); i++) {
-            //일단 처리
             while(j > 0 && origin.charAt(i) != pattern.charAt(j)) {
                 j = pi[j-1];
             }
-            //맞는 경우
             if(origin.charAt(i) == pattern.charAt(j)) {
                 if(j == pattern.length()-1) {
-                    System.out.println("result: "+(i-pattern.length()+1));
+                    list.add(i-pattern.length()+2);
                     j = pi[j];
                 }
-                //맞았지만 패턴이 끝나지 않았을 경우
                 else {
                     j++;
                 }
             }
-            System.out.println(i+" "+j);
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        KMP(sc.next(), sc.next());
-//        KMP("ABCDABCDABEE", "ABCDABE");
+        return list;
     }
 }

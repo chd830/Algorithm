@@ -12,19 +12,15 @@ public class 부분문자열 {
         else
             System.out.println("0");
     }
-    static int[] getPi(String str) {
-        int[] pi = new int[str.length()];
+    static int[] getPi(String pattern) {
+        int[] pi = new int[pattern.length()];
         int j = 0;
-        for(int i = 1; i < str.length(); i++) {
-            //두 값이 일치할 때 이전까지 모두 같은 값을 가진거이므로 j값 증가 후 배열에 값넣음.
-            if(str.charAt(i) == str.charAt(j)) {
-                pi[i] = ++j;
+        for(int i = 1; i < pattern.length(); i++) {
+            while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+                j = pi[j - 1];
             }
-            //두 값이 다르면 pi에서 j-1의 값을 가져온다.
-            else {
-                while(j > 0 && str.charAt(i) != str.charAt(j)) {
-                    j = pi[j-1];
-                }
+            if (pattern.charAt(i) == pattern.charAt(j)) {
+                pi[i] = ++j;
             }
         }
         return pi;
