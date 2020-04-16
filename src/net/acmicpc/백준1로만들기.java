@@ -1,6 +1,6 @@
 package net.acmicpc;
 
-        import java.util.Scanner;
+import java.util.Scanner;
 
 public class 백준1로만들기 {
     static int[] arr;
