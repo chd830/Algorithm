@@ -56,7 +56,7 @@ public class 미로탐색 {
 }
 //    static int W;
 //    static int M;
-//    static int cnt;
+//    static int island;
 //    static int[][] dist;
 //    static boolean[][] visited1;
 //    //    public static void main(String[] args) {
@@ -64,7 +64,7 @@ public class 미로탐색 {
 //        Scanner sc = new Scanner(System.in);
 //        W = sc.nextInt();
 //        M = sc.nextInt();
-//        cnt = 0;
+//        island = 0;
 ////        min = Integer.MAX_VALUE;
 //        dist = new int[W+1][M+1];
 //        visited1 = new boolean[W+1][M+1];

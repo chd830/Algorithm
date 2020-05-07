@@ -28,8 +28,8 @@ public class 단지번호붙이기re {
             for(int j = 1; j <= N; j++) {
                 if(map[i][j] == '1' /*&& !visited1[i][j]*/) {
 //                    dfs(i, j);
-//                    list.add(cnt);
-//                    cnt = 0;
+//                    list.add(island);
+//                    island = 0;
                     bfs(i, j);
                     list.add(cnt);
                     cnt = 0;

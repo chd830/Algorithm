@@ -51,13 +51,13 @@ public class 촌수계산 {
 //    static boolean[] visited1;
 //    static int start;
 //    static int end;
-//    static int cnt;
+//    static int island;
 //    public static void main(String[] args) {
 //        Scanner sc = new Scanner(System.in);
 //        int n = sc.nextInt();
 //        start = sc.nextInt();
 //        end = sc.nextInt();
-//        cnt = 0;
+//        island = 0;
 //        int m = sc.nextInt();
 //        list = new ArrayList[n+1];
 //        visited1 = new boolean[n+1];

@@ -70,31 +70,31 @@ public class 스도쿠 {
 }
 /*
     //하나씩 넣어서 겹치는 수가 있는지 확인하는 코드. 앞에서 이미 값이 정해져있는 경우에는 틀릴 수 있다.
-    public static void sudoku(int left, int right, int cnt) {
-        System.out.println("cnt: "+cnt);
+    public static void sudoku(int left, int right, int island) {
+        System.out.println("island: "+island);
         print();
         System.out.println();
-        if(cnt == 0) {
+        if(island == 0) {
             return;
         }
         if(right == 9) {
-            sudoku(left+1, 0, cnt);
+            sudoku(left+1, 0, island);
         }
         if(left == 9) {
             print();
             System.out.println();
-            sudoku(0, 0, cnt);
+            sudoku(0, 0, island);
         }
 //        print();
 //        System.out.println();
         if(sudoku[left][right] != 0) {
-            sudoku(left, right+1, cnt);
+            sudoku(left, right+1, island);
         }
         else if(sudoku[left][right] == 0) {
             for(int i = 1; i < 10; i++) {
                 sudoku[left][right] = i;
                 if(isPossible(left, right)) {
-                    sudoku(left, right + 1, cnt-1);
+                    sudoku(left, right + 1, island-1);
                     return;
                 }
             }

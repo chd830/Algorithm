@@ -32,7 +32,7 @@ public class 분해합 {
             n /= 10;
         }
         arr[idx] += n;
-//        System.out.println(n+" = "+cnt[idx]);
+//        System.out.println(n+" = "+island[idx]);
         recur(num+1, idx+1);
     }
 }

@@ -45,7 +45,7 @@ public class 색종이붙이기 {
 //        dfs(0);
 //        System.out.println(ans == 987654321 ? -1 : ans);
 //    }
-//    static void dfs(int cnt) {
+//    static void dfs(int island) {
 //        int startR = -1;
 //        int startC = -1;
 //        out:for(int i = 0; i < 10; i++) {
@@ -58,7 +58,7 @@ public class 색종이붙이기 {
 //            }
 //        }
 //        if( startR == -1 && startC == -1 ) {
-//            ans = Math.min(ans, cnt);
+//            ans = Math.min(ans, island);
 //            return;
 //        }
 //        int max = 5;
@@ -84,7 +84,7 @@ public class 색종이붙이기 {
 //                    }
 //                }
 //                paper[i]--;
-//                dfs(cnt+1);
+//                dfs(island+1);
 //                paper[i]++;
 //                for(int r = startR; r < startR + i; r++) {
 //                    for(int c = startC; c < startC + i; c++) {

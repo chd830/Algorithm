@@ -28,8 +28,8 @@ public class 회의실배정 {
             }
         };
         Arrays.sort(arr, comp);
-//        for(int i = 0; i < cnt.length; i++) {
-//            System.out.println(cnt[i][0]+" "+cnt[i][1]);
+//        for(int i = 0; i < island.length; i++) {
+//            System.out.println(island[i][0]+" "+island[i][1]);
 //        }
 //        System.out.println();
         int cnt = 1;
@@ -60,20 +60,20 @@ public class 회의실배정 {
 //                return 0;
 //            }
 //        };
-//        Arrays.sort(cnt, comp);
+//        Arrays.sort(island, comp);
 ////        powerset(0);
 //        System.out.println(result);
 //        //모든 부분집합을 구해서 그 부분집합이 차지하는 크기.
 //    }
-//    static int cnt = 0;
+//    static int island = 0;
 //    static void powerset(int idx) {
 //        if(idx == visited1.length) {
 //            boolean[] maxV = new boolean[max+1];
 //            boolean check = false;
 //            for(int i = 0; i < visited1.length; i++) {
 //                if(visited1[i]) {
-////                    System.out.print(cnt[i][0] + " " + cnt[i][1] + ". ");
-//                    for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
+////                    System.out.print(island[i][0] + " " + island[i][1] + ". ");
+//                    for(int j = island[i][0]; j <= island[i][1]; j++) {
 //                        if(maxV[j]) {
 //                            check = false;
 //                            break;
@@ -82,14 +82,14 @@ public class 회의실배정 {
 //                        maxV[j] = true;
 //                    }
 //                    if(check) {
-//                        cnt++;
+//                        island++;
 //                    }
 //                }
 //            }
-//            if(cnt != 0 && result < cnt) {
-//                result = cnt;
+//            if(island != 0 && result < island) {
+//                result = island;
 //            }
-//            cnt = 0;
+//            island = 0;
 //            Arrays.fill(maxV, false);
 //            return;
 //        }
@@ -101,7 +101,7 @@ public class 회의실배정 {
 //}
 //        int[] maxArray = new int[max+1];
 //        for(int i = 0; i  < W; i++) {
-//            for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
+//            for(int j = island[i][0]; j <= island[i][1]; j++) {
 //                maxArray[j]++;
 //            }
 //        }
@@ -124,16 +124,16 @@ public class 회의실배정 {
 //                return 0;
 //            }
 //        };
-//        Arrays.sort(cnt, comp);
-//        for(int i = 0; i < cnt.length; i++) {
-//            System.out.println(cnt[i][0]+" "+cnt[i][1]);
+//        Arrays.sort(island, comp);
+//        for(int i = 0; i < island.length; i++) {
+//            System.out.println(island[i][0]+" "+island[i][1]);
 //        }
 //        System.out.println();
 //
-//        int cnt = 0;
+//        int island = 0;
 //        boolean b = false;
-//        for(int i = 0; i < cnt.length; i++) {
-//            for(int j = cnt[i][0]; j <= cnt[i][1]; j++) {
+//        for(int i = 0; i < island.length; i++) {
+//            for(int j = island[i][0]; j <= island[i][1]; j++) {
 //                if(!check[j]) {
 //                    b = true;
 //                    check[j] = true;
@@ -143,10 +143,10 @@ public class 회의실배정 {
 //                }
 //            }
 //            if(b)
-//                cnt++;
+//                island++;
 //            b = false;
 //            System.out.println(Arrays.toString(check));
 //        }
-//        System.out.println(cnt);
+//        System.out.println(island);
 //    }
 //}
