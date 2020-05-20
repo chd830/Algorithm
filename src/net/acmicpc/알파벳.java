@@ -21,7 +21,6 @@ public class 알파벳 {
             }
         }
         alph[map[0][0]-65] = 1;
-//        bfs();
         dfs(0, 0, 1);
         System.out.println(max+1);
     }
@@ -36,9 +35,6 @@ public class 알파벳 {
     }
 
     public static void dfs(int x, int y, int cnt) {
-        if(x >= map.length && y >= map[0].length) {
-            return;
-        }
         for(int i = 0; i < 4; i++) {
             int dx = x + move[i][0];
             int dy = y + move[i][1];
