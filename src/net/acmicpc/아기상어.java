@@ -1,87 +1,109 @@
 package net.acmicpc;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Scanner;
 
 public class 아기상어 {
-    static int N;
-    static Node start;
-    static int[][] map;
-    static int[][] dir = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
-    static class Node {
-        int x;
-        int y;
-        int size;
-        int cnt;
-        Node(int x, int y, int size, int cnt) {
-            this.x = x;
-            this.y = y;
-            this.size = size;
-            this.cnt = cnt;
-        }
 
-        @Override
-        public String toString() {
-            return "("+x+", "+y+"): "+size+". "+cnt;
-        }
-    }
+    static int sea[][];
+    static int n = 0;
+    static int dX[] = {-1, 0, 1, 0};
+    static int dY[] = {0, 1, 0, -1};
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        map = new int[N][N];
-        int max = 0;
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j < N; j++) {
-                map[i][j] = sc.nextInt();
-                if(map[i][j] == 9) {
-                    start = new Node(i, j, 2, 0);
-                    continue;
-                }
-                max = Math.max(max, map[i][j]);
-            }
-        }
-        for(int i = 0; i < N; i++) {
-            System.out.println(Arrays.toString(map[i]));
-        }
-        int sum = 0;
-        for(int i = 1; i < max; i++) {
-            if(start.size > i) {
-                sum += search(i);
-            }
-            System.out.println(sum);
-        }
-    }
+        n = sc.nextInt();
 
-    static int search(int size) {
-        int sum = 0;
-        int eat = 0;
-        boolean[][] visited = new boolean[N][N];
-        Queue<Node> que = new LinkedList<>();
-        que.add(start);
-        visited[start.x][start.y] = true;
-        while(!que.isEmpty()) {
-            Node n = que.poll();
-            for(int i = 0; i < 4; i++) {
-                int dx = n.x + dir[i][0];
-                int dy = n.y + dir[i][1];
-                if(isIn(dx, dy) && !visited[dx][dy]) {
-                    if(map[dx][dy] != 0 && map[dx][dy] == size) {
-                        sum += n.cnt+1;
-                        eat++;
-                    }
-                    if(eat == size) {
-                        start.size++;
-                        eat = 0;
-                    }
-                    if(map[dx][dy] < start.size) {
-                        que.add(new Node(dx, dy, map[dx][dy], n.cnt + 1));
-                    }
-                    visited[dx][dy] = true;
+        sea = new int[n][n];
+
+        //1. 먹을 물고기 있는지 탐색
+        //1-1. 제일 가까운 물고기 탐색은 자연스럽게 BFS로 해결, 만약 먹을 물고리 동률-> 가장위 -> 가장 왼쪽
+        //2. 먹을 물고기 찾으면,먹고 나이증가 체크
+        //3. 큐에 있는 모든 포인트 날리고 현재 찾은 포인트만 add
+        LinkedList<Shark> q = new LinkedList<>();
+        int age = 2;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                sea[i][j] = sc.nextInt();
+                if (sea[i][j] == 9) {
+                    q.add(new Shark(i, j, age));
+                    sea[i][j] = 0;
                 }
             }
         }
-        return sum;
+        int eat = 0;
+        int time = 0;
+        while (true) {
+            Shark sShk = q.peek();
+            LinkedList<Shark> fish = new LinkedList<>();
+            int[][] dist = new int[n][n];// 거리
+
+            while (!q.isEmpty()) {
+                Shark s = q.poll();
+                for (int i = 0; i < 4; i++) {
+                    int nX = s.x + dX[i];
+                    int nY = s.y + dY[i];
+
+                    if (-1 < nX && nX < n && -1 < nY && nY < n && dist[nX][nY] == 0 && sea[nX][nY] <= age) {
+                        dist[nX][nY] = dist[s.x][s.y] + 1;
+                        //먹잇감 포착
+                        if (1 <= sea[nX][nY] && sea[nX][nY] <= 6 && sea[nX][nY] < age) {
+                            fish.add(new Shark(nX, nY, dist[nX][nY]));
+                            q.add(new Shark(nX, nY, dist[nX][nY]));
+                            continue;
+                        }
+                        //먹잇감 없음(지나가긴함)
+                        q.add(new Shark(nX, nY, dist[nX][nY]));
+                    }
+                }
+            }
+
+            //제일 가까운..
+            if (fish.size() == 0) {
+                System.out.println(time);
+                return;
+            }
+            int d = 5000;
+            Shark eatingFish = fish.get(0);
+            for (int i = 1; i < fish.size(); i++) {
+                if (eatingFish.dist > fish.get(i).dist) {
+                    eatingFish = fish.get(i);
+                }
+
+                if (eatingFish.dist == fish.get(i).dist) {
+                    if (eatingFish.x > fish.get(i).x) {
+                        eatingFish = fish.get(i);
+                        continue;
+                    } else if (eatingFish.x == fish.get(i).x) {
+                        if (eatingFish.y > fish.get(i).y) ;
+                        eatingFish = fish.get(i);
+                    }
+                }
+            }
+
+            time += eatingFish.dist;
+            eat++;
+            sea[eatingFish.x][eatingFish.y] = 0;
+            if (eat == age) {
+                age++;
+                eat = 0;
+            }
+            q.add(new Shark(eatingFish.x, eatingFish.y, age));
+
+        }
+
+
     }
-    static boolean isIn(int x, int y) {
-        return x >= 0 && y >= 0 && x < N && y < N;
+    static class Shark {
+        int x;
+        int y;
+        int dist;
+
+        public Shark(int x, int y, int dist) {
+            super();
+            this.x = x;
+            this.y = y;
+            this.dist = dist;
+        }
     }
 }
