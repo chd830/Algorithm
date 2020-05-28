@@ -5,55 +5,53 @@ import java.util.Scanner;
 
 public class 아기상어 {
 
-    static int sea[][];
-    static int n = 0;
+    static int map[][];
+    static int N = 0;
     static int dX[] = {-1, 0, 1, 0};
     static int dY[] = {0, 1, 0, -1};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
+        N = sc.nextInt();
 
-        sea = new int[n][n];
+        map = new int[N][N];
 
         //1. 먹을 물고기 있는지 탐색
         //1-1. 제일 가까운 물고기 탐색은 자연스럽게 BFS로 해결, 만약 먹을 물고리 동률-> 가장위 -> 가장 왼쪽
         //2. 먹을 물고기 찾으면,먹고 나이증가 체크
         //3. 큐에 있는 모든 포인트 날리고 현재 찾은 포인트만 add
-        LinkedList<Shark> q = new LinkedList<>();
+        LinkedList<Shark> que = new LinkedList<>();
         int age = 2;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                sea[i][j] = sc.nextInt();
-                if (sea[i][j] == 9) {
-                    q.add(new Shark(i, j, age));
-                    sea[i][j] = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                map[i][j] = sc.nextInt();
+                if (map[i][j] == 9) {
+                    que.add(new Shark(i, j, age));
+                    map[i][j] = 0;
                 }
             }
         }
         int eat = 0;
         int time = 0;
         while (true) {
-            Shark sShk = q.peek();
             LinkedList<Shark> fish = new LinkedList<>();
-            int[][] dist = new int[n][n];// 거리
-
-            while (!q.isEmpty()) {
-                Shark s = q.poll();
+            int[][] dist = new int[N][N];// 거리
+            while (!que.isEmpty()) {
+                Shark s = que.poll();
                 for (int i = 0; i < 4; i++) {
                     int nX = s.x + dX[i];
                     int nY = s.y + dY[i];
 
-                    if (-1 < nX && nX < n && -1 < nY && nY < n && dist[nX][nY] == 0 && sea[nX][nY] <= age) {
+                    if (-1 < nX && nX < N && -1 < nY && nY < N && dist[nX][nY] == 0 && map[nX][nY] <= age) {
                         dist[nX][nY] = dist[s.x][s.y] + 1;
                         //먹잇감 포착
-                        if (1 <= sea[nX][nY] && sea[nX][nY] <= 6 && sea[nX][nY] < age) {
+                        if (1 <= map[nX][nY] && map[nX][nY] <= 6 && map[nX][nY] < age) {
                             fish.add(new Shark(nX, nY, dist[nX][nY]));
-                            q.add(new Shark(nX, nY, dist[nX][nY]));
+                            que.add(new Shark(nX, nY, dist[nX][nY]));
                             continue;
                         }
                         //먹잇감 없음(지나가긴함)
-                        q.add(new Shark(nX, nY, dist[nX][nY]));
+                        que.add(new Shark(nX, nY, dist[nX][nY]));
                     }
                 }
             }
@@ -83,12 +81,12 @@ public class 아기상어 {
 
             time += eatingFish.dist;
             eat++;
-            sea[eatingFish.x][eatingFish.y] = 0;
+            map[eatingFish.x][eatingFish.y] = 0;
             if (eat == age) {
                 age++;
                 eat = 0;
             }
-            q.add(new Shark(eatingFish.x, eatingFish.y, age));
+            que.add(new Shark(eatingFish.x, eatingFish.y, age));
 
         }
 
@@ -100,7 +98,6 @@ public class 아기상어 {
         int dist;
 
         public Shark(int x, int y, int dist) {
-            super();
             this.x = x;
             this.y = y;
             this.dist = dist;

@@ -6,7 +6,7 @@ public class IntegerBreak {
         if (n == 3) return 2;
         int product = 1;
         /*
-        n > 4 일때, ((n - 3) * 3) > n이기 때문에
+        N > 4 일때, ((N - 3) * 3) > n이기 때문에
          */
         while (n > 4) {
             product *= 3;

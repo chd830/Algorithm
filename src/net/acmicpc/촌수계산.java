@@ -54,15 +54,15 @@ public class 촌수계산 {
 //    static int island;
 //    public static void main(String[] args) {
 //        Scanner sc = new Scanner(System.in);
-//        int n = sc.nextInt();
+//        int N = sc.nextInt();
 //        start = sc.nextInt();
 //        end = sc.nextInt();
 //        island = 0;
 //        int m = sc.nextInt();
-//        list = new ArrayList[n+1];
-//        visited1 = new boolean[n+1];
-//        chain = new int[n+1];
-//        for(int i = 0; i <= n; i++) {
+//        list = new ArrayList[N+1];
+//        visited1 = new boolean[N+1];
+//        chain = new int[N+1];
+//        for(int i = 0; i <= N; i++) {
 //            list[i] = new ArrayList();
 //        }
 //        for(int i = 0; i < m; i++) {
@@ -73,7 +73,7 @@ public class 촌수계산 {
 //        }
 //
 //        bfs();
-////        System.out.println("\n"+Arrays.toString(chain));
+////        System.out.println("\N"+Arrays.toString(chain));
 //        System.out.println((chain[end] == 0 ? -1 : chain[end]));
 //    }
 //    public static void bfs() {

@@ -13,7 +13,7 @@ public class 영화감독숌 {
         result = 0;
         while (true) {
             if (find(idx)) {
-//                System.out.print(idx+" \n");
+//                System.out.print(idx+" \N");
                 result++;
             }
             if (result == N) {

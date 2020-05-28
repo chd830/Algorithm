@@ -23,7 +23,7 @@ public class 말이되고픈원숭이1600 {
 
         @Override
         public String toString() {
-            return "Node{" +
+            return "Light{" +
                     "x=" + x +
                     ", y=" + y +
                     ", cnt=" + cnt +

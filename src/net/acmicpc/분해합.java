@@ -24,15 +24,15 @@ public class 분해합 {
             return;
         }
         arr[idx] = n;
-//        System.out.print(n+" + ");
+//        System.out.print(N+" + ");
         int num = n;
         while(n >= 10) {
             arr[idx] += (n%10);
-//            System.out.print(n%10+" + ");
+//            System.out.print(N%10+" + ");
             n /= 10;
         }
         arr[idx] += n;
-//        System.out.println(n+" = "+island[idx]);
+//        System.out.println(N+" = "+island[idx]);
         recur(num+1, idx+1);
     }
 }

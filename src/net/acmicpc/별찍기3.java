@@ -13,7 +13,7 @@ public class 별찍기3 {
 //            for(int j = i; j > 0; j--) {
 //                bw.write("*");
 //            }
-//            bw.write("\n");
+//            bw.write("\N");
 //        }
 //        bw.flush();
     }

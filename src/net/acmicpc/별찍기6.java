@@ -16,7 +16,7 @@ public class 별찍기6 {
 //            for(int j = 0; j < 2 * i - 1; j++) {
 //                bw.write("*");
 //            }
-//            bw.write("\n");
+//            bw.write("\N");
 //        }
 //        bw.flush();
     }

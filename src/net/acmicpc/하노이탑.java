@@ -20,10 +20,10 @@ public class 하노이탑 {
             sb.append(from).append(" ").append(to).append("\n");
         }
         else {
-            //마지막 탑을 보조탑으로 사용하여 첫번째탑의 n-1개의 원반을 중간으로 이동
+            //마지막 탑을 보조탑으로 사용하여 첫번째탑의 N-1개의 원반을 중간으로 이동
             hanoi(N-1, from, to, by);
             sb.append(from).append(" ").append(to).append("\n");
-            //첫번째 탑을 보조탑으로 사용하여 중간탑의 n-1개의 원반을 마지막탑으로 이동
+            //첫번째 탑을 보조탑으로 사용하여 중간탑의 N-1개의 원반을 마지막탑으로 이동
             hanoi(N-1, by, from, to);
         }
     }
