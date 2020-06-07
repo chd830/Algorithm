@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-//3차원배열 사용하기
+//boolean 3차원배열 사용하기
 public class 달이차오른다가자1194 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,6 +15,7 @@ public class 달이차오른다가자1194 {
         N = Integer.parseInt(token.nextToken());
         M = Integer.parseInt(token.nextToken());
         map = new char[N][M];
+        visited = new boolean[N][M][64];
         Node start = null;
         for(int i = 0; i < N; i++) {
             String str = br.readLine();
@@ -60,6 +61,7 @@ public class 달이차오른다가자1194 {
     static int M;
     static char[][] map;
     static int[] alph = new int[26];
+    static boolean[][][] visited;
     static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 static class Node {
     int x;

@@ -64,6 +64,7 @@ public class 괄호의값2504 {
 
         int result = 0;
 
+        //스택에 문자가 있으면 isAble = false
         while(!stack.isEmpty()) {
             if(isNumber(stack.peek())) {
                 result += Integer.parseInt(stack.pop());
