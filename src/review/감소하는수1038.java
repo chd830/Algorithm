@@ -15,6 +15,7 @@ public class 감소하는수1038 {
         for (int i = 1; i <= 1023; i++) { // {0, 1, 2, 3, .. , 9}의 공집합이 아닌 부분집합을 뽑아내기 위해서.
             long num = 0; // i에 대응되는 감소하는 수
             int temp = i;
+            //비트마스크 사용
             for (int idx = 9; idx >= 0; idx--) {
                 if (temp % 2 == 1)
                     num = 10 * num + idx; // idx를 1의 자리에 넣음
