@@ -3,9 +3,7 @@ package review;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Stack;
 
 public class 키로거5397 {
     public static void main(String[] args) throws IOException {
@@ -14,35 +12,38 @@ public class 키로거5397 {
         int N = Integer.parseInt(br.readLine());
         for(int i = 0; i < N; i++) {
             String str = br.readLine();
-            List<Character> list = new ArrayList<>();
-            int idx = 0;
-            int cnt = 0;
+            Stack<Character> front = new Stack<>();
+            Stack<Character> rare = new Stack<>();
             for(char c : str.toCharArray()) {
                 switch (c) {
                     case '<':
-                        if(idx != 0)
-                            idx--;
+                        if(!rare.isEmpty()) {
+                            front.push(rare.pop());
+                        }
                         break;
                     case '>':
-                        if(idx != cnt) {
-                            idx++;
+                        if(!front.isEmpty()) {
+                            rare.push(front.pop());
                         }
                         break;
                     case '-':
-                        list.remove(--idx);
-                        cnt--;
+                        if(!rare.isEmpty()) {
+                            rare.pop();
+                        }
                         break;
                     default:
-                        list.add(idx++,c);
-                        cnt++;
+                        rare.push(c);
                         break;
                 }
             }
-            for(int j = 0; j < list.size(); j++) {
-                sb.append(list.get(j));
+            while(!front.isEmpty()) {
+                rare.push(front.pop());
+            }
+            for(int j = 0; j < rare.size(); j++) {
+                sb.append(rare.elementAt(j));
             }
             sb.append("\n");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }
