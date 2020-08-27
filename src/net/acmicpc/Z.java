@@ -15,8 +15,8 @@ public class Z {
         find(1, 1, (int)Math.pow(2, N));
     }
     static void find(int x, int y, int size) {
-        System.out.println("("+x+", "+y+"): "+size);
         if(size == 1) {
+            System.out.println("("+x+", "+y+")\t"+cnt);
             if(x == xPos && y == yPos) {
                 System.out.println(cnt);
             }
