@@ -1,6 +1,5 @@
-package BFS.DFS;
+package net.acmicpc.re;
 
-import java.io.IOException;
 import java.util.*;
 
 public class 카카오3 {

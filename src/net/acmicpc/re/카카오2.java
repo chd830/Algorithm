@@ -1,4 +1,4 @@
-package BFS.DFS;
+package net.acmicpc.re;
 
 import java.io.BufferedReader;
 import java.io.IOException;
