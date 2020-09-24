@@ -3,6 +3,7 @@ package net.acmicpc.re;
 import java.util.*;
 import java.io.*;
 
+//순열
 public class N과M {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
