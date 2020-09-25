@@ -14,7 +14,7 @@ public class N과M {
 
         visited = new boolean[N];
         arr = new int[M];
-        sequence(0);
+        perm(0);
     }
 
     static int N;
@@ -22,7 +22,7 @@ public class N과M {
     static int[] arr;
     static boolean[] visited;
 
-    public static void sequence(int idx) {
+    public static void perm(int idx) {
         if(idx == M) {
             for(int i = 0; i < M; i++) {
                 System.out.print(arr[i]+" ");
@@ -34,7 +34,7 @@ public class N과M {
             if(!visited[i]) {
                 visited[i] = true;
                 arr[idx] = i+1;
-                sequence(idx+1);
+                perm(idx+1);
                 visited[i] = false;
             }
         }
