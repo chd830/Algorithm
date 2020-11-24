@@ -10,33 +10,69 @@ public class DFS와BFS1260 {
     static boolean[] visit;
     static StringBuilder sb;
 
-    public static void main(String[] args) throws IOException {
+    public static void solution() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer token = new StringTokenizer(br.readLine());
-        sb = new StringBuilder();
         int N = Integer.parseInt(token.nextToken());
         int M = Integer.parseInt(token.nextToken());
-        int V = Integer.parseInt(token.nextToken());
-        list = new ArrayList[N + 1];
-        visit = new boolean[N + 1];
-        for (int i = 0; i <= N; i++) {
-            list[i] = new ArrayList<>();
-        }
-        for (int i = 0; i < M; i++) {
+        int V  = Integer.parseInt(token.nextToken());
+        int[][] arr = new int[N+1][M+1];
+
+        for(int i = 0; i < M; i++) {
             token = new StringTokenizer(br.readLine());
             int n1 = Integer.parseInt(token.nextToken());
             int n2 = Integer.parseInt(token.nextToken());
-            list[n1].add(n2);
-            list[n2].add(n1);
+            arr[n1][n2] = 1;
+            arr[n2][n1] = 1;
         }
-        for(int i = 0; i <= N; i++) {
-            Collections.sort(list[i]);
+        Stack<Integer> stack = new Stack<>();
+        stack.push(V);
+        //dfs
+        boolean[] visited = new boolean[N+1];
+        visited[0] = true;
+        visited[V] = true;
+        while(!stack.isEmpty()) {
+            int start = stack.pop();
+            System.out.print(start+" ");
+            for(int i = 1; i <= M; i++) {
+                if(arr[start][i] == 1 && !visited[i]) {
+                    visited[i] = true;
+                    stack.push(i);
+                }
+            }
         }
-        dfs(V);
-        sb.append("\n");
-        visit = new boolean[N + 1];
-        bfs(V);
-        System.out.println(sb);
+        //bfs
+        visited = new boolean[N+1];
+        visited[0] = true;
+    }
+    public static void main(String[] args) throws IOException {
+        solution();
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        StringTokenizer token = new StringTokenizer(br.readLine());
+//        sb = new StringBuilder();
+//        int N = Integer.parseInt(token.nextToken());
+//        int M = Integer.parseInt(token.nextToken());
+//        int V = Integer.parseInt(token.nextToken());
+//        list = new ArrayList[N + 1];
+//        visit = new boolean[N + 1];
+//        for (int i = 0; i <= N; i++) {
+//            list[i] = new ArrayList<>();
+//        }
+//        for (int i = 0; i < M; i++) {
+//            token = new StringTokenizer(br.readLine());
+//            int n1 = Integer.parseInt(token.nextToken());
+//            int n2 = Integer.parseInt(token.nextToken());
+//            list[n1].add(n2);
+//            list[n2].add(n1);
+//        }
+//        for(int i = 0; i <= N; i++) {
+//            Collections.sort(list[i]);
+//        }
+//        dfs(V);
+//        sb.append("\n");
+//        visit = new boolean[N + 1];
+//        bfs(V);
+//        System.out.println(sb);
     }
 
     static void dfs(int start) {
