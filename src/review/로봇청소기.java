@@ -51,17 +51,17 @@ public class 로봇청소기 {
             if(map[r][c] == 0) {
                 map[r][c] = 2;
             }
-            int p = (pos+3)%4;
-            int dx = r + dir[p][0];
-            int dy = r + dir[p][1];
+            int left = (pos+3)%4;
+            int dx = r + dir[left][0];
+            int dy = c + dir[left][1];
             if(map[dx][dy] == 0) {
                 r = dx;
                 c = dy;
-                pos = p;
+                pos = left;
                 turn = 0;
             }
             else {
-                pos = p;
+                pos = left;
                 turn++;
             }
         }
