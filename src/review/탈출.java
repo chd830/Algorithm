@@ -78,10 +78,6 @@ public class 탈출 {
                     }
                 }
             }
-//            for(int i = 0; i < R; i++) {
-//                System.out.println(Arrays.toString(map[i]));
-//            }
-//            System.out.println();
         }
         System.out.println("KAKTUS");
     }
