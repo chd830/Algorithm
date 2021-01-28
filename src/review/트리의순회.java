@@ -24,10 +24,10 @@ public class 트리의순회 {
             // 중위순회에서 각각의 노드의 위치 저장
             pos[inorder[i]] = i;
         }
-//        for(int i = 1; i <= N; i++) {
-//            System.out.print(pos[i]+" ");
-//        }
-//        System.out.println();
+        for(int i = 1; i <= N; i++) {
+            System.out.print(pos[i]+" ");
+        }
+        System.out.println();
         solve(0, N-1, 0, N-1);
     }
     static void solve(int is, int ie, int ps, int pe) {
@@ -44,6 +44,10 @@ public class 트리의순회 {
         //
         solve(inRoot+1, ie, ps+left, pe-1);
     }
+
+//11
+//6 4 7 2 8 5 9 1 10 3 11
+//6 7 4 8 9 5 2 10 11 3 1
 
 
 //    static void solve(int is, int ie, int ps, int pe) {
