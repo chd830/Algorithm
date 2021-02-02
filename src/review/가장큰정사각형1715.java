@@ -70,7 +70,7 @@ public class 가장큰정사각형1715 {
 //                if(map[i][j] == 1) {
 //                    for(int k = 1; k <= min; k++) {
 //                        if(checkSquare(i, j, k)) {
-//                            maxArea = Math.max(maxArea, k*k);
+//                            maxArea = Math.min(maxArea, k*k);
 //                        }
 //                    }
 //                }
