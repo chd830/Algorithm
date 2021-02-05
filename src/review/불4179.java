@@ -3,7 +3,7 @@ package review;
 import java.io.*;
 import java.util.*;
 
-public class 불 {
+public class 불4179 {
     // 불에 타기 전에 탈출 여부
     // 얼마나 빨리 탈출할 수 있는지 >> BFS
     // 벽# 공간. 초기위치J 불F
