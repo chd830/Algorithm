@@ -78,4 +78,12 @@ public class day_0210 {
             }
         }
     }
+    // 이후 순열
+    static void nextPerm() {
+
+    }
+    // 이전 순열
+    static void prevPerm() {
+
+    }
 }

@@ -3,64 +3,55 @@ package review;
 import java.util.*;
 
 public class Solution {
+//    public int solution(String s) {
+//        for(int i = 0; i < s.length()-1; i++) {
+//            if(s.charAt(i) == s.charAt(i+1)) {
+//                return solution(s.substring(0, i) + s.substring(i + 2, s.length()));
+//            }
+//        }
+//        return s.length() == 0 ? 1 : 0;
+//    }
+//
+//    public int sum(int start, int end) {
+//        int sum = 0;
+//        for(; start <= end; start++) {
+//            sum += start;
+//        }
+//        return sum;
+//    }
+//    public int solution(int n) {
+//        int cnt = 1;
+//        for(int i = 1; i <= n; i++) {
+//            for(int j = i+1; j <= n; j++) {
+//                if(sum(i, j) == n) {
+//                    cnt++;
+//                }
+//            }
+//        }
+//        return cnt;
+//    }
 
-    static boolean[] broken = new boolean[10]; // 0~10
-
-    static int possible(int c) {
-        if (c == 0) { //0일때 예외처리
-            if (broken[0]) {
-                return 0;
-            } else {
-                return 1;
-            }
-        }
-        int len = 0;
-        while (c > 0) {
-            if (broken[c % 10]) {
-                return 0;
-            }
-            len += 1;
-            c /= 10;
-        }
-        return len;
+    static int cnt = 0;
+    public int solution(int n, int[] money) {
+        recur(n, 0, money);
+        return cnt;
     }
-
-    static boolean check(int num) {
-        if(num >= 10) {
-            if(broken[num%10]) {
-                return false;
-            }
-            check(num/10);
+    public void recur(int n, int idx, int[] money) {
+        if(n == 0) {
+            cnt++;
+            cnt %= 1000000007;
         }
-        else {
-            if(broken[num]) {
-                return false;
+        for(int i = idx; i < money.length; i++) {
+            if(n-money[i] >= 0) {
+                recur(n - money[i], i, money);
             }
         }
-        return true;
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(); // 이동 원하는 채널
-        int m = sc.nextInt(); // 고자안 채널 갯수
-        for (int i = 0; i < m; i++) {
-            int x = sc.nextInt();
-            broken[x] = true; // 트루면 고장!
-        }
-
-        int ans = Math.abs(n - 100);
-        /*
-         * 초기 채널은 100이다. 모든 리모콘의 숫자버튼이 고장났을 경우 +-버튼으로만이동 가능하도록 초기값을 설정해준다.
-         */
-
-        // 0부터 1000000까지 모든 채널을 돌면서 N으로 가장 적은 버튼을 눌러 이동할 수 있는 채널을 찾는다.
-        for (int i = 0; i < 1000000; i++) {
-            int len = possible(i);
-            if (len > 0) {
-                ans = Math.min(ans, len + Math.abs(i-n));
-            }
-
-        }
-        System.out.println(ans);
+        Solution s = new Solution();
+//        System.out.println(s.solution("baabaa"));
+//        System.out.println(s.solution("cdcd"));
+//        System.out.println(s.solution(15));
+        System.out.println(s.solution(5, new int[] {1, 2, 5}));
     }
 }
