@@ -7,81 +7,75 @@ public class 뿌요뿌요 {
     static int R = 12;
     static int C = 6;
     static int res;
+    static boolean check;
     static char[][] map = new char[R][C];
     static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        for(int i = 0; i < R; i++) {
-            String str = br.readLine();
-            for(int j = 0; j < C; j++) {
-                map[i][j] = str.charAt(j);
-            }
-        }
-        res = 0;
-        puyo(0, 0);
-        System.out.println(res);
-    }
     static class Node {
         int x;
         int y;
+
         Node(int x, int y) {
             this.x = x;
             this.y = y;
         }
+
     }
-    static void puyo(int i, int j) {
-        boolean[][] visited = new boolean[R][C];
-        if(map[i][j] != '.') {
-            int cnt = 1;
-            int x = i;
-            int y = j;
-            Queue<Node> que = new LinkedList<>();
-            que.add(new Node(i, j));
-            visited[i][j] = true;
-            char key = map[i][j];
-            while(!que.isEmpty()) {
-                Node n = que.poll();
-                for(int d = 0; d < 4; d++) {
-                    int dx = n.x + dir[d][0];
-                    int dy = n.y + dir[d][1];
-                    if(isIn(dx, dy) && map[dx][dy] == key && !visited[dx][dy]) {
-                        cnt++;
-                        visited[dx][dy] = true;
-                        que.add(new Node(dx, dy));
-                    }
-                }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        for (int i = 0; i < R; i++) {
+            String str = br.readLine();
+            for (int j = 0; j < C; j++) {
+                map[i][j] = str.charAt(j);
             }
-            if(cnt >= 4) {
-                remove(i, j);
-                rearrange();
-                puyo(i, j);
-            }
-            else {
-                if(j+1 < C) {
-                    puyo(i, j+1);
-                }
-                else if(i+1 < R) {
-                    puyo(i+1, 0);
-                }
-                else {
-                    res++;
-                    print();
-                    puyo(0, 0);
+        }
+        res = 0;
+
+        // 4개 이상을 찾기
+        // 맵을 다시 그리기
+        // 반복
+        check = true;
+        while(check) {
+            removeList = new ArrayList<>();
+            find();
+        }
+        System.out.println(res);
+    }
+    static List<Node> removeList;
+    static void find() {
+        check = false;
+        for(int i = R-1; i >= 0; i--) {
+            for(int j = C-1; j >= 0; j--) {
+                if(map[i][j] != '.') {
+                    boolean[][] visited = new boolean[R][C];
+                    List<Node> list = new ArrayList<>();
+                     Queue<Node> que = new LinkedList<>();
+                     que.add(new Node(i, j));
+                     visited[i][j] = true;
+                     list.add(new Node(i, j));
+                     while(!que.isEmpty()) {
+                        Node n = que.poll();
+                        for(int d = 0; d < 4; d++) {
+                            int dx = n.x + dir[d][0];
+                            int dy = n.y + dir[d][1];
+                            if(dx >= 0 && dy >= 0 && dx < R && dy < C && map[dx][dy] == map[i][j] && !visited[dx][dy]) {
+                                visited[dx][dy] = true;
+                                que.add(new Node(dx, dy));
+                                list.add(new Node(dx, dy));
+                            }
+                        }
+                     }
+                     if(list.size()>= 4) {
+                         check = true;
+                         removeList.addAll(list);
+                     }
                 }
             }
         }
-        else {
-            if(j+1 < C) {
-                puyo(i, j+1);
-            }
-            else if(i+1 < R) {
-                puyo(i+1, 0);
-            }
-            else {
-                res++;
-                print();
-                puyo(0, 0);
-            }
+        if(check) {
+            remove(removeList);
+            remark();
+//            print();
+            res++;
         }
     }
     static void print() {
@@ -90,51 +84,30 @@ public class 뿌요뿌요 {
         }
         System.out.println();
     }
-    static boolean isIn(int dx, int dy) {
-        return dx >= 0 && dy >= 0 && dx < R && dy < C;
-    }
-    static void remove(int x, int y) {
-        char key = map[x][y];
-        boolean[][] visited = new boolean[R][C];
-        Queue<Node> que = new LinkedList<>();
-        que.add(new Node(x, y));
-        visited[x][y] = true;
-        map[x][y] = '.';
-        while(!que.isEmpty()) {
-            Node n = que.poll();
-            for(int d = 0; d < 4; d++) {
-                int dx = n.x + dir[d][0];
-                int dy = n.y + dir[d][1];
-                if(isIn(dx, dy) && map[dx][dy] == key && !visited[dx][dy]) {
-                    visited[dx][dy] = true;
-                    map[dx][dy] = '.';
-                    que.add(new Node(dx, dy));
+    static void remark() {
+        // 0 부터 5 까지
+        for(int i = 0; i < C; i++) {
+            // 11부터 0까지를 보면서
+            // .인 위치를 기억했다가 .이 아닌 위치와 교환
+            int idx = R-1;
+            for(int j = idx; j >= 0; j--) {
+                if(map[j][i] == '.') {
+                    idx = j;
+                    for(int k = j; k >= 0; k--) {
+                        if(map[k][i] != '.') {
+                            map[j][i] = map[k][i];
+                            map[k][i] = '.';
+                            break;
+                        }
+                    }
                 }
             }
+
         }
     }
-    static int isBottomDot(int y, int x){
-        int tempY = -1;
-        for (int i = y; i < R; i++) {
-            if (map[i][x] == '.') {
-                tempY = i;
-            }
-        }
-        return tempY;
-    }
-    static void rearrange() {
-        int tempY = 0;
-        for (int i = R - 2; i >= 0; i--) {
-            for (int j = 0; j < C; j++) {
-                tempY = -1;
-                if (map[i][j] != '.') {
-                    tempY = isBottomDot(i, j);
-                }
-                if (tempY != -1) {
-                    map[tempY][j] = map[i][j]; // 가장 마지막 . 이 나온 곳으로 옮기고,
-                    map[i][j] = '.'; // 그 자리에 . 을 대입한다.
-                }
-            }
+    static void remove(List<Node> list) {
+        for(Node n : list) {
+            map[n.x][n.y] = '.';
         }
     }
 }
