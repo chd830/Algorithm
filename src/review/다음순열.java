@@ -29,10 +29,12 @@ public class 다음순열 {
             System.exit(0);
         }
         int j = N-1;
-        while(i != j && arr[j] <= arr[i-1]) {
+        while(arr[j] <= arr[i-1]) {
             j--;
         }
+        System.out.println(i+"\t"+j);
         swap(i-1, j);
+        System.out.println(Arrays.toString(arr));
         j = N-1;
         while(i < j) {
             swap(i, j);
