@@ -19,11 +19,11 @@ public class Solution {
 //        }
 //        return sum;
 //    }
-//    public int solution(int n) {
+//    public int solution(int cur) {
 //        int cnt = 1;
-//        for(int i = 1; i <= n; i++) {
-//            for(int j = i+1; j <= n; j++) {
-//                if(sum(i, j) == n) {
+//        for(int i = 1; i <= cur; i++) {
+//            for(int j = i+1; j <= cur; j++) {
+//                if(sum(i, j) == cur) {
 //                    cnt++;
 //                }
 //            }

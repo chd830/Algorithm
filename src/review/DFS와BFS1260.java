@@ -69,7 +69,7 @@ public class DFS와BFS1260 {
 //            Collections.sort(list[i]);
 //        }
 //        dfs(V);
-//        sb.append("\n");
+//        sb.append("\cur");
 //        visit = new boolean[N + 1];
 //        bfs(V);
 //        System.out.println(sb);

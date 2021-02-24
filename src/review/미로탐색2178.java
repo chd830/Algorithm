@@ -57,16 +57,16 @@ public class 미로탐색2178 {
 //        que.add(new Node(0, 0, 1));
 //        visited[0][0] = true;
 //        while(!que.isEmpty()) {
-//            Node n = que.poll();
-//            if(n.x == N-1 && n.y == M-1) {
-//                System.out.println(n.cnt);
+//            Node cur = que.poll();
+//            if(cur.x == N-1 && cur.y == M-1) {
+//                System.out.println(cur.cnt);
 //                break;
 //            }
 //            for(int d = 0; d < 4; d++) {
-//                int dx = n.x + dir[d][0];
-//                int dy = n.y + dir[d][1];
+//                int dx = cur.x + dir[d][0];
+//                int dy = cur.y + dir[d][1];
 //                if(dx >= 0 && dy >= 0 && dx < N && dy < M && !visited[dx][dy] && map[dx][dy] == '1') {
-//                    que.add(new Node(dx, dy, n.cnt+1));
+//                    que.add(new Node(dx, dy, cur.cnt+1));
 //                    visited[dx][dy] = true;
 //                }
 //            }
