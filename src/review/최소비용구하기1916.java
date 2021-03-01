@@ -16,7 +16,7 @@ public class 최소비용구하기1916 {
     public static void graph(int start, int end){
         dist[start] = 0;    // 최초 시작 값 distance 초기화
 //        String s = "";
-        for(int j = 0; j < N; j++) // dist 값을 한번 초기화 했으므로 n-1번만 진행
+        for(int j = 0; j < N; j++) // dist 값을 한번 초기화 했으므로 cur-1번만 진행
         {
             int min = inf+1;    // dist 최소값 찾기 위한 임시 값 초기화
             int index = -1;
