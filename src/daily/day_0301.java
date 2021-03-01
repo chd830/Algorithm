@@ -2,7 +2,7 @@ package daily;
 
 import java.util.Arrays;
 
-public class day_0224 {
+public class day_0301 {
     static final int N = 3;
     static int[] sub = new int[2];
     static boolean[] visited = new boolean[N];
