@@ -2,10 +2,11 @@ package daily;
 
 import java.util.Arrays;
 
-public class day_2138 {
+public class day_0305 {
     static final int N = 3;
     static int[] sub = new int[2];
     static boolean[] visited = new boolean[N];
+
     void perm(int idx) {
         if(idx == sub.length) {
             System.out.println(Arrays.toString(sub));
@@ -20,16 +21,6 @@ public class day_2138 {
             }
         }
     }
-    void doublePerm(int idx) {
-        if(idx == sub.length) {
-            System.out.println(Arrays.toString(sub));
-            return;
-        }
-        for(int i = 0; i < N; i++) {
-            sub[idx] = i;
-            doublePerm(idx+1);
-        }
-    }
     void comb(int idx, int subIdx) {
         if(subIdx == sub.length) {
             System.out.println(Arrays.toString(sub));
@@ -42,6 +33,16 @@ public class day_2138 {
                 comb(i+1, subIdx+1);
                 visited[i] = false;
             }
+        }
+    }
+    void doublePerm(int idx) {
+        if(idx == sub.length) {
+            System.out.println(Arrays.toString(sub));
+            return;
+        }
+        for(int i = 0; i < N; i++) {
+            sub[idx] = i;
+            doublePerm(idx+1);
         }
     }
     void doubleComb(int idx, int subIdx) {
