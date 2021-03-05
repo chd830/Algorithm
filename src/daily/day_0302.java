@@ -65,6 +65,7 @@ public class day_0302 {
                 visited[i] = true;
                 subset(i+1);
                 visited[i] = false;
+
             }
         }
     }
