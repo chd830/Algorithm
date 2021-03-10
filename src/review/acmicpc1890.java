@@ -35,6 +35,9 @@ public class acmicpc1890 {
                 }
             }
         }
+        for(int i = 0; i < N; i++) {
+            System.out.println(Arrays.toString(route[i]));
+        }
         System.out.println(route[N-1][N-1]);
     }
 }
