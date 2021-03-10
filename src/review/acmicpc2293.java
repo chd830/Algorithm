@@ -17,6 +17,7 @@ public class acmicpc2293 {
             arr[i] = Integer.parseInt(br.readLine());
             for(int j = arr[i]; j <= K; j++) {
                 coins[j] += coins[j - arr[i]];
+                System.out.println(j+"\t"+(j-arr[i])+Arrays.toString(coins));
             }
         }
         System.out.println(coins[K]);
