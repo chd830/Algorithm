@@ -35,7 +35,6 @@ public class acmicpc12865 {
                 }
                 max = Math.max(max, dp[i][j]);
             }
-//            print(dp);
         }
         System.out.println(max);
     }
