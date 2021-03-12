@@ -8,14 +8,14 @@ public class acmicpc11722 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N+1];
-        int[] d = new int[N+1];
+        int[] arr = new int[N];
+        int[] d = new int[N];
         StringTokenizer token = new StringTokenizer(br.readLine());
-        for(int i = 1; i <= N; i++) {
+        for(int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(token.nextToken());
         }
         int max = 0;
-        for(int i = 1; i <= N; i++) {
+        for(int i = 0; i < N; i++) {
             d[i] = 1;
             for(int j = 1; j < i; j++) {
                 if(arr[i] < arr[j]) {
