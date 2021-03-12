@@ -1,5 +1,7 @@
 package daily;
 
+import java.util.Arrays;
+
 public class day_0311 {
     static final int N = 3;
     static int[] sub = new int[2];
