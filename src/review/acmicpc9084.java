@@ -22,7 +22,7 @@ public class acmicpc9084 {
                 for(int j = arr[i]; j <= M; j++) {
                     d[j] += d[j-arr[i]];
                 }
-//                System.out.println(Arrays.toString(d));
+                System.out.println(Arrays.toString(d));
             }
             System.out.println(d[M]);
         }

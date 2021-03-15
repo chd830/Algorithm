@@ -3,6 +3,7 @@ package review;
 import java.util.*;
 import java.io.*;
 
+// 가장 긴 증가하는 부분 수열
 public class acmicpc11053 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
