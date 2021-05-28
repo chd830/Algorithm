@@ -20,7 +20,6 @@ public class 카카오프렌즈컬러링북 {
                     numberOfArea++;
                     Queue<Node> que = new LinkedList<>();
                     que.add(new Node(i, j));
-                    visited[i][j] = true;
                     size = 1;
                     while(!que.isEmpty()) {
                         Node node = que.poll();
