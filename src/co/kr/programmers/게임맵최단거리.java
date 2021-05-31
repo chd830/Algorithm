@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class 게임맵최단거리 {
-    public static void main(String[]) {
+    public static void main(String[] args) {
         System.out.println(solution(new int[][] {}));
     }
     static class Node {
