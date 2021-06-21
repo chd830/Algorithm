@@ -13,23 +13,27 @@ public class 큰수만들기 {
         System.out.println(solution("1231234", 3));
         System.out.println(solution("4177252841", 4));
     }
-    public static String solution(String num, int k) {
-        char[] nums = num.toCharArray();
-        String ans = "";
-        // 필요한 글자수(num.lenght()-k)만큼 반복
-        for(int j = 0, idx = -1; j < num.length()-k; j++) {
-            char max = 0;
-            // 앞에 적을 수 있는 제일 큰 수 체크
-            for(int i = idx+1; i <= k+j; i++) {
-                if(max < nums[i]) {
-                    idx = i;
-                    max = nums[i];
+    public static String solution(String number, int k) {
+        StringBuilder sb = new StringBuilder();
+
+        int left = 0;
+        int right = k;
+        int max = -1;
+
+        while(sb.length() != number.length()-k) {
+            max = -1;
+            for(int j = left ; j <= right ; ++j){
+                int num = number.charAt(j) - '0';
+                if(num > max){
+                    left = j;
+                    max = num;
                 }
             }
-            // 답에 추가
-            ans += max;
+            sb.append(number.charAt(left));
+            left++;
+            right = sb.length()+k;
         }
-        return ans;
+        return sb.toString();
     }
 //    시간초과
 //    static int max;
