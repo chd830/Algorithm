@@ -3,6 +3,7 @@ package Concept;
 public class QuickSort {
     static int[] arr = {3, 5, 1, 6, 2, 23, 61};
     public static void main(String[] args) {
+        quickSort(0, arr.length-1);
     }
     static void quickSort(int left, int right) {
         if(left >= right) {
