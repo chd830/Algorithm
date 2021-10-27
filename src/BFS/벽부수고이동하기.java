@@ -63,23 +63,9 @@ public class 벽부수고이동하기 {
                     }
                 }
             }
-//            print(count);
         }
         System.out.println(-1);
     }
-//    static void print(int[][][] arr) {
-//        for(int i = 0; i < arr.length; i++) {
-//            for(int j = 0; j < arr[i].length; j++) {
-//                System.out.print(arr[i][j][0]+" ");
-//            }
-//            System.out.print("\t\t");
-//            for(int j = 0; j < arr[i].length; j++) {
-//                System.out.print(arr[i][j][1]+" ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-//    }
 }
 /*
 5 6
