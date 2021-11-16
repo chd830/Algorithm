@@ -323,80 +323,430 @@
 //    }
 //}
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+//import java.util.LinkedList;
+//import java.util.List;
+//import java.util.Scanner;
+//
+//public class Solution {
+//    private static int[] dx = {0, 1, 0, -1};
+//    private static int[] dy = {1, 0, -1, 0};
+//    private static int n, l, k;
+//    private static int[][] board;
+//    private static List<int[]> snake;
+//
+//    public static void main(String[] args) {
+//        snake = new LinkedList<>();
+//        snake.add(new int[]{0, 0});
+//        Scanner sc = new Scanner(System.in);
+//        n = sc.nextInt();
+//        board = new int[n][n];
+//        k = sc.nextInt();
+//        for (int i = 0; i < k; i++) {
+//            int x = sc.nextInt();
+//            int y = sc.nextInt();
+//            board[x - 1][y - 1] = 1; // 사과의 위치 설정
+//        }
+//        l = sc.nextInt();
+//        int[][] dir = new int[l][2];
+//        for (int i = 0; i < l; i++) {
+//            dir[i][0] = sc.nextInt();
+//            char temp = sc.next().charAt(0);
+//            dir[i][1] = (temp == 'L') ? -1 : 1; // L -> -1, D -> 1
+//        }
+//        int time = solution(0, 0, 0, dir);
+//        System.out.println(time);
+//    }
+//
+//    private static int solution(int curX, int curY, int currentDir, int[][] dir) {
+//        int time = 0;
+//        int turn = 0;
+//        while (true) {
+//            time++;
+//            int nextX = curX + dx[currentDir];
+//            int nextY = curY + dy[currentDir];
+//            if (isFinish(nextX, nextY)) break;
+//            if (board[nextX][nextY] == 2) { // 사과를 먹으면
+//                snake.add(new int[]{nextX, nextY});
+//            } else {
+//                snake.add(new int[]{nextX, nextY});
+//                snake.remove(0); // snake 꼬리 제거
+//            }
+//            curX = nextX;
+//            curY = nextY;
+//            if (turn < l) {
+//                if (time == dir[turn][0]) { // 다음 방향 설정
+//                    currentDir = nextDir(currentDir, dir[turn][1]);
+//                    turn++;
+//                }
+//            }
+//        }
+//        return time;
+//    }
+//
+//    private static int nextDir(int current, int dir) { // current 현재, dir 다음 방향
+//        int next = (current + dir) % 4;
+//        if (next == -1) next = 3;
+//        return next;
+//    }
+//
+//    private static boolean isFinish(int x, int y) {
+//        if (x == -1 || x == n || y == -1 || y == n) { // 다음 위치가 보드판 밖으로 나갔는지
+//            return true;
+//        }
+//        for (int i = 0; i < snake.size(); i++) { // 뱀 몸통이랑 닿았는지
+//            int[] s = snake.get(i);
+//            if (s[0] == x && s[1] == y) return true;
+//        }
+//        return false;
+//    }
+//}
+//
+//import java.util.*;
+//
+//class Solution {
+//    public static void main(String[] args) {
+//        System.out.println(solution(new String[] {"JAY", "JAY ELLE JAY MAY", "MAY ELLE MAY", "ELLE MAY", "ELLE ELLE ELLE", "MAY"}, 3));
+//    }
+//    public static int solution(String[] id_list, int k) {
+//        int answer = 0;
+//        HashMap<String, Integer> total = new HashMap<>();
+//        for(String id : id_list) {
+//            HashMap<String, Integer> map = new HashMap<>();
+//            StringTokenizer token = new StringTokenizer(id);
+//            while(token.hasMoreTokens()) {
+//                String customer = token.nextToken();
+//                if(!map.containsKey(customer)) {
+//                    if(total.containsKey(customer) && total.get(customer) >= k)
+//                        continue;
+//                    if(map.containsKey(customer))
+//                        continue;
+//                    map.put(customer, 1);
+//                    answer++;
+//                    if(!total.containsKey(customer))
+//                        total.put(customer, 1);
+//                    else
+//                        total.put(customer, total.get(customer)+1);
+//                }
+//            }
+//        }
+//        return answer;
+//    }
+//}
+//
+//import java.util.Arrays;
+//
+//class Solution {
+//    static int[][] arr;
+//    static int count;
+//    static int cnt;
+//    static int end;
+//    static int x;
+//    static int y;
+//    public static int[] solution(int n, int jump) {
+//        arr = new int[n][n];
+//        count = 2;
+//        arr[0][0] = 1;
+//        end = n*n+1;
+//        while(count < end)
+//            fill(jump);
+//        return new int[]{x+1, y+1};
+//    }
+//
+//    static void print() {
+//        for(int i = 0; i < arr.length; i++)
+//            System.out.println(Arrays.toString(arr[i]));
+//        System.out.println();
+//    }
+//
+//    static void fill(int jump) {
+//        int row = 0;
+//        int col = 0;
+//        int k = 0;
+//
+//        if(cnt == 0)
+//            cnt = jump;
+//        for (int n = arr.length; n > 0; n -= 2) {
+//            for (col = 0; col < n; col++) {
+//                if(arr[k][k+col] == 0)
+//                    cnt--;
+//                if(cnt == 0) {
+//                    arr[k][k + col] = count++;
+//                    cnt = jump;
+//                    if(count == end) {
+//                        x = k;
+//                        y = k+col;
+//                        return;
+//                    }
+//                }
+//            }
+//
+//            if(cnt == 0)
+//                cnt = jump;
+//            for (row = 1; row < n; row++) {
+//                if(arr[k+row][arr.length-k-1] == 0)
+//                    cnt--;
+//                if(cnt == 0) {
+//                    arr[k + row][arr.length - k - 1] = count++;
+//                    cnt = jump;
+//                    if(count == end) {
+//                        x = k+row;
+//                        y = arr.length-k-1;
+//                        return;
+//                    }
+//                }
+//            }
+//
+//            if(cnt == 0)
+//                cnt = jump;
+//            for (col = 1; col < n; col++) {
+//                if(arr[k+row-1][arr.length-k-col-1] == 0)
+//                    cnt--;
+//                if(cnt == 0) {
+//                    arr[k+row-1][arr.length-k-col-1] = count++;
+//                    cnt = jump;
+//                    if(count == end) {
+//                        x = k+row-1;
+//                        y = arr.length-k-col-1;
+//                        return;
+//                    }
+//                }
+//            }
+//
+//            if(cnt == 0)
+//                cnt = jump;
+//            for (col = 1; col < n - 1; col++) {
+//                if(arr[arr.length-k-col-1][k] == 0)
+//                    cnt--;
+//                if(cnt == 0) {
+//                    arr[arr.length-k-col-1][k] = count++;
+//                    cnt = jump;
+//                    if(count == end) {
+//                        x = arr.length-k-col-1;
+//                        y = k;
+//                        return;
+//                    }
+//                }
+//            }
+//            k++;
+//        }
+//        print();
+//    }
+//}
+//
+//import java.util.*;
+//
+//class Solution {
+//    public static void main(String[] args) {
+//        System.out.println(Arrays.toString(solution(new String[] {"0001 3 95", "0001 5 90", "0001 5 100", "0002 3 95", "0001 7 80", "0001 8 80", "0001 10 90", "0002 10 90", "0002 7 80", "0002 8 80", "0002 5 100", "0003 99 90"})));
+//    }
+//    static class Grade implements Comparable<Grade> {
+//        String problem;
+//        String grade;
+//        Grade(String problem, String grade) {
+//            this.problem = problem;
+//            this.grade = grade;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "Grade{" +
+//                    "problem='" + problem + '\'' +
+//                    ", grade='" + grade + '\'' +
+//                    '}';
+//        }
+//
+//        @Override
+//        public boolean equals(Object obj) {
+//            return this.problem == ((Grade)obj).problem && this.grade == ((Grade)obj).grade;
+//        }
+//
+//        @Override
+//        public int compareTo(Grade o) {
+//            return Integer.compare(Integer.parseInt(this.problem), Integer.parseInt(o.problem));
+//        }
+//    }
+//
+//    public static String[] solution(String[] logs) {
+//        List<String> answerList = new ArrayList<>();
+//        HashMap<String, Integer> findNums = new HashMap<>();
+//        for(String log : logs) {
+//            StringTokenizer token = new StringTokenizer(log);
+//            findNums.put(token.nextToken(), 1);
+//        }
+//        List<Grade>[] grades = new ArrayList[findNums.size()];
+//        for(int i = 0; i < grades.length; i++)
+//            grades[i] = new ArrayList<>();
+//        String[] nums = new String[findNums.size()];
+//        int idx = 0;
+//        findNums = new HashMap<>();
+//        for(String log : logs) {
+//            StringTokenizer token = new StringTokenizer(log);
+//            String num = token.nextToken();
+//            if(findNums.containsKey(num)) {
+//                for(int i = 0; i < nums.length; i++) {
+//                    if(nums[i].equals(num)) {
+//                        idx = i;
+//                        break;
+//                    }
+//                }
+//                Grade g = new Grade(token.nextToken(), token.nextToken());
+//                for(int i = 0; i < grades[idx].size(); i++) {
+//                    if(grades[idx].get(i).problem.equals(g.problem)) {
+//                        grades[idx].remove(i);
+//                        break;
+//                    }
+//                }
+//
+//                grades[idx].add(g);
+//            }
+//            else {
+//                findNums.put(num, 1);
+//                for(int i = 0; i < nums.length; i++) {
+//                    if(nums[i] == null) {
+//                        idx = i;
+//                        break;
+//                    }
+//                }
+//                grades[idx].add(new Grade(token.nextToken(), token.nextToken()));
+//                nums[idx] = num;
+//            }
+//        }
+//        for(int i = 0; i < nums.length; i++) {
+//            Collections.sort(grades[i]);
+//            for(Grade g : grades[i])
+//                System.out.println(g);
+//            System.out.println();
+//        }
+//        boolean[] check = new boolean[nums.length];
+//        for(int i = 0; i < nums.length-1; i++) {
+//            loop: for(int j = i+1; j < nums.length; j++) {
+//                if(grades[i].size() == grades[j].size()) {
+//                    boolean flag = true;
+//                    for(int k = 0; k < grades[i].size(); k++) {
+//                        flag = true;
+//                        System.out.println(grades[i].get(k)+"\t"+grades[j].get(k)+"\t"+grades[i].get(k).problem.equals(grades[j].get(k).problem) +"\t"+ grades[i].get(k).grade.equals(grades[j].get(k).grade));
+//                        if(!(grades[i].get(k).problem.equals(grades[j].get(k).problem) || !(grades[i].get(k).grade.equals(grades[j].get(k).grade)))) {
+//                            System.out.println(grades[i].get(k)+"\t"+grades[j].get(k));
+//                            continue loop;
+//                        }
+//                    }
+//                    if(flag) {
+//                        if(!check[i]) {
+//                            check[i] = true;
+//                            answerList.add(nums[i]);
+//                        }
+//                        if(!check[j]) {
+//                            check[j] = true;
+//                            answerList.add(nums[j]);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        if(answerList.size() == 0)
+//            return new String[] {"None"};
+//        String[] answer = new String[answerList.size()];
+//        for(int i = 0; i < answer.length; i++) {
+//            answer[i] = answerList.get(i);
+//        }
+//        Arrays.sort(answer);
+//        return answer;
+//    }
+//}
+//
+//import java.util.*;
+//
+//class Solution {
+//    public static void main(String[] args) {
+//        System.out.println(solution(new int[][] {{1, -7, -2, 1, -1},{2, 3, 0, -1, -2},{1, -1, 6, -1, -2},{-1, 1, -2, 0, 4},{10, 5, -3, -1, 1}}));
+////        System.out.println(solution(new int[][] {{-10, 20, 30}, {-10, 0, 10}, {-20, 40, 1}}));
+//    }
+//    static int max;
+//    public static int solution(int[][] board) {
+//        max = 0;
+//        visited = new boolean[board.length][board[0].length];
+//        dfs(0, 0, board[0][0], board);
+//        return max;
+//    }
+//    static boolean[][] visited;
+//    static int[][] dir = {{0, 1}, {1, 0}};
+//    static void dfs(int x, int y, int sum, int[][] board) {
+//        if(x == board.length-1 && y == board[0].length-1) {
+//            max = Math.max(max, sum);
+//            return;
+//        }
+//        for(int d = 0; d < dir.length; d++) {
+//            int dx = x + dir[d][0];
+//            int dy = y + dir[d][1];
+//            if(dx >= 0 && dy >= 0 && dx < board.length && dy < board[0].length && !visited[dx][dy]) {
+//                visited[dx][dy] = true;
+//                if(board[dx][dy] == 0)
+//                    dfs(dx, dy, Math.max(sum, sum*-1), board);
+//                else
+//                    dfs(dx, dy, sum+board[dx][dy], board);
+//                visited[dx][dy] = false;
+//            }
+//        }
+//    }
+//}
 
-public class Solution {
-    private static int[] dx = {0, 1, 0, -1};
-    private static int[] dy = {1, 0, -1, 0};
-    private static int n, l, k;
-    private static int[][] board;
-    private static List<int[]> snake;
+import java.util.*;
 
+class Solution {
     public static void main(String[] args) {
-        snake = new LinkedList<>();
-        snake.add(new int[]{0, 0});
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        board = new int[n][n];
-        k = sc.nextInt();
-        for (int i = 0; i < k; i++) {
-            int x = sc.nextInt();
-            int y = sc.nextInt();
-            board[x - 1][y - 1] = 1; // 사과의 위치 설정
-        }
-        l = sc.nextInt();
-        int[][] dir = new int[l][2];
-        for (int i = 0; i < l; i++) {
-            dir[i][0] = sc.nextInt();
-            char temp = sc.next().charAt(0);
-            dir[i][1] = (temp == 'L') ? -1 : 1; // L -> -1, D -> 1
-        }
-        int time = solution(0, 0, 0, dir);
-        System.out.println(time);
+        System.out.println(solution(new int[] {9, -1, -5}));
+//        System.out.println(solution(new int[] {-16,27,65,-2,58,-92,-71,-68,-61,-33}));
     }
-
-    private static int solution(int curX, int curY, int currentDir, int[][] dir) {
-        int time = 0;
-        int turn = 0;
-        while (true) {
-            time++;
-            int nextX = curX + dx[currentDir];
-            int nextY = curY + dy[currentDir];
-            if (isFinish(nextX, nextY)) break;
-            if (board[nextX][nextY] == 2) { // 사과를 먹으면
-                snake.add(new int[]{nextX, nextY});
-            } else {
-                snake.add(new int[]{nextX, nextY});
-                snake.remove(0); // snake 꼬리 제거
+    static int answer;
+    public static int solution(int[] a) {
+        answer = 0;
+        list = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
+            recur(a, i, true);
+            recur(a, i, false);
+        }
+        Collections.sort(list);
+        return list.size();
+    }
+    static List<Integer> list;
+    static void recur(int[] a, int idx, boolean flag) {
+        System.out.println(Arrays.toString(a)+"\t"+idx+"\t"+(flag ? "최댓값" : "최솟값"));
+        if (a.length == 1) {
+            if(list.contains(a[0])) {
+                return;
             }
-            curX = nextX;
-            curY = nextY;
-            if (turn < l) {
-                if (time == dir[turn][0]) { // 다음 방향 설정
-                    currentDir = nextDir(currentDir, dir[turn][1]);
-                    turn++;
-                }
+            System.out.println(Arrays.toString(a));
+            list.add(a[0]);
+            answer++;
+            return;
+        }
+        if(idx+1 >= a.length)
+            return;
+        int[] tmp = new int[a.length - 1];
+        if (flag) {
+            int max = Math.max(a[idx], a[idx + 1]);
+            for (int i = 0, j = 0; j < tmp.length; i++) {
+                if (i == idx) {
+                    tmp[j] = max;
+                    j++;
+                    i++;
+                } else
+                    tmp[j++] = a[i];
+            }
+        } else {
+            int min = Math.min(a[idx], a[idx + 1]);
+            for (int i = 0, j = 0; j < tmp.length; i++) {
+                if (i == idx) {
+                    tmp[j] = min;
+                    j++;
+                    i++;
+                } else
+                    tmp[j++] = a[i];
             }
         }
-        return time;
-    }
-
-    private static int nextDir(int current, int dir) { // current 현재, dir 다음 방향
-        int next = (current + dir) % 4;
-        if (next == -1) next = 3;
-        return next;
-    }
-
-    private static boolean isFinish(int x, int y) {
-        if (x == -1 || x == n || y == -1 || y == n) { // 다음 위치가 보드판 밖으로 나갔는지
-            return true;
+        for (int i = 0; i < tmp.length; i++) {
+            recur(tmp, i, !flag);
         }
-        for (int i = 0; i < snake.size(); i++) { // 뱀 몸통이랑 닿았는지
-            int[] s = snake.get(i);
-            if (s[0] == x && s[1] == y) return true;
-        }
-        return false;
     }
 }
