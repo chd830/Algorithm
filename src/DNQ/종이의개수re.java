@@ -1,10 +1,10 @@
-package 브루트포스;
+package DNQ;
 
 import java.util.*;
 import java.io.*;
 
 // https://www.acmicpc.net/problem/1780
-public class 종이의개수 {
+public class 종이의개수re {
     static int N;
     static int[] result = new int[3];
     static int[][] arr;
