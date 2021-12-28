@@ -1,4 +1,4 @@
-package DFS;
+package perm;
 
 import java.util.*;
 import java.io.*;
