@@ -8,11 +8,10 @@ public class 파일정리 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        String[] files = new String[N];
         TreeMap<String, Integer> map = new TreeMap<>();
         for(int i = 0; i < N; i++) {
-            files[i] = br.readLine();
-            String extension = files[i].split("\\.")[1];
+            String str = br.readLine();
+            String extension = str.split("\\.")[1];
             if(map.containsKey(extension))
                 map.put(extension, map.get(extension)+1);
             else
