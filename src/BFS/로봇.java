@@ -1,92 +1,127 @@
 package BFS;
 
 import java.util.*;
+import java.io.*;
 
 // https://www.acmicpc.net/problem/1726
 public class 로봇 {
-    static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     static class Node {
         int x;
         int y;
-        int pos;
-        Node(int x, int y, int pos) {
+        int cnt;
+        int dir;
+        Node(int x, int y, int dir, int cnt) {
             this.x = x;
             this.y = y;
-            this.pos = pos;
+            this.dir = dir;
+            this.cnt = cnt;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", dir=" + dir +
+                    ", cnt=" + cnt +
+                    '}';
         }
     }
+    static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     static int N;
     static int M;
-    static int min;
-    static int[][] arr;
-    static int[][] count;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        M = sc.nextInt();
-        arr = new int[N][M];
-        count = new int[N][M];
-        min = Integer.MAX_VALUE;
-        for(int i = 0; i < N; i++) {
-            Arrays.fill(count[i], -1);
-            for(int j = 0; j < M; j++) {
-                arr[i][j] = sc.nextInt();
-            }
-        }
-        Node start = new Node(sc.nextInt()-1, sc.nextInt()-1, sc.nextInt()-1);
-        Node end = new Node(sc.nextInt()-1, sc.nextInt()-1, sc.nextInt()-1);
-        Queue<Node> que = new LinkedList<>();
-        que.add(start);
-        count[start.x][start.y] = 0;
-        int result = 0;
-        while(!que.isEmpty()) {
-            Node n = que.poll();
-            if (n.x == end.x && n.y == end.y) {
-                result = Math.abs(end.pos-n.pos);
-                result += count[n.x][n.y];
-                break;
-            }
-            loop: for(int d = 0; d < 4; d++) {
-                for(int j = 1; j <= 3; j++) {
-                    int dx = n.x + dir[d][0]*j;
-                    int dy = n.y + dir[d][1]*j;
-                    if(isIn(dx, dy)) {
-                        if(arr[dx][dy] == 1) {
-                            continue loop;
-                        }
-                        if(count[dx][dy] == -1) {
-                            if (d == n.pos)
-                                count[dx][dy] = count[n.x][n.y] + 1;
-                            else {
-                                count[dx][dy] = count[n.x][n.y];
-                                switch (d) {
-                                    case 0: case 2:
-                                        if(n.pos == 3 || n.pos == 1)
-                                            count[dx][dy] += 2;
-                                        else
-                                            count[dx][dy] += 3;
-                                        break;
-                                    case 1: case 3:
-                                        if(n.pos == 2 || n.pos == 0)
-                                            count[dx][dy] += 2;
-                                        else
-                                            count[dx][dy] += 3;
-                                        break;
-                                }
-                            }
-                            que.add(new Node(dx, dy, d));
-                        }
-                    }
-                }
-            }
-            for(int i = 0; i < N; i++)
-                System.out.println(Arrays.toString(count[i]));
-            System.out.println();
-        }
-        System.out.println(result);
-    }
     static boolean isIn(int dx, int dy) {
         return dx >= 0 && dy >= 0 && dx < N && dy < M;
     }
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer token = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(token.nextToken());
+        M = Integer.parseInt(token.nextToken());
+        int[][] arr = new int[N][M];
+        boolean[][][] visited = new boolean[N][M][4];
+        for(int i = 0; i < N; i++) {
+            token = new StringTokenizer(br.readLine());
+            for(int j = 0; j < M; j++) {
+                arr[i][j] = Integer.parseInt(token.nextToken());
+            }
+        }
+        token = new StringTokenizer(br.readLine());
+        Node start = new Node(Integer.parseInt(token.nextToken())-1, Integer.parseInt(token.nextToken())-1, Integer.parseInt(token.nextToken())-1, 0);
+        token = new StringTokenizer(br.readLine());
+        Node end = new Node(Integer.parseInt(token.nextToken())-1, Integer.parseInt(token.nextToken())-1, Integer.parseInt(token.nextToken())-1, 0);
+        Queue<Node> que = new LinkedList<>();
+        visited[start.x][start.y][start.dir] = true;
+        que.add(start);
+        while(!que.isEmpty()) {
+            Node n = que.poll();
+            int x = n.x;
+            int y = n.y;
+            int d = n.dir;
+            int cnt = n.cnt;
 
+            if(x == end.x && y == end.y && d == end.dir) {
+                System.out.println(cnt);
+                break;
+            }
+            for(int i = 1; i < 4; i++) {
+                int dx = x + dir[d][0]*i;
+                int dy = y + dir[d][1]*i;
+                if(!isIn(dx, dy))
+                    continue;
+                if(arr[dx][dy] == 0) {
+                    if(!visited[dx][dy][d]) {
+                        visited[dx][dy][d] = true;
+                        que.add(new Node(dx, dy, d, cnt+1));
+                    }
+                }
+                else
+                    break;
+            }
+            for(int i = 0; i < 4; i++) {
+                if(d != i && !visited[x][y][i]) {
+                    int turn = 1;
+                    if(d == 0 && i == 1)
+                        turn++;
+                    else if(d == 1 && i == 0)
+                        turn++;
+                    else if(d == 2 && i == 3)
+                        turn++;
+                    else if(d == 3 && i == 2)
+                        turn++;
+                    visited[x][y][i] = true;
+                    que.add(new Node(x, y, i, cnt+turn));
+                }
+            }
+        }
+
+    }
 }
+/*
+10 10
+0 1 1 1 0 0 0 0 0 1
+0 0 0 0 0 1 1 1 1 1
+0 0 0 0 0 1 1 1 1 1
+0 1 0 0 1 1 1 1 1 1
+0 0 0 1 0 0 0 1 1 1
+0 1 1 1 0 0 0 0 0 1
+0 0 0 1 1 0 0 0 1 1
+0 1 0 1 1 1 1 0 1 1
+0 0 0 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 0 1 1
+1 9 1
+9 1 3
+
+9 12
+0 0 0 0 0 0 0 0 0 0 0 1
+0 1 1 1 1 0 0 1 1 1 1 0
+0 0 0 0 0 0 0 1 1 1 1 0
+0 1 1 1 1 0 0 1 1 1 1 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 1 1 1 1 0 0 1 1 1 1 0
+0 1 1 1 1 0 0 0 0 0 0 0
+0 1 1 1 1 0 0 1 1 1 1 0
+1 0 0 0 0 0 0 0 0 0 0 0
+1 1 3
+9 12 3
+ */

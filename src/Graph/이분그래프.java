@@ -12,8 +12,8 @@ public class 이분그래프 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        int N = Integer.parseInt(br.readLine());
-        StringTokenizer token = null;
+        StringTokenizer token = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(token.nextToken());
         loop: for(int num = 0; num < N; num++) {
             token = new StringTokenizer(br.readLine());
             V = Integer.parseInt(token.nextToken());
