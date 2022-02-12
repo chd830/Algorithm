@@ -1,4 +1,4 @@
-package DFS;
+package BruteForce;
 
 import java.util.*;
 import java.io.*;
