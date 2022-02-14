@@ -1,4 +1,4 @@
-package 브루트포스;
+package BruteForce;
 
 import java.util.*;
 
