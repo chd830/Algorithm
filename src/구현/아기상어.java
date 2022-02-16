@@ -10,6 +10,7 @@ public class 아기상어 {
         int y;
         int val;
         int dist;
+
         Node(int x, int y, int val, int dist) {
             this.x = x;
             this.y = y;
@@ -18,81 +19,92 @@ public class 아기상어 {
         }
 
         @Override
+        public String toString() {
+            return "Node{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", val=" + val +
+                    ", dist=" + dist +
+                    '}';
+        }
+
+        @Override
         public int compareTo(Node o) {
-            if(this.val == o.val) {
-                if(this.dist == o.dist)
+            if (this.dist == o.dist) {
+                if (this.x == o.x)
                     return Integer.compare(this.y, o.y);
-                return Integer.compare(this.dist, o.dist);
+                return Integer.compare(this.x, o.x);
             }
-            return Integer.compare(this.val, o.val);
+            return Integer.compare(this.dist, o.dist);
         }
     }
+
     static int N;
-    static int[][] arr;
     static Node shark;
+    static int[][] arr;
     static PriorityQueue<Node> que;
+    static int[][] dir = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+    static int[][] count;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
         arr = new int[N][N];
-        StringTokenizer token = null;
+        count = new int[N][N];
         shark = null;
-        for(int i = 0; i < N; i++) {
-            token = new StringTokenizer(br.readLine());
-            for(int j = 0; j < N; j++) {
+        que = new PriorityQueue<>();
+        for (int i = 0; i < N; i++) {
+            StringTokenizer token = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
                 arr[i][j] = Integer.parseInt(token.nextToken());
-                if(arr[i][j] == 9)
+                if (arr[i][j] == 9)
                     shark = new Node(i, j, arr[i][j], 0);
             }
         }
-        for(int i = 0 ;i < N; i++)
-            System.out.println(Arrays.toString(arr[i]));
-        System.out.println();
-        setFish();
+        arr[shark.x][shark.y] = 0;
         int size = 2;
-        int count = 0;
+        int cnt = 0;
         int time = 0;
-        while(!que.isEmpty() && size > que.peek().val) {
+        int idx = 1;
+        setFish(shark.x, shark.y, size);
+        while(!que.isEmpty()) {
             Node n = que.poll();
-            count++;
-            boolean[][] visited = new boolean[N][N];
-            Queue<Node> que = new LinkedList<>();
-            que.add(shark);
-            visited[shark.x][shark.y] = true;
-            while(!que.isEmpty()) {
-                Node q = que.poll();
-                if(q.x == n.x && q.y == n.y) {
-                    time += Math.abs(n.x-shark.x)+Math.abs(n.y-shark.y);
-                    shark = new Node(q.x, q.y, 9, 0);
-                    arr[q.x][q.y] = 9;
-                    break;
-                }
-                for(int d = 0; d < 4; d++) {
-                    int dx = q.x+dir[d][0];
-                    int dy = q.y+dir[d][1];
-                    if(dx >= 0 && dy >= 0 && dx < N && dy < N && !visited[dx][dy] && arr[dx][dy] <= size) {
-                        visited[dx][dy] = true;
-                        que.add(new Node(dx, dy, arr[dx][dy], 0));
-                    }
-                }
-
-            }
-            if(size == count) {
+            if(n.val == size)
+                continue;
+            time += n.dist;
+            count[n.x][n.y] = idx++;
+            cnt++;
+            shark = new Node(n.x, n.y, 9, 0);
+            arr[n.x][n.y] = 0;
+            if(size == cnt) {
                 size++;
-                count = 0;
+                cnt = 0;
             }
-            setFish();
+            setFish(shark.x, shark.y, size);
         }
         System.out.println(time);
-
     }
-    static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    static void setFish() {
+    static boolean isIn(int x, int y) {
+        return x >= 0 && y >= 0 && x < N && y < N;
+    }
+    static void setFish(int x, int y, int size) {
         que = new PriorityQueue<>();
-        for(int i = 0; i < N; i++) {
-            for(int j =0 ; j < N; j++) {
-                if(arr[i][j] != 9 && arr[i][j] != 0)
-                    que.add(new Node(i, j, arr[i][j], Math.abs(i-shark.x)+Math.abs(j-shark.y)));
+        Queue<Node> visit = new LinkedList<>();
+        visit.add(new Node(x, y, 0, 0));
+        boolean[][] visited = new boolean[N][N];
+        visited[x][y] = true;
+        while(!visit.isEmpty()) {
+            Node n = visit.poll();
+            for(int d = 0; d < 4; d++) {
+                int dx = n.x + dir[d][0];
+                int dy = n.y + dir[d][1];
+                if(isIn(dx, dy) && !visited[dx][dy] && arr[dx][dy] <= size) {
+                    visited[dx][dy] = true;
+                    visit.add(new Node(dx, dy, arr[dx][dy], n.dist+1));
+                    if(arr[dx][dy] != 0 && arr[dx][dy] < size) {
+                        que.add(new Node(dx, dy, arr[dx][dy], n.dist+1));
+//                        que.add(new Node(dx, dy, arr[dx][dy], Math.abs(dx-shark.x)+Math.abs(dy-shark.y)));
+                    }
+                }
             }
         }
     }
