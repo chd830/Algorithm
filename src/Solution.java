@@ -1280,53 +1280,50 @@ import java.util.*;
 //    }
 //}
 
-//class Solution {
-//    public static void main(String[] args) {
-//        System.out.println(solution(new int[] {14, 6, 5, 11, 3, 9, 2, 10}));
-//        System.out.println(solution(new int[] {1, 3, 2, 5, 4}));
-//    }
-//    static int[] visited;
-//    public static int solution(int sticker[]) {
-//        int len = sticker.length;
-//        visited = new int[len];
-//        max = 0;
-//        recur(0, 0, sticker);
-//        return max;
-//    }
-//    static int max;
-//    static void recur(int idx, int sum, int[] sticker) {
-//        boolean flag = false;
-//        for(int i = 0; i < visited.length; i++) {
-//            if(visited[i] == 0) {
-//                flag = true;
-//                if(i == 0)
-//                    visited[visited.length-1]++;
-//                else
-//                    visited[i-1]++;
-//                if(i < visited.length-1)
-//                    visited[i+1]++;
-//                else
-//                    visited[0]++;
-//                visited[i]++;
-//                recur(idx+1, sum+sticker[i], sticker);
-//                if(i > 0)
-//                    visited[i-1]--;
-//                else
-//                    visited[visited.length-1]--;
-//                if(i < visited.length-1)
-//                    visited[i+1]--;
-//                else
-//                    visited[0]--;
-//                visited[i]--;
-//            }
-//        }
-//        if(!flag) {
-////            for(int i : list)
-////                System.out.print(i+"\t");
-////            System.out.println("SUM: "+sum);
-//            max = Math.max(max, sum);
-//            return;
-//        }
-//    }
-//}
+class Solution {
+    public static void main(String[] args) {
+        System.out.println(solution(new int[] {14, 6, 5, 11, 3, 9, 2, 10}));
+        System.out.println(solution(new int[] {1, 3, 2, 5, 4}));
+    }
+    static int[] visited;
+    public static int solution(int sticker[]) {
+        int len = sticker.length;
+        visited = new int[len];
+        max = 0;
+        recur(0, 0, sticker);
+        return max;
+    }
+    static int max;
+    static void recur(int idx, int sum, int[] sticker) {
+        boolean flag = false;
+        for(int i = idx; i < visited.length; i++) {
+            if(visited[i] == 0) {
+                flag = true;
+                if(i == 0)
+                    visited[visited.length-1]++;
+                else
+                    visited[i-1]++;
+                if(i < visited.length-1)
+                    visited[i+1]++;
+                else
+                    visited[0]++;
+                visited[i]++;
+                recur(idx+1, sum+sticker[i], sticker);
+                if(i > 0)
+                    visited[i-1]--;
+                else
+                    visited[visited.length-1]--;
+                if(i < visited.length-1)
+                    visited[i+1]--;
+                else
+                    visited[0]--;
+                visited[i]--;
+            }
+        }
+        if(!flag) {
+            max = Math.max(max, sum);
+            return;
+        }
+    }
+}
 
