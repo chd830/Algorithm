@@ -1,4 +1,4 @@
-package 구현;
+package BFS;
 
 import java.util.*;
 import java.io.*;
