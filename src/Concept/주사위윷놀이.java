@@ -46,7 +46,7 @@ public class 주사위윷놀이 {
 					continue out;
 			}
 			pos[i] = next;
-			dfs(idx + 1, score + map[next][0]);
+			dfs(idx + 1, score + map[0][next]);
 			pos[i] = now;
 		}
 	}
