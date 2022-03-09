@@ -6,18 +6,18 @@ import java.io.*;
 // https://www.acmicpc.net/problem/1922
 public class 네트워크연결 {
     static class Computer implements Comparable<Computer> {
-        int vertex;
+        int to;
         int dist;
-        Computer(int vertex, int val) {
-            this.vertex = vertex;
-            this.dist = val;
+        Computer(int to, int dist) {
+            this.to = to;
+            this.dist = dist;
         }
 
         @Override
         public String toString() {
             return "Computer{" +
-                    ", to=" + vertex +
-                    ", val=" + dist +
+                    ", to=" + to +
+                    ", dist=" + dist +
                     '}';
         }
 
@@ -56,7 +56,7 @@ public class 네트워크연결 {
             for(int i = 1; i <= N; i++) {
                 if(visited[i]) {
                     for(Computer node : list[i]) {
-                        if(!visited[node.vertex]) {
+                        if(!visited[node.to]) {
                             if (min == null) {
                                 min = node;
                             } else {
@@ -67,7 +67,7 @@ public class 네트워크연결 {
                     }
                 }
             }
-            visited[min.vertex] = true;
+            visited[min.to] = true;
             sum += min.dist;
             cnt++;
         }
