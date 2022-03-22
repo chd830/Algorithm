@@ -51,7 +51,7 @@ public class 다익스트라 {
         boolean[] check = new boolean[N];
         int distance[] = new int[N];
         for (int i = 0; i < N; ++i) {
-            distance[i] = Integer.MAX_VALUE;
+            distance[i] = INF;
         }
         // 시작점 추가 및 기본값 0으로 초기화
         que.add(new Node(v, 0));
@@ -60,7 +60,7 @@ public class 다익스트라 {
 
         // 첫 시작점에서 갈 수 있는 위치 큐에 추가하기
         for (int i = 0; i < N; ++i) {
-            if (!check[i] && maps[v][i] != Integer.MAX_VALUE) {
+            if (!check[i] && maps[v][i] != INF) {
                 distance[i] = maps[v][i];
                 que.add(new Node(maps[v][i], i));
             }
@@ -75,7 +75,7 @@ public class 다익스트라 {
 
             for (int i = 0; i < N; ++i) {
                 // 방문하지 않았고 방문할 수 있는 지점이
-                if (!check[i] && maps[curIdx][i] != Integer.MAX_VALUE) {
+                if (!check[i] && maps[curIdx][i] != INF) {
                     // 현재거리+현재거리 가 지금까지 온 거리보다 짧을 때 변경 및 que에 추가
                     if (distance[curIdx] + maps[curIdx][i] < distance[i]) {
                         distance[i] = distance[curIdx] + maps[curIdx][i];
@@ -90,5 +90,4 @@ public class 다익스트라 {
             System.out.println("");
         }
     }
-
 }

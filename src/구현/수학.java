@@ -7,10 +7,10 @@ public class 수학 {
     public static void main(String[] args) {
 //        System.out.println(solution(12));
 //        System.out.println(solution(4));
-//        System.out.println(solution(5));
+        System.out.println(solution(500000));
 
 //        System.out.println(solution((long)4));
-        System.out.println(solution((long)11));
+//        System.out.println(solution((long)11));
 //        System.out.println(solution((long)37));
     }
     /**
@@ -18,16 +18,25 @@ public class 수학 {
      * 세 쌍(Pythagorean triple)이라고 합니다. 세 개의 자연수 a, b, c( a<=b<=c<=500,000)
      * 중 b 값이 매개변수로 주어 질 때, c값을 return 하도록 solution 함수를 작성하세요.
      */
+    /*
+    public static int solution(int b) {
+        int answer = -1;
+        for(long a = 1; a < b; a++) {
+        long c = a*a + (long)b*;
+        long sq = (c);
+        if(sq*sq == c) answer++;
+        return answer;
+    }
+     */
     public static int solution(int b) {
         int answer = -1;
         int a = 1;
         while(a < b) {
             int sum = a*a + b*b;
-            for(int i = b; i < a+b; i++) {
-                if(i*i == sum) {
-                    System.out.println(a+"^2 + "+b+"^2 = "+i+"^2");
-                    answer++;
-                    break;
+            for(int c = b; c < a+b; c++) {
+                if(c*c == sum) {
+                    System.out.println(a+"^2 + "+b+"^2 = "+c+"^2");
+                    return c;
                 }
             }
             a++;
@@ -47,6 +56,21 @@ public class 수학 {
      * 수 있는 수와 3의 거듭 제곱수를 합쳐서 순서대로 배치하면 1, 3, 4, 9, 10...이 됩니다.
      * 이렇게 배치한 숫자의 n번째 숫자가 무엇인지를 알려주는 함수 solution 을 완성해주세요.
      */
+    // 삼진법으로 계산을 하면 간단하게 할 수 있음. 근데 제곱수를 두번이상 못더하니까 이진수처럼 접근하면 됨
+    // N을 이진법으로 변환 후 3을 곱해서 값을 가져옴.
+    /*
+    // O(logN)
+    public static long solution(long n) {
+        long answer = 0;
+        long b = 1;
+        while(n != 0) {
+            long c = n&1;
+            answer += (c*b);
+            // 삼진법으로 계산하기 위해 곱하기
+            b *= 3;
+            N /= 2;
+        }
+     */
     public static long solution(long n) {
         int[] d = new int[1234567];
         d[1] = 1;
@@ -62,7 +86,6 @@ public class 수학 {
         System.out.println(n+"의 위치는 3^"+(idx-1)+"인 "+(Math.pow(3, idx-1)+"보다 크다."));
         long value = d[idx]-n;
         long answer = 0;
-        // 조합으로 순서 가져와야함
         return answer;
     }
 }
