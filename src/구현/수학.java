@@ -71,21 +71,30 @@ public class 수학 {
             N /= 2;
         }
      */
+    /*
+    d[0]: 1
+    d[1]: 3 3+1
+    d[2]: 9 9+1 9+3 9+3+1
+    d[3]: 27 27+1 27+3 27+3+1 27+9 27+9+1 27+9+3
+    d[4]: 81 81+1 81+3 81+3+1 81+9 81+9+1 81+9+3 81+27 81+27+1 81+27+3 81+27+9
+    d[n]은 3^n의 수에 이전의 값을 더해서 접근
+
+     */
     public static long solution(long n) {
-        int[] d = new int[1234567];
-        d[1] = 1;
-        d[2] = 3;
+        int i = 1;
         int idx = 0;
-        for(int i = 3; i < d.length; i++) {
-            d[i] = i+(2*(i-2)-1)+d[i-1];
-            if(d[i] > n) {
-                idx = i - 1;
-                break;
-            }
+        while(i <= n) {
+            i *= 2;
+            idx++;
         }
-        System.out.println(n+"의 위치는 3^"+(idx-1)+"인 "+(Math.pow(3, idx-1)+"보다 크다."));
-        long value = d[idx]-n;
-        long answer = 0;
-        return answer;
+        i /= 2;
+        idx--;
+        int number = 1;
+        for(i = 0; i < idx; i++)
+            number *= 3;
+        if(i == n)
+            return number;
+        else
+            return number+solution(n-i);
     }
 }
