@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 //////////////import java.util.*;
 //////////////
 //////////////class Solution {
@@ -1327,3 +1331,262 @@
 //    }
 //}
 //
+
+
+// LINE
+
+//class Solution {
+//    public static void main(String[] args) {
+//        System.out.println(solution(new String[] {"team_name : db application_name : dbtest error_level : info message : test", "team_name : test application_name : I DONT CARE error_level : error message : x", "team_name : ThisIsJustForTest application_name : TestAndTestAndTestAndTest error_level : test message : IAlwaysTestingAndIWillTestForever", "team_name : oberervability application_name : LogViewer error_level : error"}));
+//        System.out.println(solution(new String[] {"team_name : MyTeam application_name : YourApp error_level : info messag : IndexOutOfRange", "no such file or directory", "team_name : recommend application_name : recommend error_level : info message : RecommendSucces11", "team_name : recommend application_name : recommend error_level : info message : Success!", "   team_name : db application_name : dbtest error_level : info message : test", "team_name     : db application_name : dbtest error_level : info message : test", "team_name : TeamTest application_name : TestApplication error_level : info message : ThereIsNoError"}));
+//    }
+//    public static int solution(String[] logs) {
+//        int answer = 0;
+//        loop: for(String log : logs) {
+//            if(log.charAt(0) != 't')
+//                continue;
+//            if(log.length() > 100)
+//                continue;
+//            String[] splits = log.split(" ");
+//            String[] order = {"team_name", "application_name", "error_level", "message"};
+//            for(int i  = 0; i < order.length; i++) {
+//                if(!log.contains(order[i]))
+//                    continue loop;
+//            }
+//            int idx = 0;
+//            boolean flag = true;
+//            for(String split : splits) {
+//                if(split.equals(" "))
+//                    continue loop;
+//                if(split.equals(":"))
+//                    continue;
+//                if(flag && split.equals(order[idx])) {
+//                    idx++;
+//                    flag = false;
+//                    continue;
+//                }
+//                else if(flag)
+//                    continue loop;
+//                if(!isAlph(split))
+//                    continue loop;
+//                flag = true;
+//            }
+//            System.out.println(log);
+//            answer++;
+//        }
+//        return logs.length-answer;
+//    }
+//    static boolean isAlph(String str) {
+//        for (char c : str.toCharArray()){
+//            if(!Character.isAlphabetic(c))
+//                return false;
+//        }
+//        return true;
+//    }
+//}
+//class Solution {
+//    public static void main(String[] args) {
+//        System.out.println(solution(new String[] {"line in line", "LINE", "in lion"}, 5));
+//        System.out.println(solution(new String[] {"ABcD", "bdbc", "a", "Line neWs"}, 7));
+//    }
+//    public static int solution(String[] sentences, int n) {
+//        int answer = 0;
+//        int large = 0;
+//        for(int i = 0; i < sentences.length; i++) {
+//            HashSet<Character> set = new HashSet<Character>();
+//            large = 0;
+//            String sentence = sentences[i];
+//            int cnt = 0;
+//            for(char c : sentence.toCharArray()) {
+//                if(c >= 'A' && c <= 'Z') {
+//                    c += 32;
+//                    large++;
+//                }
+//                set.add(c);
+//            }
+//            if(set.size() > n)
+//                continue;
+//            loop: for(int j = 0; j < sentences.length; j++) {
+//                if(i == j) {
+//                    cnt += sentences[j].length() + large;
+//                    continue;
+//                }
+//                for(char c : sentences[j].toCharArray()) {
+//                    if((large != 0 && c >= 'A' && c <= 'Z') || c != ' ' && !set.contains(c))
+//                        continue loop;
+//                }
+//                cnt += sentences[j].length();
+//            }
+//            answer = Math.max(answer, cnt);
+//        }
+//        return answer;
+//    }
+//}
+
+//import java.util.*;
+//
+//class Solution {
+//    public static void main(String[] args) {
+//        System.out.println(Arrays.toString(solution(3, new String[] {"development","marketing","hometask"},  new String[] {"recruitment","education","officetask"}, new String[] {"1 development hometask","1 recruitment marketing","2 hometask","2 development marketing hometask","3 marketing","3 officetask","3 development"})));
+//        System.out.println();
+//        System.out.println(Arrays.toString(solution(2, new String[] {"design"}, new String[] {"building", "supervise"}, new String[] {"2 design","1 supervise building design","1 design","2 design"})));
+//    }
+//    static boolean isRemote(String[] remote_tasks, String work) {
+//        for(String remote : remote_tasks) {
+//            if(remote.equals(work))
+//                return true;
+//        }
+//        return false;
+//    }
+//    static boolean isOffice(String[] office_tasks, String work) {
+//        for(String remote : office_tasks) {
+//            if(remote.equals(work))
+//                return true;
+//        }
+//        return false;
+//    }
+//    public static int[] solution(int num_teams, String[] remote_tasks, String[] office_tasks, String[] employees) {
+//        int[] office = new int[employees.length];
+//        for(int i = 0; i < employees.length; i++) {
+//            String employee = employees[i];
+//            for(String s : employee.split(" ")) {
+//                if(Character.isDigit(s.charAt(0)))
+//                    continue;
+//                if(isOffice(office_tasks, s)) {
+//                    office[i] = 1;
+//                    break;
+//                }
+//                if(isRemote(remote_tasks, s)) {
+//                    office[i] = -1;
+//                }
+//            }
+//        }
+//        System.out.println(Arrays.toString(office));
+//        boolean[] team = new boolean[num_teams+1];
+//        for(int j = 1; j <= num_teams; j++) {
+//            for(int i = 0; i < employees.length; i++) {
+//                if (employees[i].charAt(0) - '0' == j) {
+//                    if (office[i] == 1)
+//                        team[j] = true;
+//                }
+//            }
+//        }
+//        System.out.println(Arrays.toString(team));
+//        for(int i = 1; i <= num_teams; i++) {
+//            if(!team[i]) {
+//                for(int j = 0; j < employees.length; j++) {
+//                    if(employees[j].charAt(0)-'0' == i && office[j] == -1) {
+//                        office[j] = 1;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//        List<Integer> list = new ArrayList<>();
+//        for(int i = 0; i < office.length; i++) {
+//            if(office[i] == -1)
+//                list.add(i+1);
+//        }
+//        System.out.println(Arrays.toString(office));
+//        Collections.sort(list);
+//        int[] answer = new int[list.size()];
+//        for(int i = 0; i < list.size(); i++)
+//            answer[i] = list.get(i);
+//        return answer;
+//    }
+//}
+
+class Solution {
+    public static void main(String[] args) {
+        System.out.println(solution(new int[] {3, 7, 2, 4}, new int[] {4, 5, 5, 2}));
+        System.out.println(solution(new int[] {6, 2, 2, 6}, new int[] {4, 4, 4, 4}));
+        System.out.println(solution(new int[] {3, 2, 1}, new int[] {1, 2, 3}));
+        System.out.println(solution(new int[] {1, 1, 1, 197}, new int[] {50, 50, 50, 50}));
+    }
+    public static int solution(int[] arr, int[] brr) {
+        int answer = 0;
+        int len = arr.length;
+        for(int i = 0; i < len-1; i++) {
+            int tmp = 0;
+            if(arr[i] != brr[i]) {
+                tmp = brr[i]-arr[i];
+                arr[i] += tmp;
+                arr[i+1] -= tmp;
+                answer++;
+            }
+        }
+        return answer;
+    }
+}
+
+//import java.util.*;
+//import java.io.*;
+//
+//class Solution {
+//    public static void main(String[] args) {
+////        System.out.println(solution(new int[] {2, 8, 3, 6, 1, 9, 1, 9} , 2));
+////        System.out.println(solution(new int[] {7, 6, 8, 9, 10} , 1));
+//        System.out.println(solution(new int[] {100002, 100008, 100003, 100006, 100001, 100009, 100001, 100009}, 2));
+//    }
+//    public static long solution(int[] abilities, int k) {
+////        long[] people = new long[100000001];
+////        long[] copy = Arrays.copyOf(people, people.length);
+//        list = new ArrayList<>();
+////        int max = 0;
+//        int min = Integer.MAX_VALUE;
+//        for(int ability : abilities) {
+////            people[ability]++;
+//            list.add(ability);
+////            max = Math.max(max, ability);
+//            min = Math.min(min, ability);
+//        }
+//        Collections.sort(list);
+//
+//        if(abilities.length%2 == 1) {
+//            long max = 0;
+//            max = Math.max(count(list, k), max);
+//            list.remove(list.get(0));
+//            max = Math.max(max, count(list, k-1)+min);
+//            return max;
+////            return Math.max(count(people, k, max, min), count(copy, k-1, max, min)+min);
+//        }
+//        return count(list, k);
+////        return count(people, k, max, min);
+//    }
+//    static List<Integer> list;
+//    static long count(List<Integer> list, int k) {
+//        boolean turn = true;
+//        boolean flag = false;
+//        long mine = 0;
+////        long others = 0;
+//        int end = list.size()-1;
+//         while (end >= 0) {
+//            if (end > 1 && list.get(end).equals(list.get(end-1))) {
+//                mine += list.get(end);
+////                others += list.get(end-1);
+//                end -= 2;
+//                continue;
+//            }
+//            if(k > 0 && turn && !flag) {
+//                mine += list.get(end--);
+//                k--;
+//                flag = true;
+//                continue;
+//            }
+//            if(turn) {
+////               others += list.get(end);
+//                end--;
+//                turn = false;
+//                if(flag) {
+//                    flag = false;
+//                    turn = true;
+//                }
+//            }
+//            else if(!turn) {
+//                mine += list.get(end--);
+//                turn = true;
+//            }
+//        }
+//        return mine;
+//    }
+//}
