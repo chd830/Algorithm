@@ -1384,6 +1384,7 @@ import java.util.HashMap;
 //        return true;
 //    }
 //}
+
 //class Solution {
 //    public static void main(String[] args) {
 //        System.out.println(solution(new String[] {"line in line", "LINE", "in lion"}, 5));
@@ -1496,97 +1497,97 @@ import java.util.HashMap;
 //    }
 //}
 
-class Solution {
-    public static void main(String[] args) {
-        System.out.println(solution(new int[] {3, 7, 2, 4}, new int[] {4, 5, 5, 2}));
-        System.out.println(solution(new int[] {6, 2, 2, 6}, new int[] {4, 4, 4, 4}));
-        System.out.println(solution(new int[] {3, 2, 1}, new int[] {1, 2, 3}));
-        System.out.println(solution(new int[] {1, 1, 1, 197}, new int[] {50, 50, 50, 50}));
-    }
-    public static int solution(int[] arr, int[] brr) {
-        int answer = 0;
-        int len = arr.length;
-        for(int i = 0; i < len-1; i++) {
-            int tmp = 0;
-            if(arr[i] != brr[i]) {
-                tmp = brr[i]-arr[i];
-                arr[i] += tmp;
-                arr[i+1] -= tmp;
-                answer++;
-            }
-        }
-        return answer;
-    }
-}
-
-//import java.util.*;
-//import java.io.*;
-//
 //class Solution {
 //    public static void main(String[] args) {
-////        System.out.println(solution(new int[] {2, 8, 3, 6, 1, 9, 1, 9} , 2));
-////        System.out.println(solution(new int[] {7, 6, 8, 9, 10} , 1));
-//        System.out.println(solution(new int[] {100002, 100008, 100003, 100006, 100001, 100009, 100001, 100009}, 2));
+//        System.out.println(solution(new int[] {3, 7, 2, 4}, new int[] {4, 5, 5, 2}));
+//        System.out.println(solution(new int[] {6, 2, 2, 6}, new int[] {4, 4, 4, 4}));
+//        System.out.println(solution(new int[] {3, 2, 1}, new int[] {1, 2, 3}));
+//        System.out.println(solution(new int[] {1, 1, 1, 197}, new int[] {50, 50, 50, 50}));
 //    }
-//    public static long solution(int[] abilities, int k) {
-////        long[] people = new long[100000001];
-////        long[] copy = Arrays.copyOf(people, people.length);
-//        list = new ArrayList<>();
-////        int max = 0;
-//        int min = Integer.MAX_VALUE;
-//        for(int ability : abilities) {
-////            people[ability]++;
-//            list.add(ability);
-////            max = Math.max(max, ability);
-//            min = Math.min(min, ability);
-//        }
-//        Collections.sort(list);
-//
-//        if(abilities.length%2 == 1) {
-//            long max = 0;
-//            max = Math.max(count(list, k), max);
-//            list.remove(list.get(0));
-//            max = Math.max(max, count(list, k-1)+min);
-//            return max;
-////            return Math.max(count(people, k, max, min), count(copy, k-1, max, min)+min);
-//        }
-//        return count(list, k);
-////        return count(people, k, max, min);
-//    }
-//    static List<Integer> list;
-//    static long count(List<Integer> list, int k) {
-//        boolean turn = true;
-//        boolean flag = false;
-//        long mine = 0;
-////        long others = 0;
-//        int end = list.size()-1;
-//         while (end >= 0) {
-//            if (end > 1 && list.get(end).equals(list.get(end-1))) {
-//                mine += list.get(end);
-////                others += list.get(end-1);
-//                end -= 2;
-//                continue;
-//            }
-//            if(k > 0 && turn && !flag) {
-//                mine += list.get(end--);
-//                k--;
-//                flag = true;
-//                continue;
-//            }
-//            if(turn) {
-////               others += list.get(end);
-//                end--;
-//                turn = false;
-//                if(flag) {
-//                    flag = false;
-//                    turn = true;
-//                }
-//            }
-//            else if(!turn) {
-//                mine += list.get(end--);
-//                turn = true;
+//    public static int solution(int[] arr, int[] brr) {
+//        int answer = 0;
+//        int len = arr.length;
+//        for(int i = 0; i < len-1; i++) {
+//            int tmp = 0;
+//            if(arr[i] != brr[i]) {
+//                tmp = brr[i]-arr[i];
+//                arr[i] += tmp;
+//                arr[i+1] -= tmp;
+//                answer++;
 //            }
 //        }
-//        return mine;
+//        return answer;
 //    }
 //}
+
+import java.util.*;
+import java.io.*;
+
+class Solution {
+    public static void main(String[] args) {
+//        System.out.println(solution(new int[] {2, 8, 3, 6, 1, 9, 1, 9} , 2));
+//        System.out.println(solution(new int[] {7, 6, 8, 9, 10} , 1));
+        System.out.println(solution(new int[] {100002, 100008, 100003, 100006, 100001, 100009, 100001, 100009}, 2));
+    }
+    public static long solution(int[] abilities, int k) {
+//        long[] people = new long[100000001];
+//        long[] copy = Arrays.copyOf(people, people.length);
+        list = new ArrayList<>();
+//        int max = 0;
+        int min = Integer.MAX_VALUE;
+        for(int ability : abilities) {
+//            people[ability]++;
+            list.add(ability);
+//            max = Math.max(max, ability);
+            min = Math.min(min, ability);
+        }
+        Collections.sort(list);
+
+        if(abilities.length%2 == 1) {
+            long max = 0;
+            max = Math.max(count(list, k), max);
+            list.remove(list.get(0));
+            max = Math.max(max, count(list, k-1)+min);
+            return max;
+//            return Math.max(count(people, k, max, min), count(copy, k-1, max, min)+min);
+        }
+        return count(list, k);
+//        return count(people, k, max, min);
+    }
+    static List<Integer> list;
+    static long count(List<Integer> list, int k) {
+        boolean turn = true;
+        boolean flag = false;
+        long mine = 0;
+//        long others = 0;
+        int end = list.size()-1;
+         while (end >= 0) {
+            if (end > 1 && list.get(end).equals(list.get(end-1))) {
+                mine += list.get(end);
+//                others += list.get(end-1);
+                end -= 2;
+                continue;
+            }
+            if(k > 0 && turn && !flag) {
+                mine += list.get(end--);
+                k--;
+                flag = true;
+                continue;
+            }
+            if(turn) {
+//               others += list.get(end);
+                end--;
+                turn = false;
+                if(flag) {
+                    flag = false;
+                    turn = true;
+                }
+            }
+            else if(!turn) {
+                mine += list.get(end--);
+                turn = true;
+            }
+        }
+        return mine;
+    }
+}
