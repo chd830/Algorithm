@@ -1592,21 +1592,30 @@
 //    }
 //}
 
-import java.util.*;
-
-class Solution {
+//import java.util.*;
+//
+//class Solution {
 //    public static void main(String[] args) {
-////        int[][] answer = solution(new int[][] {{0, 5, 2, 4, 1}, {5, 1, 3, 9, 6}, {2, 3, 0, 6, 3}, {4, 9, 6, 0, 3}, {1, 6, 3, 3, 0}});
-//        int[][] answer = solution(new int[][] {{0, 5}, {5, 0}});
-//        for(int i = 0; i < answer.length; i++)
-//            System.out.println(Arrays.toString(answer[i]));
+//
+//        // 3 - 4 - 0 - 2 - 1, 1 - 2 - 0 - 4 - 3
+////        int[][] answer = solution(new int[][]{
+////                {0, 5, 2, 4, 1},
+////                {5, 1, 3, 9, 6},
+////                {2, 3, 0, 6, 3},
+////                {4, 9, 6, 0, 3},
+////                {1, 6, 3, 3, 0}});
+////        int[][] answer = solution(new int[][] {{0, 5}, {5, 0}});
 ////        solution(new int[][] {{0, 2, 3, 1}, {2, 0, 1, 1}, {3, 1, 0, 2}, {1, 1, 2, 0}});
+//
+//        for (int i = 0; i < answer.length; i++)
+//            System.out.println(Arrays.toString(answer[i]));
 //    }
-
+//
 //    static List<int[]> list;
 //    static boolean[] visited;
 //    static int len;
 //    static int[] arr;
+//
 //    public static int[][] solution(int[][] dist) {
 //        len = dist.length;
 //        visited = new boolean[len];
@@ -1614,163 +1623,166 @@ class Solution {
 //        arr = new int[len];
 //        perm(0, dist);
 //        int[][] answer = new int[list.size()][len];
-//        for(int i = 0; i < list.size(); i++)
+//        for (int i = 0; i < list.size(); i++)
 //            answer[i] = list.get(i);
 //        return answer;
 //    }
+//
 //    static boolean check(int idx, int[][] dist) {
 //        int i = 0;
-//        int j = idx-1;
-//        if(dist[arr[i]][arr[j-1]]+dist[arr[j]][arr[j-1]] != dist[arr[i]][arr[j]])
+//        int j = idx - 1;
+//        if (dist[arr[i]][arr[j - 1]] + dist[arr[j]][arr[j - 1]] != dist[arr[i]][arr[j]])
 //            return false;
 //        return true;
 //    }
+//
 //    static void perm(int idx, int[][] dist) {
-//        if(idx > 2 && !check(idx, dist))
+//        if (idx > 2 && !check(idx, dist))
 //            return;
-//        if(idx == len) {
+//        if (idx == len) {
 //            int[] copy = new int[len];
-//            for(int i = 0; i < len; i++)
+//            for (int i = 0; i < len; i++)
 //                copy[i] = arr[i];
 //            list.add(copy);
 //            return;
 //        }
-//        for(int i = 0; i < len; i++) {
-//            if(!visited[i]) {
+//        for (int i = 0; i < len; i++) {
+//            if (!visited[i]) {
 //                visited[i] = true;
 //                arr[idx] = i;
-//                perm(idx+1, dist);
+//                perm(idx + 1, dist);
 //                arr[idx] = 0;
 //                visited[i] = false;
 //            }
 //        }
 //    }
-
-//static int answer;
-//    static char[] alph = {'a', 'b', 'c'};
-//    static char[][] gridArr;
-//    static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-//    public static int solution(String[] grid) {
-//        answer = 0;
-//        gridArr = new char[grid.length][grid[0].length()];
-//        for(int i = 0; i < grid.length; i++) {
-//            for(int j = 0; j < grid[0].length(); j++) {
-//                gridArr[i][j] = grid[i].charAt(j);
-//            }
-//        }
-//        backtracking(0, 0);
-//        return answer;
-//    }
-//    static class Node {
-//        int x;
-//        int y;
-//        Node(int x, int y) {
-//            this.x = x;
-//            this.y = y;
-//        }
-//    }
-//    static void backtracking(int x, int y) {
-//        if(y == gridArr[0].length) {
-//            backtracking(x+1, 0);
-//            return;
-//        }
-//        if(x == gridArr.length) {
-////            for(int i = 0; i < gridArr.length; i++)
-////                System.out.println(Arrays.toString(gridArr[i]));
-////            System.out.println();
-//            int[] cnt = new int[3];
-//            boolean[][] visited = new boolean[gridArr.length][gridArr[0].length];
-//            for(int i = 0; i < gridArr.length; i++) {
-//                for(int j = 0; j < gridArr[0].length; j++) {
-//                    if(!visited[i][j]) {
-//                        visited[i][j] = true;
-//                        cnt[gridArr[i][j]-'0'-49]++;
-//                        Queue<Node> que = new LinkedList<>();
-//                        que.add(new Node(i, j));
-//                        char start = gridArr[i][j];
-//                        while(!que.isEmpty()) {
-//                            Node n = que.poll();
-//                            for(int d = 0; d < 4; d++) {
-//                                int dx = n.x + dir[d][0];
-//                                int dy = n.y + dir[d][1];
-//                                if(dx >= 0 && dy >= 0 && dx < gridArr.length && dy < gridArr[0].length && gridArr[dx][dy] == start && !visited[dx][dy]) {
-//                                    visited[dx][dy] = true;
-//                                    que.add(new Node(dx, dy));
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            for(int i = 0; i < 3; i++) {
-//                if(cnt[i] > 1)
-//                    return;
-//            }
-//            answer++;
-//            return;
-//        }
-//        if(gridArr[x][y] == '?') {
-//            for(int i = 0; i < 3; i++) {
-//                gridArr[x][y] = alph[i];
-//                backtracking(x, y+1);
-//                gridArr[x][y] = '?';
-//            }
-//        }
-//        else
-//            backtracking(x, y+1);
-//    }
-//    public static int solution(int n, int[][] edges, int k, int a, int b) {
-//        int answer = -1;
+//}
 //
-//        return answer;
-//    }
-    public static void main(String[] args) {
-        System.out.println(solution(8, new int[][] {{0, 1}, {1, 2}, {2, 3}, {4, 0}, {5, 1}, {6, 1}, {7, 2}, {7, 3}, {4, 5}, {5, 6}, {6, 7}}, 4, 0, 3));
-        System.out.println(solution(5, new int[][] {{0, 1}, {1, 2}, {2, 3}, {1, 3}, {0, 3}, {3, 4}, {0, 4}}, 2, 0, 3));
-//        System.out.println(solution(2, new int[][] {{0, 1}, {0, 0}}, 0, 0, 1));
-    }
-    public static int solution(int n, int[][] edges, int k, int a, int b) {
-        int answer = 0;
-        node = new boolean[edges.length+edges.length];
-        list = new ArrayList<>();
-        cnt = new boolean[n];
-        node[0] = true;
-        list.add(a);
-        dfs(a, b, k, edges);
-        for(int[] edge : edges) {
-            if(cnt[edge[0]] && cnt[edge[1]])
-                answer++;
-        }
-        return answer;
-    }
-    static boolean[] node;
-    static boolean[] cnt;
-    static List<Integer> list;
-    static void dfs(int cur, int end, int k, int[][] edges) {
-        if(cur == end) {
-            for(int i : list)
-                cnt[i] = true;
-        }
-        if(k == 0) {
-            return;
-        }
-        for(int i = 0; i < edges.length; i++) {
-            int g = edges[i][1];
-            if(edges[i][0] == cur && !node[i] && !list.contains(i)) {
-                node[i] = true;
-                list.add(i);
-                dfs(g, end, k-1, edges);
-                list.remove(list.size()-1);
-                node[i] = false;
-            }
-            g = edges[i][0];
-            if(edges[i][1] == cur && !node[i] && !list.contains(i)) {
-                node[i] = true;
-                list.add(i);
-                dfs(g, end, k-1, edges);
-                list.remove(list.size()-1);
-                node[i] = false;
-            }
-        }
-    }
-}
+////static int answer;
+////    static char[] alph = {'a', 'b', 'c'};
+////    static char[][] gridArr;
+////    static int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+////    public static int solution(String[] grid) {
+////        answer = 0;
+////        gridArr = new char[grid.length][grid[0].length()];
+////        for(int i = 0; i < grid.length; i++) {
+////            for(int j = 0; j < grid[0].length(); j++) {
+////                gridArr[i][j] = grid[i].charAt(j);
+////            }
+////        }
+////        backtracking(0, 0);
+////        return answer;
+////    }
+////    static class Node {
+////        int x;
+////        int y;
+////        Node(int x, int y) {
+////            this.x = x;
+////            this.y = y;
+////        }
+////    }
+////    static void backtracking(int x, int y) {
+////        if(y == gridArr[0].length) {
+////            backtracking(x+1, 0);
+////            return;
+////        }
+////        if(x == gridArr.length) {
+//////            for(int i = 0; i < gridArr.length; i++)
+//////                System.out.println(Arrays.toString(gridArr[i]));
+//////            System.out.println();
+////            int[] cnt = new int[3];
+////            boolean[][] visited = new boolean[gridArr.length][gridArr[0].length];
+////            for(int i = 0; i < gridArr.length; i++) {
+////                for(int j = 0; j < gridArr[0].length; j++) {
+////                    if(!visited[i][j]) {
+////                        visited[i][j] = true;
+////                        cnt[gridArr[i][j]-'0'-49]++;
+////                        Queue<Node> que = new LinkedList<>();
+////                        que.add(new Node(i, j));
+////                        char start = gridArr[i][j];
+////                        while(!que.isEmpty()) {
+////                            Node n = que.poll();
+////                            for(int d = 0; d < 4; d++) {
+////                                int dx = n.x + dir[d][0];
+////                                int dy = n.y + dir[d][1];
+////                                if(dx >= 0 && dy >= 0 && dx < gridArr.length && dy < gridArr[0].length && gridArr[dx][dy] == start && !visited[dx][dy]) {
+////                                    visited[dx][dy] = true;
+////                                    que.add(new Node(dx, dy));
+////                                }
+////                            }
+////                        }
+////                    }
+////                }
+////            }
+////            for(int i = 0; i < 3; i++) {
+////                if(cnt[i] > 1)
+////                    return;
+////            }
+////            answer++;
+////            return;
+////        }
+////        if(gridArr[x][y] == '?') {
+////            for(int i = 0; i < 3; i++) {
+////                gridArr[x][y] = alph[i];
+////                backtracking(x, y+1);
+////                gridArr[x][y] = '?';
+////            }
+////        }
+////        else
+////            backtracking(x, y+1);
+////    }
+////    public static int solution(int n, int[][] edges, int k, int a, int b) {
+////        int answer = -1;
+////
+////        return answer;
+////    }
+////    public static void main(String[] args) {
+////        System.out.println(solution(8, new int[][] {{0, 1}, {1, 2}, {2, 3}, {4, 0}, {5, 1}, {6, 1}, {7, 2}, {7, 3}, {4, 5}, {5, 6}, {6, 7}}, 4, 0, 3));
+////        System.out.println(solution(5, new int[][] {{0, 1}, {1, 2}, {2, 3}, {1, 3}, {0, 3}, {3, 4}, {0, 4}}, 2, 0, 3));
+//////        System.out.println(solution(2, new int[][] {{0, 1}, {0, 0}}, 0, 0, 1));
+////    }
+////    public static int solution(int n, int[][] edges, int k, int a, int b) {
+////        int answer = 0;
+////        node = new boolean[edges.length+edges.length];
+////        list = new ArrayList<>();
+////        cnt = new boolean[n];
+////        node[0] = true;
+////        list.add(a);
+////        dfs(a, b, k, edges);
+////        for(int[] edge : edges) {
+////            if(cnt[edge[0]] && cnt[edge[1]])
+////                answer++;
+////        }
+////        return answer;
+////    }
+////    static boolean[] node;
+////    static boolean[] cnt;
+////    static List<Integer> list;
+////    static void dfs(int cur, int end, int k, int[][] edges) {
+////        if(cur == end) {
+////            for(int i : list)
+////                cnt[i] = true;
+////        }
+////        if(k == 0) {
+////            return;
+////        }
+////        for(int i = 0; i < edges.length; i++) {
+////            int g = edges[i][1];
+////            if(edges[i][0] == cur && !node[i] && !list.contains(i)) {
+////                node[i] = true;
+////                list.add(i);
+////                dfs(g, end, k-1, edges);
+////                list.remove(list.size()-1);
+////                node[i] = false;
+////            }
+////            g = edges[i][0];
+////            if(edges[i][1] == cur && !node[i] && !list.contains(i)) {
+////                node[i] = true;
+////                list.add(i);
+////                dfs(g, end, k-1, edges);
+////                list.remove(list.size()-1);
+////                node[i] = false;
+////            }
+////        }
+////    }
+////}
