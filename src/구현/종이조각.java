@@ -24,8 +24,46 @@ public class 종이조각 {
                 arr[i][j] = str.charAt(j)-'0';
             }
         }
-        next(0, 0);
+        beatmask();
+//        next(0, 0);
         System.out.println(max);
+    }
+    static void beatmask() {
+        // N*M-1자리의 정수를 만들 수 있음
+        for(int s = 0; s < (1<<(N*M)); s++) {
+            int sum = 0;
+            // 가로찾기. 해당자릿수의 숫자가 0
+            for(int i = 0; i < N; i++) {
+                int cur = 0;
+                for(int j = 0; j < M; j++) {
+                    int k = i*M+j;
+                    if((s&(1<<k)) == 0) {
+                        cur = cur*10 + arr[i][j];
+                    }
+                    else {
+                        sum += cur;
+                        cur = 0;
+                    }
+                }
+                sum += cur;
+            }
+            // 세로찾기. 해당자릿수의 숫자가 1
+            for(int j = 0; j < M; j++) {
+                int cur = 0;
+                for(int i = 0; i < N; i++) {
+                    int k = i*M+j;
+                    if((s&(1<<k)) != 0) {
+                        cur = cur*10+arr[i][j];
+                    }
+                    else {
+                        sum += cur;
+                        cur = 0;
+                    }
+                }
+                sum += cur;
+            }
+            max = Math.max(sum, max);
+        }
     }
     static void next(int idx, int sum) {
         int x = idx/M;
