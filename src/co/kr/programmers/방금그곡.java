@@ -10,61 +10,45 @@ public class 방금그곡 {
 //        System.out.println(solution("ABC", new String[] {"12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF"}));
 //        System.out.println(solution("A#", new String[] {"12:00,12:01,HELLO,A#"}));
 //        System.out.println(solution("A#", new String[] {"12:00,12:01,HELLO,A#", "12:00,12:06,FOO,A#"}));
-//        System.out.println(solution("CCB", new String[] {"03:00,03:10,FOO,CCB#CCB", "04:00,04:08,BAR,ABC"}));
+//        System.out.println(solution("CCB", new String[] {"03:00,03:08,adsd,CCB#CCB", "04:00,04:08,BAR,ABC"}));
 //        System.out.println(solution("CC#BCC#BCC#", new String[] {"03:00,03:08,FOO,CC#"}));
-        System.out.println(solution("CDEFGAC", new String[] {"23:00,00:06,HELLO,CDEFGA"}));
+//        System.out.println(solution("CDEFGACE#", new String[] {"23:00,00:06,HELLO,CDEFGACE#"}));
+        System.out.println(solution("ABC", new String[] {"12:00,12:14,HELLO,CDEFGAB", "11:00,11:14,WORLD,ABCDEF"}));
     }
 
     public static String solution(String m, String[] musicinfos) {
-        String answer = "(None)";
+        m = m.replaceAll("C#", "c");
+        m = m.replaceAll("D#", "d");
+        m = m.replaceAll("F#", "f");
+        m = m.replaceAll("G#", "g");
+        m = m.replaceAll("A#", "a");
+        m = m.replaceAll("E#", "e");
+        String answer = "";
+        String minimum = "23:59";
         int playtime = 0;
         for(String info : musicinfos) {
             String[] music = info.split(",");
-            int temp = time(music[0], music[1]);
-            int time = temp;
+            String[] starttime = music[0].split(":");
+            String[] endtime = music[1].split(":");
+
+            int hour = Integer.parseInt(endtime[0]) - Integer.parseInt(starttime[0]);
+            int min = Integer.parseInt(endtime[1]) - Integer.parseInt(starttime[1]) + (hour * 60);
             String str = "";
-            for(int i = 0; temp > 0; i++) {
-                if(i == music[3].length())
-                    i = 0;
-                str += music[3].charAt(i);
-                if(i < music[3].length()-1 && music[3].charAt(i+1) == '#') {
-                    str += '#';
-                    i++;
-                }
-                temp--;
-            }
-            if(check(str, m) && playtime < time) {
-                playtime = time;
-                answer = music[2];
-            }
-        }
-        return answer;
-    }
-    static boolean check(String str, String m) {
-        for(int i = 0; i <= str.length()-m.length(); i++) {
-            if(str.charAt(i) == m.charAt(0)) {
-                if(str.contains(m)) {
-                    if(i+m.length() >= str.length() || (i+m.length() < str.length() && str.charAt(i+m.length()) != '#'))
-                        return true;
+            music[3] = music[3].replaceAll("C#", "c");
+            music[3] = music[3].replaceAll("D#", "d");
+            music[3] = music[3].replaceAll("F#", "f");
+            music[3] = music[3].replaceAll("G#", "g");
+            music[3] = music[3].replaceAll("A#", "a");
+            music[3] = music[3].replaceAll("E#", "e");
+            for(int i = 0; i < min; i++)
+                str += music[3].charAt(i%music[3].length());
+            if(str.contains(m)) {
+                if(playtime < str.length()) {
+                    playtime = str.length();
+                    answer = music[2];
                 }
             }
         }
-        return false;
-    }
-    static int time(String t1, String t2) {
-        int result = 0;
-        int m1 = Integer.parseInt(t1.split(":")[0]);
-        int s1 = Integer.parseInt(t1.split(":")[1]);
-        int m2 = Integer.parseInt(t2.split(":")[0]);
-        int s2 = Integer.parseInt(t2.split(":")[1]);
-        result = s2-s1;
-        if(result < 0) {
-            result += 60;
-            m2++;
-        }
-        if(m2-m1 < 0)
-            m2 += 24;
-        result += (m2-m1)*60;
-        return result;
+        return answer.length() == 0 ? "(None)" : answer;
     }
 }
