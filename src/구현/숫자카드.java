@@ -9,14 +9,30 @@ public class 숫자카드 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
-        HashSet<Integer> set = new HashSet<>();
+        int[] arr = new int[N];
         StringTokenizer token = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++)
-            set.add(Integer.parseInt(token.nextToken()));
+            arr[i] = Integer.parseInt(token.nextToken());
+        Arrays.sort(arr);
         int M = Integer.parseInt(br.readLine());
         token = new StringTokenizer(br.readLine());
-        for(int i = 0; i < M; i++) {
-            if(set.contains(Integer.parseInt(token.nextToken())))
+
+        loop: for(int i = 0; i < M; i++) {
+            int n = Integer.parseInt(token.nextToken());
+            int start = 0;
+            int end = N-1;
+            while(start < end) {
+                int mid = (start+end)/2;
+                if(arr[mid] == n) {
+                    sb.append("1 ");
+                    continue loop;
+                }
+                else if(arr[mid] < n)
+                    start = mid+1;
+                else
+                    end = mid-1;
+            }
+            if(arr[start] == n)
                 sb.append("1 ");
             else
                 sb.append("0 ");
