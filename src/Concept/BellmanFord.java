@@ -13,8 +13,6 @@ public class BellmanFord {
         }
     }
     public static void main(String[] args) {
-        int[] d = new int[6];
-        Arrays.fill(d, 1234567);
         List<Node>[] list = new ArrayList[6];
         for(int i = 0; i < list.length; i++)
             list[i] = new ArrayList<>();
@@ -36,6 +34,8 @@ public class BellmanFord {
         list[5].add(new Node(5, 0));
 
         int start = 1;
+        int[] d = new int[6];
+        Arrays.fill(d, 1234567);
         d[start] = 0;
         for(int v = 0; v < list.length; v++) {
             for(Node n : list[v]) {
