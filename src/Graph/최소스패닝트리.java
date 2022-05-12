@@ -15,46 +15,47 @@ public class 최소스패닝트리 {
             this.val = val;
         }
 
-        @Override
-        public int compareTo(Node o) {
-            return Integer.compare(this.val, o.val);
-        }
+    @Override
+    public int compareTo(Node o) {
+        return Integer.compare(this.val, o.val);
     }
-    static int[] parent;
+}
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer token = new StringTokenizer(br.readLine());
         int V = Integer.parseInt(token.nextToken());
         int E = Integer.parseInt(token.nextToken());
-        long sum = 0;
-        parent = new int[V+1];
-        for(int i = 1; i <= V; i++)
-            parent[i] = i;
-        List<Node> list = new ArrayList<>();
+        parents = new int[V+1];
+        for(int i = 0; i <= V; i++)
+            parents[i] = i;
+        PriorityQueue<Node> que = new PriorityQueue<>();
         for(int i = 0; i < E; i++) {
             token = new StringTokenizer(br.readLine());
-            list.add(new Node(Integer.parseInt(token.nextToken()), Integer.parseInt(token.nextToken()), Integer.parseInt(token.nextToken())));
+            int v1 = Integer.parseInt(token.nextToken());
+            int v2 = Integer.parseInt(token.nextToken());
+            int cost = Integer.parseInt(token.nextToken());
+            que.add(new Node(v1, v2, cost));
         }
-        Collections.sort(list);
-
-        for(int i = 0; i < list.size(); i++) {
-            Node n = list.get(i);
+        long sum = 0;
+        while(!que.isEmpty()) {
+            Node n = que.poll();
             if(find(n.from) != find(n.to)) {
-                sum += n.val;
                 union(n.from, n.to);
+                sum += n.val;
             }
         }
         System.out.println(sum);
     }
-    static int find(int x) {
-        if(x == parent[x])
-            return x;
-        return parent[x] = find(parent[x]);
+    static int[] parents;
+    static void union(int a, int b) {
+        a = find(a);
+        b = find(b);
+        if (a != b)
+            parents[b] = a;
     }
-    static void union(int x, int y) {
-        x = find(x);
-        y = find(y);
-        if(x != y)
-            parent[y] = x;
+    static int find(int a) {
+        if(a == parents[a])
+            return a;
+        return parents[a] = find(parents[a]);
     }
 }
